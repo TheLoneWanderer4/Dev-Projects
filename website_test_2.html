@@ -1,0 +1,66 @@
+
+<style media="screen">
+  :root {
+    --background-color: grey;
+    --header-color: orange;
+    --box-border-color: black;
+    --box-color:#26CAFB;
+    --title-text: 50px;
+    --nav-bar-size: 25px;
+  }
+  .background {
+    background-color: var(--box-color);
+  }
+  .header_top {
+    width: 50%;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    font-size: var(--title-text);
+  }
+  .nav_bar {
+    position: relative;
+    float: right;
+    font-size: var(--nav-bar-size);
+
+  }
+  .box {
+    border: 5px solid var(--box-border-color);
+  }
+  .logo {
+    border-radius: 50%;
+    position: relative;
+    float: left;
+    width: 5%;
+  }
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    color: red;
+  }
+  nav:hover {
+    background-color: black;
+  }
+
+
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Test Website </title>
+  </head>
+  <body class = "background">
+    <nav class = "nav_bar">
+      <a target = "_blank" href="https://www.reddit.com/user/NAFAL44"> Home </a>
+      <a href="#"> Portfolio </a>
+      <a href="#"> Resume </a>
+      <a href="#"> Store </a>
+    </nav>
+    <img class = "logo box" src="Garden_Bridge.jpg" alt="Bridge at Dallas Flower Garden">
+    <h1 class = 'header_top'> Welcome to my Website </h1>
+  </body>
+</html>
