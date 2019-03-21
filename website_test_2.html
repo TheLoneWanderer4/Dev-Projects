@@ -43,16 +43,24 @@
     color: gray;
   }
   .main_p {
-  padding: 15px;
-  position: relative;
   float: left;
   }
   .side_bar {
-  position: relative;
+  width: 200px;
   float: right;
+  margin: 20px 0px 20px 0px;
+  border: 5px solid var(--box-border-color);
+  background: var(--background-color)
   }
-
-
+  .side_bar_element{
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    padding: 0px 10px 0px 10px;
+    background: var(--background-color)
+    text-align: center;
+  }
+  .side_bar_element:hover{
+    background: white;
+  }
 
 </style>
 
@@ -73,10 +81,18 @@
     <div>
 </header>
 <main>
-    <body>
+    <div class="main_p">
         <h2> The News Today </h2>
         <p> This is holder and placment text </p>
-    </body>
+    </div>
+    <div class="side_bar">
+      <header class = 'side_bar_element'>
+        This is a test
+      </header>
+      <div class="side_bar_element">
+        <p>Hello</p>
+      </div>
+    </div>
 </main>
 
 </html>
