@@ -1,21 +1,33 @@
 <style>
+    body{
+        position: relative;
+        left: 25%;
+        width: 50%;
+    }
     .title{
         text-align: center;
     }
+    .vox{
+        background: yellow;
+        font-size: 50px;
+        padding: 5px;
+    }
     .nav{
+        align-items: center;
+        background: lightgray;
         position: relative;
-        left: 40%;
-        width: 20%;
         display: flex;
         flex-direction: row;
-        justify-content: space-around; 
+        justify-content: space-between; 
+        padding: 5px;
+    }
+    article{
+        width: 75%;
     }
     .side_bar{
         padding: 5px;
-        background: orange;
-        border: 5px solid black;
-        left: 95%;
-        width: 5%;
+        left: 75%;
+        width: 25%;
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -26,19 +38,24 @@
 </style>
 
 <header>
-    <h1 class = 'title' > Welcome to my website </h1>
-    <div class = 'nav'>
-        <div> Home </div>
-        <div> More </div>
-        <div> Store </div>
+    <div class = 'nav'>        
+        <a href="https://www.vox.com/" class = 'vox'>Vox</a>
+        <a href="https://www.vox.com/future-perfect">Future Perfect</a>
+        <a href="https://www.vox.com/explainers">Explainers</a>
+        <a href="https://www.vox.com/the-highlight">The Highlight</a>
+        <a href="https://www.vox.com/the-goods">The Goods</a>
+        <a href="https://www.vox.com/policy-and-politics">Politics and Policy</a>
+        <a href="url">More</a>
     </div>
+    <h1> Will the BRI topple your Goverment? </h1>
+    <h5> Possible dangers of the new Chinese investment program </h5>
+    <h6> By: Amin Sennour | Apr 7, 2019, 4:12pm EDT</h6>
 </header>
 
 <body>
     <div class = 'side_bar'>
-        <div> Slnink </div>
-        <div> Clicko </div>
-        <div> Read more fuckers </div>
+        <div> Most Read </div>
+        
     </div>
 
     <article>
