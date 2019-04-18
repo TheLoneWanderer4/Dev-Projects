@@ -1,17 +1,100 @@
 <style media="screen">
   #main{
     text-align: center;
-  }
-  #title{
-    padding: 10px;
-    background: orange;
-    border: 5px black solid;
-  }
-  #title:hover{
     background: pink;
   }
+  #title{
+    position: relative;
+    left: 15%;
+    width: 70%;
+    padding: 10px;
+    background: orange;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #title:hover{
+    transform: scale(1.02)
+  }
   #img-div{
-
+    position: relative;
+    left: 15%;
+    width: 70%;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .rome {
+    width: 100px;
+    height: 250px;
+    position: relative;
+    float: left;
+    background: red;
+    animation-duration: 5s;
+    animation-name: fight_rome;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0, 0.1, 0.2, 0.5);
+  }
+  .persia {
+    width: 25%;
+    height: 25%;
+    position: relative;
+    float: right;
+    background: green;
+    animation-duration: 5s;
+    animation-name: fight_persia;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0, 0.1, 0.2, 0.5);
+  }
+  @keyframes fight_rome {
+    0% {
+      left: 0%;
+    }
+    40% {
+      left: 40%;
+    }
+    45% {
+      left: 45%;
+    }
+    50% {
+      left: 40%;
+    }
+    55% {
+      left: 45%;
+    }
+    60% {
+      left: 40%;
+    }
+    65% {
+      left: 45%;
+    }
+    100% {
+      left: 0%;
+    }
+  }
+  @keyframes fight_persia {
+    0% {
+      right: 0%;
+    }
+    40% {
+      right: 40%;
+    }
+    45% {
+      right: 45%;
+    }
+    50% {
+      right: 40%;
+    }
+    55% {
+      right: 45%;
+    }
+    60% {
+      right: 40%;
+    }
+    65% {
+      right: 45%;
+    }
+    100% {
+      right: 0%;
+    }
   }
 </style>
 
@@ -25,7 +108,12 @@
   <body id='main'>
     <h1 id='title'> Something Something </h1>
     <div id="img-div">
-      <img src="https://cdn.stuff-fibre.co.nz/web/img/web-rebrand/resize/oli-reach-shadow.png" alt="testy">
+      <div class="rome">
+        d
+      </div>
+      <div class="persia">
+        <img src="https://live.staticflickr.com/5286/5342135297_bb25cfbbd2_b.jpg" alt="Iran" height="100%" width="100%">
+      </div>
       <p id="img-caption"> This is a caption </p>
     </div>
   </body>
