@@ -3,28 +3,27 @@
     text-align: center;
     background: #cccfd1;
   }
-  #title{
-    font-size: 60px;
+  #title_bar {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background: #cccfd1;
+    background: #cecece;
   }
-  #nav {
-    background: pink;
+  #title{
+    width: 80%;
   }
   #img-div{
-    float: left;
-    background: #cccfd1;
     background: white;
   }
-  #title_bar {
-    position: relative;
-    background: #cccfd1;
-    background: pink;
-  }
   #image{
-    float: left;
-    width: 50%;
+    width: 100%;
   }
   #img_caption{
-    float: right;
+
+  }
+  #tribute-info{
+    background: white;
   }
   .shadow {
     position: relative;
@@ -35,28 +34,34 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   .title_img {
-    position: absolute;
-    left: 5%;
-    height: 90%;
+    width: 20%;
   }
 </style>
-
-
 <!DOCTYPE html>
 <html id = 'main' lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title> Almaty, free-code-camp tribute page </title>
   </head>
-  <body id='main'>
+  <body>
     <div id = 'title_bar' class="shadow">
-      <img class = 'title_img'src="https://upload.wikimedia.org/wikipedia/commons/0/04/Flag_of_Almaty.svg" alt="flap">
-      <h1 id='title'>Almaty</h1>
-      <p> The cultural capital of Kazakstan </p>
+      <img class = 'title_img'src="https://upload.wikimedia.org/wikipedia/commons/0/04/Flag_of_Almaty.svg" alt="flag">
+      <h1 id = 'title'> Almaty </h1>
+      <img class = 'title_img'src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kazakhstan.svg" alt="flag">
     </div>
     <div id="img-div" class = 'shadow'>
-      <img id="image" src="https://upload.wikimedia.org/wikipedia/en/a/af/Almaty_Collage.png" alt="Almaty">
-      <p id="img-caption"> This is a caption </p>
+      <img id="image" src="https://upload.wikimedia.org/wikipedia/commons/4/45/Almaty%2C_Kok-tobe_exposition_2.jpg" alt="Almaty">
+      <p id="img_caption"> This is a caption </p>
+    </div>
+    <div id='tribute-info' class = 'shadow'>
+      <h3> The cultural capital of Kazakstan </h3>
+      <h4> A short history of the city </h4>
+      <article class="">
+        This is where things go
+          HAHAHAH
+
+          Oh woww writting is so fun
+      </article>
     </div>
   </body>
 </html>
