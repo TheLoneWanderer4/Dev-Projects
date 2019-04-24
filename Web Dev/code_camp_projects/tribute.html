@@ -9,6 +9,7 @@
     align-items: flex-start;
     background: #cccfd1;
     background: #cecece;
+    background: white;
   }
   #title{
     width: 80%;
@@ -18,12 +19,29 @@
   }
   #image{
     width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   #img_caption{
 
   }
   #tribute-info{
     background: white;
+  }
+  #top-bar{
+    position: fixed;
+    background: #272828;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 120%;
+    right: 0%;
+    height: 50px;
+    text-color: white;
+  }
+  #info_list{
+    position: relative;
+    width: 40%;
+    left: 30%;
+    text-align: left;
+
   }
   .shadow {
     position: relative;
@@ -32,9 +50,11 @@
     margin: 15px;
     padding: 5px 5px 5px 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
   }
   .title_img {
     width: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 </style>
 <!DOCTYPE html>
@@ -44,23 +64,27 @@
     <title> Almaty, free-code-camp tribute page </title>
   </head>
   <body>
+    <div id="top-bar">
+
+    </div>
     <div id = 'title_bar' class="shadow">
       <img class = 'title_img'src="https://upload.wikimedia.org/wikipedia/commons/0/04/Flag_of_Almaty.svg" alt="flag">
       <h1 id = 'title'> Almaty </h1>
       <img class = 'title_img'src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kazakhstan.svg" alt="flag">
     </div>
     <div id="img-div" class = 'shadow'>
-      <img id="image" src="https://upload.wikimedia.org/wikipedia/commons/4/45/Almaty%2C_Kok-tobe_exposition_2.jpg" alt="Almaty">
-      <p id="img_caption"> This is a caption </p>
+      <img id="image" src="http://neweratravels.in/new-imgs/almaty-back.jpg" alt="Almaty">
+      <p id="img_caption"> A view of Almaty and the Zailiyskiy Alata mountain range behind the city </p>
     </div>
     <div id='tribute-info' class = 'shadow'>
       <h3> The cultural capital of Kazakstan </h3>
       <h4> A short history of the city </h4>
       <article class="">
-        This is where things go
-          HAHAHAH
-
-          Oh woww writting is so fun
+        <ul id="info_list" >
+          <li> Info </li>
+          <li> founded in the very far past </li>
+          <li> used by teh soviets for soviet things i'm gonna write many many many things and oh my goodness wowowowowowowow</li>
+        </ul>
       </article>
     </div>
   </body>
