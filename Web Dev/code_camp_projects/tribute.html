@@ -2,17 +2,24 @@
   #main{
     text-align: center;
     background: #cccfd1;
+    font-size: 20px;
   }
   #title_bar {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     background: #cccfd1;
     background: #cecece;
     background: white;
   }
   #title{
-    width: 80%;
+    width: 1500px;
+    font-size: 85px;
+    display: flex;
+    flex-direction: column;
+  }
+  #subtitle{
+    font-size: 20px;
   }
   #img-div{
     background: white;
@@ -21,7 +28,7 @@
     width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
-  #img_caption{
+  #img-caption{
 
   }
   #tribute-info{
@@ -38,15 +45,19 @@
   }
   #info_list{
     position: relative;
-    width: 40%;
-    left: 30%;
-    text-align: left;
+    width: 20vw;
+    left: 30vw;
+    text-align:   left;
 
+  }
+  #tribute-link{
+    font-size: 30px;
   }
   .shadow {
     position: relative;
-    left: 15%;
-    width: 70%;
+    top: 65px;
+    left: 10vw;
+    width: 80vw;
     margin: 15px;
     padding: 5px 5px 5px 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -69,12 +80,15 @@
     </div>
     <div id = 'title_bar' class="shadow">
       <img class = 'title_img'src="https://upload.wikimedia.org/wikipedia/commons/0/04/Flag_of_Almaty.svg" alt="flag">
-      <h1 id = 'title'> Almaty </h1>
+      <div id = 'title'>
+        Almaty
+        <div id = 'subtitle'> The cultural capital of Kazakstan </div>
+      </div>
       <img class = 'title_img'src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kazakhstan.svg" alt="flag">
     </div>
     <div id="img-div" class = 'shadow'>
       <img id="image" src="http://neweratravels.in/new-imgs/almaty-back.jpg" alt="Almaty">
-      <p id="img_caption"> A view of Almaty and the Zailiyskiy Alata mountain range behind the city </p>
+      <p id="img-caption"> A view of Almaty and the Zailiyskiy Alata mountain range behind the city </p>
     </div>
     <div id='tribute-info' class = 'shadow'>
       <h3> The cultural capital of Kazakstan </h3>
@@ -85,6 +99,7 @@
           <li> founded in the very far past </li>
           <li> used by teh soviets for soviet things i'm gonna write many many many things and oh my goodness wowowowowowowow</li>
         </ul>
+        <p id = 'tribute-link'> To read more about this beutiful city <a id = 'tribute-link' target="_blank" href="https://en.wikipedia.org/wiki/Almaty"> Click here </a></p>
       </article>
     </div>
   </body>
