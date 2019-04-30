@@ -12,15 +12,43 @@
   }
   #form{
     background: white;
+    display: grid;
+    grid-template-columns: 763px 763px;
+    grid-gap: 20px;
+    justify-items: end;
+    justify-items: start;
+  }
+  #submit{
+    justify-self: center;
+    grid-column: 1 / 3;
+    background-color: #59ace0;
+    border: 0px solid;
+    border-radius: 4px;
+    color: white;
+    font-size: 1em;
+    height: 40px;
+    width: 80px;
+
   }
   .shadow {
+    background: white;
     position: relative;
-    left: 10vw;
-    width: 80vw;
+    left: 192px;
+    width: 1536px;
     margin: 15px;
     padding: 5px 5px 5px 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
+  }
+  input{
+    border: 0px solid;
+    border-radius: 4px;
+    background: white;
+    padding: 10px;
+    color: black;
+  }
+  input:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 </style>
 <!DOCTYPE html>
@@ -31,20 +59,20 @@
   </head>
   <body>
     <h1 id ='title' class = 'shadow'> 2019 Spring Election Form </h1>
-    <div id = 'form' class="shadow">
-      <form class="" action="index.html" method="post">
-        <h3 id='description'> Vote for next year's officers! </h3>
-        <p> Who are you? </p>
-        <p> Name:  <input type="text" name="" value="" placeholder="your name"> </p>
-        <p> Email:  <input type="email" name="" value="" placeholder="your name"> </p>
-        <p> How many years have you been in the club? <input type="number" name="" value="" min = '0' max ='10' placeholder="your name">  </p>
+    <div class="shadow">
+      <h3 id='description'> Vote for next year's officers! </h3>
+      <p> Who are you? </p>
+      <form id = 'form' class="" action="index.html" method="post">
+        <p> Name: </p>  <input type="text" name="" value="" placeholder="Enter your name">
+        <p> Email: </p> <input type="email" name="" value="" placeholder="Enter your Email">
+        <p> How many years have you been in the club? </p> <input type="number" name="" value="" min = '0' max ='10' placeholder="Years">
         <p> Now, for the Votes! </p>
         <p> President: </p>
         <p> Trip Cordinator: </p>
         <p> RND: </p>
         <p> Outreach: </p>
         <p> Tech officer: </p>
-        <button type="submit" name="button"> Submit </button>
+        <button id = 'submit' type="submit" name="button"> Submit </button>
       </form>
     </div>
   </body>
