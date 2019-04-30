@@ -10,7 +10,7 @@
   #description{
 
   }
-  #form{
+  #survey-form{
     background: white;
     display: grid;
     grid-template-columns: 48% 48%;
@@ -43,6 +43,12 @@
   .label{
     justify-self: end;
   }
+  .radio{
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+  }
+  .radio:hover{
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+  }
   .title{
     justify-self: center;
     grid-column: 1 / 3;
@@ -54,6 +60,7 @@
     padding: 10px;
     color: black;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    width: 70%;
   }
   input:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -65,6 +72,7 @@
     padding: 10px;
     color: black;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    width: 50%;
   }
   select:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -81,40 +89,48 @@
     <div class="shadow">
       <h3 id='description'> Vote for next year's officers! </h3>
       <p> Who are you? </p>
-      <form id = 'form' class="" action="index.html" method="post">
-        <p class = 'label'> Name: </p>  <input type="text" name="" value="" placeholder="Enter your name">
-        <p class = 'label'> Email: </p> <input type="email" name="" value="" placeholder="Enter your Email">
-        <p class = 'label'> How many years have you been in the club? </p> <input type="number" name="" value="" min = '0' max ='10' placeholder="Years">
+      <form id = 'survey-form' class="" action="index.html" method="post">
+        <p id = 'name-label' class = 'label'> Name: </p>  <input id = 'name' type="name" name="" value="" placeholder="Enter your name">
+        <p id = 'email-label' class = 'label'> Email: </p> <input id = 'email' type="email" name="" value="" placeholder="Enter your Email">
+        <p id = 'number-label' class = 'label'> How many years have you been in the club? </p> <input id = 'number' type="number" name="" value="" min = '0' max ='10' placeholder="Years">
         <h4 class = "title"> Now, for the Votes! </h4>
         <p class = 'label'> President: </p>
-          <select name="cars">
+          <select id = 'dropdown' name="cars">
             <option value="kenric">Kenric</option>
             <option value="andrew">Andrew</option>
           </select>
         <p class = 'label'> Trip Cordinator: </p>
-        <select name="cars">
+        <select id = 'dropdown' name="cars">
           <option value="arsh">Arsh</option>
           <option value="fiat">Fiat</option>
           <option value="audi">Audi</option>
         </select>
         <p class = 'label'> RND: </p>
-        <select name="cars">
+        <select id = 'dropdown' name="cars">
           <option value="daniel">Daniel</option>
           <option value="kenric">kenric</option>
           <option value="arsh">Arsh</option>
         </select>
         <p class = 'label'> Outreach: </p>
-        <select name="cars">
+        <select id = 'dropdown' name="cars">
           <option value="saab">Saab</option>
           <option value="fiat">Fiat</option>
           <option value="audi">Audi</option>
         </select>
         <p class = 'label'> Tech officer: </p>
-        <select name="cars">
+        <select id = 'dropdown' name="cars">
           <option value="saab">Saab</option>
           <option value="fiat">Fiat</option>
           <option value="audi">Audi</option>
         </select>
+        <p class = 'label'> Tell us what you think of this new voting system</p>
+        <ul style="list-style: none;">
+          <li class="radio"><label>Good<input class = 'radio' name="radio-buttons" value="1"  type="radio"></label></li>
+          <li class="radio"><label>No opinon<input class = 'radio' name="radio-buttons" value="2"  type="radio"></label></li>
+          <li class="radio"><label>Not Good<input class = 'radio'name="radio-buttons" value="3"  type="radio"></label></li>
+        </ul>
+        <p class = 'label'> Why? </p>
+        <textarea name="name" rows="8" cols="80"></textarea>
         <button id = 'submit' type="submit" name="button"> Submit </button>
       </form>
     </div>
