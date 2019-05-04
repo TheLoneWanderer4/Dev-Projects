@@ -15,8 +15,8 @@
     display: grid;
     grid-template-columns: 48% 48%;
     grid-gap: 20px;
-    justify-items: end;
     justify-items: start;
+    align-items: center;
   }
   #submit{
     justify-self: center;
@@ -28,7 +28,6 @@
     font-size: 1em;
     height: 40px;
     width: 80px;
-
   }
   #text{
     width: 60%;
@@ -52,6 +51,16 @@
   .radio:hover{
     box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
   }
+  .checkbox{
+    float: left;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+  }
+  .checkbox:hover{
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+  }
+  .checkbox-label{
+    float: right;
+  }
   .title{
     justify-self: center;
     grid-column: 1 / 3;
@@ -60,7 +69,7 @@
     border: 0px solid;
     border-radius: 4px;
     background: white;
-    padding: 10px;
+    padding: 15px;
     color: black;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     width: 70%;
@@ -72,7 +81,7 @@
     border: 0px solid;
     border-radius: 4px;
     background: #dcdfe5;
-    padding: 10px;
+    padding: 15px;
     color: black;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     width: 50%;
@@ -90,18 +99,24 @@
   <body>
     <h1 id ='title' class = 'shadow'> 2019 Spring Election Form </h1>
     <div class="shadow">
-      <h3 id='description'> Vote for next year's officers! </h3>
+      <p id='description'> Vote for next year's officers! </p>
       <p> Who are you? </p>
       <form id = 'survey-form' class="" action="index.html" method="post">
-        <p id = 'name-label' class = 'label'> Name: </p>  <input id = 'name' type="name" name="" value="" placeholder="Enter your name">
-        <p id = 'email-label' class = 'label'> Email: </p> <input id = 'email' type="email" name="" value="" placeholder="Enter your Email">
-        <p id = 'number-label' class = 'label'> How many years have you been in the club? </p> <input id = 'number' type="number" name="" value="" min = '0' max ='10' placeholder="Years">
+        <label id = 'name-label' class = 'label'> Name: </label>  <input id="name" type="name" name="name" value="" placeholder="Enter your name" required>
+        <label id = 'email-label' class = 'label'> Email: </label> <input id="email" type="email" name="email" value="" placeholder="Enter your Email" required>
+        <label id = 'number-label' class = 'label'> How many years have you been in the club? </label> <input id = "number" type="number" name="" value="" min = '0' max ='10' placeholder="Years" required>
+        <label for="checkbox" class='label'> What Sub-team were you a part of? </label>
+        <ul style="list-style: none;">
+          <li class="checkbox"><label class='checkbox-label'>ACCEND</label> <input class = 'checkbox' name="checkbox-buttons" value="1"  type="checkbox"></li>
+          <li class="checkbox"><label class='checkbox-label'>SAT2</label> <input class = 'checkbox' name="checkbox-buttons" value="2"  type="checkbox"> </li>
+          <li class="checkbox"><label class='checkbox-label'>ROCSAT</label> <input class = 'checkbox'name="checkbox-buttons" value="3"  type="checkbox"> </li>
+        </ul>
         <h4 class = "title"> Now, for the Votes! </h4>
         <p class = 'label'> President: </p>
-          <select id = 'dropdown' name="cars">
-            <option value="kenric">Kenric</option>
-            <option value="andrew">Andrew</option>
-          </select>
+        <select id = 'dropdown' name="cars">
+          <option value="kenric">Kenric</option>
+          <option value="andrew">Andrew</option>
+        </select>
         <p class = 'label'> Trip Cordinator: </p>
         <select id = 'dropdown' name="cars">
           <option value="arsh">Arsh</option>
