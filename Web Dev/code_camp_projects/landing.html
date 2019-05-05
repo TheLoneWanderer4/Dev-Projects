@@ -1,5 +1,59 @@
 <style media="screen">
+  #body{
+    background: #a9d7d1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #header{
+    position: fixed;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  #header-img{
+    width: 50px;
+    height: 100%;
+    justify-self: start;
+  }
+  #nav-bar{
+    width: 100%;
+    height: 100%;
+    justify-self: end;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .nav-link{
+    background:  #a9d7d1;
+    border: 0px solid;
+    border-radius: 4px;
+    font-size: 1em;
+    height: 40px;
+    width: 100%;
+  }
+  .nav-link:hover{
+    background: white;
+  }
+  #video{
+    position: relative;
+    top: 40px;
+    height: 100px;
+    width: 100px;
+    background: black;
+    margin: 10px;
+  }
+  #form{
+    margin: 10px;
+    position: relative;
+    top: 40px;
+  }
+  #email{
 
+  }
+  #description{
+
+  }
 </style>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -7,7 +61,21 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body>
+  <body id='body'>
+    <header id='header'>
+      <img id='header-img' src="https://png2.kisspng.com/sh/e1f22257d417d323d16fd5d5c1355a52/L0KzQYm3VMEyN6JtiZH0aYP2gLBuTgN2apJ3jZ9ybYD1dcvoTgdzgF54jNs2Y3H1Pb32hB8ue6ZneeRALXbygrb6lPVzNaNmhN5ELUXkc7aCUcViOmFoetM5Lke1SYOAVcY6OWY3S6YDN0C5RoK6VMMveJ9s/kisspng-subaru-impreza-wrx-sti-car-logo-subaru-forester-rally-5ace915a20cba0.7292756915234870661343.png" alt="">
+      <nav id='nav-bar'>
+        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#description';"> Features </button>
+        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#video';"> Watch her drive </button>
+        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#form';"> Sign up to hear more </button>
+      </nav>
+    </header>
+    <div id='video'>
 
+    </div>
+    <form id='form' action="https://www.freecodecamp.com/email-submit" method="post">
+      <input id='email' type="email" name="" value="" placeholder="Enter your email to follow our newsletter">
+      <button id = 'submit' type="submit" name="button"> Submit </button>
+    </form>
   </body>
 </html>
