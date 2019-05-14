@@ -2,13 +2,11 @@
   #body{
     margin: 0;
     background: #cdd0d6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   #header{
     background: grey;
     position: fixed;
+    height: 45px;
     width: 100%;
     padding: 10px;
     display: grid;
@@ -37,26 +35,57 @@
     width: 100%;
   }
   .nav-link:hover{
-    background: #cdd0d6;
+    background: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   }
   #content{
-    top: 75px;
     position: relative;
+    top: 60px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
   }
   #video{
-
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   }
   #form{
-
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
   }
   #email{
-
+    border: 0px solid;
+    border-radius: 4px;
+    background: white;
+    padding: 15px;
+    width: 100%;
+    color: black;
+  }
+  #email:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+  #submit{
+    margin: 15px;
+    align-self: center;
+    background-color: #59ace0;
+    border: 0px solid;
+    border-radius: 4px;
+    color: white;
+    font-size: 1em;
+    height: 40px;
+    width: 80px;
+  }
+  #submit: hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   }
   #description{
 
+  }
+  #footer{
+    background: white;
+    height: 40px;
+    width: 854px;
   }
 </style>
 <!DOCTYPE html>
@@ -69,22 +98,29 @@
     <header id='header'>
       <img id='header-img' src="https://d1vhcvzji58n1j.cloudfront.net/assets/pop/os-logo-b44ed4fc34_2560.png" alt="">
       <nav id='nav-bar'>
-        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#description';"> Features </button>
-        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#video';"> Level1Linux </button>
-        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#form';"> Sign up to hear more </button>
+        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#description';" href='#description'> Features </button>
+        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#video';" href='#video'> Level1Linux </button>
+        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#form';" href='#form'> Sign up to hear more </button>
       </nav>
     </header>
     <div id='content'>
       <div id = 'description'>
         <h1> Welcome to Pop!_Os</h1>
+        <ul>
+          <li> Thing </li>
+          <li> Look how pretty </li>
+          <li> FASTTT </li>
+        </ul>
       </div>
-      <div id='video'>
-        <iframe width="1200" height="675" src="https://www.youtube.com/embed/IGEoXH-zUyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+      <iframe id='video' width="854" height="480" src="https://www.youtube.com/embed/IGEoXH-zUyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <form id='form' action="https://www.freecodecamp.com/email-submit" method="post">
-        <input id='email' type="email" name="" value="" placeholder="Enter your email to follow our newsletter">
-        <button id = 'submit' type="submit" name="button"> Submit </button>
+        <h2> Sign up to hear more! </h2>
+        <input id='email' type="email" name="email" value="email" placeholder="Enter your email">
+        <input id = 'submit' type="submit" name="button">
       </form>
-      </div>
+      <footer id='footer'>
+        Footer
+      </footer>
+    </div>
   </body>
 </html>
