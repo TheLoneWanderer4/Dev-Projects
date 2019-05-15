@@ -1,13 +1,103 @@
+<link href="https://fonts.googleapis.com/css?family=Stylish" rel="stylesheet">
 <style media="screen">
+  body{
+    margin: 0;
+    background: #cdd0d6;
+    font-family: stylish;
+    display: grid;
+    grid-template-columns: 25% 75%;
+  }
+  #navbar{
+    display: flex;
+    flex-direction: column;
+  }
+  #navbar header{
+    font-size: 2em;
+    margin: 15px;
+  }
+  #navbar a{
+    color: #4d4e53;
+    text-decoration:none;
+    cursor:pointer;
+}
+  .nav-link{
+
+  }
+  #main-doc{
+    align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-section{
+    align: center;
+    width: 100%;
+  }
+  #main-doc header{
+    font-size: 2em;
+  }
+  @media only screen and (max-device-width: 480px){
+      body{
+        margin: 0;
+        background: #cdd0d6;
+        font-family: stylish;
+        display: flex;
+        flex-direction: column;
+      }
+      #navbar{
+        display: flex;
+        flex-direction: row;
+      }
+  }
+  #line{
+    width: 100%;
+  }
 
 </style>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title> Advanced data types, in python</title>
+    <title> Advanced data types </title>
   </head>
   <body>
+    <nav id='navbar'>
+      <header> Intro to Advanced data types </header>
+      <ul>
+        <li><a class='nav-link' href="#What_are_advaced_data_types?"> What are advaced data types? </a></li>
+        <li><a class='nav-link' href="#Linked_Lists"> Linked Lists </a></li>
+        <li><a class='nav-link' href="#Stacks_and_Queues"> Stacks and Queues </a></li>
+        <li><a class='nav-link' href="#Hashtables"> Hashtables </a></li>
+        <li><a class='nav-link' href="#Trees"> Trees </a></li>
+      </ul>
 
+    </nav>
+    <main id = 'main-doc'>
+      <section id='What_are_advaced_data_types?' class='main-section'>
+        <header> What are advaced data types? </header>
+        <p> Hold </p>
+        <hr id='line' size='1'>
+      </section>
+      <section id='Linked_Lists' class='main-section'>
+        <header> Linked Lists </header>
+        <p> Hold </p>
+        <hr id='line' size='1'>
+      </section>
+      <section id='Stacks_and_Queues' class='main-section'>
+        <header> Stacks and Queues </header>
+        <p> Hold </p>
+        <hr id='line' size='1'>
+      </section>
+      <section id='Hashtables' class='main-section'>
+        <header> Hashtables </header>
+        <p> Hold </p>
+        <hr id='line' size='1'>
+      </section>
+      <section id='Trees' class='main-section'>
+        <header> Trees </header>
+        <p> Hold </p>
+        <hr id='line' size='1'>
+      </section>
+    </main>
   </body>
 </html>
