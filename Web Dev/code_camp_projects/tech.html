@@ -1,4 +1,5 @@
 <link href="https://fonts.googleapis.com/css?family=Stylish" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <style media="screen">
   body{
     margin: 0;
@@ -50,6 +51,7 @@
   }
 
   #main-doc{
+    font-family: 'Open Sans',Arial,sans-serif;
     overflow-y:auto;
     overflow-x:auto;
     display: flex;
@@ -59,10 +61,28 @@
   .main-section{
     width: calc(100% - 1.4%);
     border-bottom: #cdd0d6 solid;
+    font-size: 1em;
     padding: 0.7%;
+    padding-left: calc(15px + 0.7%);
+    width: calc(100% - 15px - 1.4%);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   }
   #main-doc header{
-    font-size: 3em;
+    margin-left: -15px;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  #main-doc ul{
+    font-size: 0.9em;
+  }
+  #main-doc pre{
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: #F0F0F0;
+    width: 50%;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   }
 
   @media screen and (-webkit-min-device-pixel-ratio: 2){
@@ -75,6 +95,7 @@
       position: relative;
       border-bottom: #cdd0d6 solid;
       border-left: #cdd0d6 solid;
+      font-size: 1em;
     }
     #navbar header{
       text-align: left;
@@ -88,6 +109,7 @@
       height: 15vh;
     }
     #navbar li{
+      font-size: 0.7em;
       width: calc(100% - 20px);
       padding: 10px;
       text-align: left;
@@ -97,6 +119,12 @@
     }
     #navbar a{
       margin: 0;
+    }
+    #main-doc header{
+      font-size: 1em;
+    }
+    #main-doc p{
+      font-size: 0.5em;
     }
 
 </style>
@@ -122,28 +150,72 @@
     </div>
     <main id = 'main-doc'>
       <section id='What_are_advaced_data_types?' class='main-section'>
-        <header style='font-size: 4em'> What are advaced data types? </header>
-        <p> Hold </p>
+        <header> What are advaced data types? </header>
+        <p> Advanced data types, ADTs, are specialized ways of storing data, with more mutability and customization than inbuilt data types
+        In reality ADT is just a computer science short hand for any and all methods of storing data that don't come shipped with the programming language.
+        However, to keep things simple, we're just going to cover 4 ADTs, each custom implmentations of commonly found data types.  </p>
+        <p> These will be: </p>
+        <ul>
+          <li>Linked Lists - same functionality as lists</li>
+          <li>Stacks and Queues - very similar to lists but with intresting constrains</li>
+          <li>Hashtables - a custom implmentation of dictionaries</li>
+          <li>Trees - these are very complex and will be explained in more detail later</li>
+          <li></li>
+        </ul>
+        <code></code>
+        <p> </p>
 
       </section>
       <section id='Linked_Lists' class='main-section'>
         <header> Linked Lists </header>
-        <p> Hold </p>
+        <p> Linked lists are quite like traditonal lists, arrays in C, in that they're designed to sequentially store information. However, traditonal lists have many problems
+        particulary the fact that they must be sequentially stored in memory, with results in them being relativly in efficnet and demanding.  </p>
+        <p> Linked lists solve this by breaking a list down into it's most key parts. An object in memory, and the object that follows it. </p>
+        <pre>
+        <code>
+          class Node:
+              def __init__(self, val):
+                  ''' init '''
+                  self._name = val
+                  self._next = None
+
+              def set_next(self, next):
+                  self._next = next
+
+              def __eq__(self, other):
+                  ''' eq '''
+                  if(other == None):
+                      return False
+                  else:
+                      return self._name == other._name
+
+              def __str__(self):
+                  ''' str '''
+                  return str(self._name)
+        </code>
+        </pre>
+        <p> </p>
 
       </section>
       <section id='Stacks_and_Queues' class='main-section'>
         <header> Stacks and Queues </header>
         <p> Hold </p>
+        <code></code>
+        <p> </p>
 
       </section>
       <section id='Hashtables' class='main-section'>
         <header> Hashtables </header>
         <p> Hold </p>
+        <code></code>
 
+        <p> </p>
       </section>
       <section id='Trees' class='main-section'>
         <header> Trees </header>
         <p> Hold </p>
+        <code></code>
+        <p> </p>
 
       </section>
     </main>
