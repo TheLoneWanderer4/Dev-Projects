@@ -9,6 +9,23 @@
   .links{
     width: 500px;
   }
+  header{
+    text-align: center;
+    width: 500px;
+    padding: 15px;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+  h1{
+    margin: 40px;
+    padding: 15px;
+    background: white;
+    border-radius: 50px;
+  }
+  p{
+    margin-top: -20px;
+  }
   ul{
     margin: 0;
     padding: 0;
@@ -31,7 +48,8 @@
     height: 100%;
   }
   button:hover{
-    background: #ffefc6;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 30px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.02);
   }
 </style>
 
@@ -42,12 +60,22 @@
     <title></title>
   </head>
   <body>
+    <header>
+      <h2 style='font-size: 4em'> Amin Sennour </h2>
+      <p> Programmer looking for work </p>
+    </header>
+    <h1>Web</h1>
     <div class="links">
       <ul>
         <li><button class = 'nav-link'  onclick="window.location.href = 'tech.html';"> tech.html </button></li>
         <li><button class = 'nav-link'  onclick="window.location.href = 'landing.html';"> landing.html </button></li>
         <li><button class = 'nav-link'  onclick="window.location.href = 'voting.html';"> voting.html </button></li>
         <li><button class = 'nav-link'  onclick="window.location.href = 'tribute.html';"> tribute.html </button></li>
+      </ul>
+    </div>
+    <h1>Python</h1>
+    <div class="links">
+      <ul>
         <li><button class = 'nav-link'  onclick="window.location.href = 'dice.py';"> dice.py </button></li>
         <li><button class = 'nav-link'  onclick="window.location.href = 'huffman.py';"> huffman.py </button></li>
       </ul>
