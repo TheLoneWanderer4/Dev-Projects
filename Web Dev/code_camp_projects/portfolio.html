@@ -1,15 +1,20 @@
+<link href="https://fonts.googleapis.com/css?family=Kodchasan&display=swap" rel="stylesheet">
 <style media="screen">
   body{
-    background: #ffeabc;
+    background: #f1ae89;
 
     display: flex;
     flex-direction: column;
+
+    font-family: 'Kodchasan', cursive;
 
     margin: 0;
 
     overflow-y:auto;
     overflow-x:auto;
   }
+
+
   .content{
     display: flex;
     flex-direction: column;
@@ -22,9 +27,8 @@
   .card{
     background: white;
     text-align: center;
-    padding: 15px;
-    max-width: calc(100% - 30px);
   }
+
 
   .header{
     background: white;
@@ -50,19 +54,31 @@
 
     border: 0px solid;
     cursor: pointer;
+    font-family: 'Kodchasan', cursive;
     text-align: center;
+    text-decoration: none;
+    color: 0;
 
     width: 225px;
     max-width: calc(100% - 30px);
     height: calc(100% - 30px);
     margin: 15px;
   }
+  .nav-link:hover{
+    color: #33cccc;
+  }
+
+
   .welcome-section{
     height: 100vh;
   }
+
+
   .intro-section{
     font-size: 3em;
     width: 900px;
+    padding: 15px;
+    max-width: calc(80% - 30px);
   }
   .intro-section p{
     color: #33cccc;
@@ -73,22 +89,31 @@
     margin-bottom: 0;
   }
 
+
   .projects{
     background: #b3d9ff;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
   }
   .project-title{
     grid-column: 1/4;
     justify-self: center;
 
     width: 900px;
+    max-width: calc(80% - 30px);
+    margin-bottom: 100px;
+    padding: 15px;
   }
   .project-tile{
     justify-content: space-between;
 
-    height: 500px;
+    max-width: calc(100%- 100px);
     margin: 50px;
     padding: 0;
   }
@@ -100,29 +125,91 @@
     width: 100%;
     padding: 15px 0px 15px 0px;
   }
-  .project-tile img{
-    background: pink;
+  .project-tile a:hover{
+    color: #33cccc;
   }
+  .project-tile-img{
+    width: 100%;
+    margin: auto;
+  }
+  .padding-fix{
+    padding: 15px;
+    width: calc(100% - 30px);
+  }
+
 
   .contact{
-    background: #b3ffcc;
-
-    height: 500px;
+    background: #b0f2c7;
   }
+  .contact-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+
+    width: 60%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .contact-title{
+    grid-column: 1/4;
+
+    width: 400px;
+    max-width: calc(50% - 30px);
+    padding: 15px;
+    margin-bottom: 100px;
+  }
+  .contact-tile{
+    border-radius: 50px;
+    max-width: calc(100%- 50px);
+    margin: 25px;
+  }
+  .contact-tile a{
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+
+    max-width: calc(100%- 50px);
+    padding: 25px;
+  }
+  .contact-tile a:hover{
+    color: #33cccc;
+  }
+
+  @media (max-width: 900px) {
+      .projects{
+        grid-template-columns: 100%;
+      }
+      .project-title{
+        grid-column: 1/2;
+      }
+      .project-tile{
+        width: 50%;
+        max-width: calc(60%- 50px);
+        margin: 25px;
+      }
+      .contact-grid{
+        grid-template-columns: 100%;
+      }
+      .contact-title{
+        grid-column: 1/2;
+        max-width: calc(80% - 30px)
+      }
+    }
 
   #footer{
     background: #f4f8ff;
 
     display: grid;
     grid-template-columns: 33% 34% 33%;
-    grid-template-rows: 50px 50px;
+    grid-template-rows: 1fr 1fr;
     justify-items: center;
     align-items: center;
 
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 
-    width: 100%;
-    height: 100px;
+    width: calc(100% - 20px);
+    height: 100%;
+    margin: 0;
+    padding: 10px;
   }
   .copyright{
     grid-column: 2 / 3;
@@ -130,6 +217,7 @@
     text-align: center;
 
     width: 100%;
+    height: 100%;
   }
   #line{
     width: 100%;
@@ -149,8 +237,8 @@
   </head>
   <body>
     <header class='header'>
-      <nav class='nav shadow'>
-        <button class = 'nav-link'  onclick="window.location.href = '#welcome-section';"> About </button>
+      <nav id='navbar' class='nav shadow'>
+        <button class = 'nav-link'  onclick="window.location.href = '#welcome-section';" > <a class='nav-link' href="#welcome-section">About</a> </button>
         <button class = 'nav-link'  onclick="window.location.href = '#projects';"> Work </button>
         <button class = 'nav-link'  onclick="window.location.href = '#contact';"> Contact </button>
       </nav>
@@ -164,25 +252,46 @@
     <section id='projects' class='projects shadow'>
       <h1 class ='card shadow project-title'> Look at the things I've made </h1>
       <div class="project-tile card shadow content">
-        <img src="" alt="">
-        <a href="#tech.html"> LinkedLists --- Technical documentation page </a>
+        <img class='project-tile-img' src="https://koenig-media.raywenderlich.com/uploads/2016/09/SwiftAlgClub-LinkedList-feature.png" alt="">
+        <a href="tech.html"> LinkedLists --- Technical documentation page </a>
       </div>
       <div class="project-tile card shadow content">
-        <img src="" alt="">
-        <a href="#landing.html"> Pop!_Os --- A demo product page</a>
+        <img class='project-tile-img  padding-fix' src="https://d1vhcvzji58n1j.cloudfront.net/assets/pop/os-logo-b44ed4fc34_2560.png" alt="">
+        <a href="landing.html"> Pop!_Os --- A demo product page</a>
       </div>
       <div class="project-tile card shadow content">
-        <img src="" alt="">
-        <a href="#voting.html"> SEDS Election --- A voting form</a>
+        <img class='project-tile-img' src="https://www.spacestationexplorers.org/wp-content/uploads/2018/02/seds-usa-logo-1.jpg" alt="">
+        <a href="voting.html"> SEDS Election --- A voting form</a>
+      </div>
+      <div class="project-tile card shadow content">
+        <img class='project-tile-img' src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kazakhstan.svg" alt="">
+        <a href="tribute.html"> Almaty --- A tribute to the beautiful city</a>
       </div>
     </section>
     <section id='contact' class='contact shadow content'>
-      <h1 class ='card shadow project-title'> Get in touch with me! </h1>
+      <div class="contact-grid">
+        <h1 class ='card shadow contact-title'> Get in touch with me! </h1>
+        <div class="card shadow  content contact-tile">
+          <a target="blank" href="https://twitter.com/catsrock45"> Twitter</a>
+        </div>
+        <div class="card shadow content contact-tile">
+          <a id='profile-link' target="_blank" href="https://github.com/TheLoneWanderer4">Github</a>
+        </div>
+        <div class="card shadow content contact-tile">
+          <a href="mailto:aminsennour@gmail.com">Email</a>
+        </div>
+        <div class="card shadow content contact-tile">
+          <a href="tel: 214 226 9216">Phone</a>
+        </div>
+        <div class="card shadow content contact-tile">
+          <a target='blank' href="https://www.freecodecamp.org/nafal">FCC</a>
+        </div>
+      </div>
     </section>
     <footer id='footer' class='shadow'>
-      <a href="#">Privacy</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+      <a href="#welcome-section"> About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
       <div class="copyright"> <hr id='line' size='1'> This is a personal website </div>
     </footer>
   </body>
