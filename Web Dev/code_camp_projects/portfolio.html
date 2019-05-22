@@ -1,0 +1,189 @@
+<style media="screen">
+  body{
+    background: #ffeabc;
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 0;
+
+    overflow-y:auto;
+    overflow-x:auto;
+  }
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .shadow{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+  .card{
+    background: white;
+    text-align: center;
+    padding: 15px;
+    max-width: calc(100% - 30px);
+  }
+
+  .header{
+    background: white;
+
+    position: fixed;
+
+    width: 100%;
+    height: 60px;
+  }
+  .nav{
+    background: white;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+  }
+  .nav-link{
+    background: white;
+
+    border: 0px solid;
+    cursor: pointer;
+    text-align: center;
+
+    width: 225px;
+    max-width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    margin: 15px;
+  }
+  .welcome-section{
+    height: 100vh;
+  }
+  .intro-section{
+    font-size: 3em;
+    width: 900px;
+  }
+  .intro-section p{
+    color: #33cccc;
+    font-size: 0.5em;
+    margin-top: 0;
+  }
+  .intro-section h1{
+    margin-bottom: 0;
+  }
+
+  .projects{
+    background: #b3d9ff;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .project-title{
+    grid-column: 1/4;
+    justify-self: center;
+
+    width: 900px;
+  }
+  .project-tile{
+    justify-content: space-between;
+
+    height: 500px;
+    margin: 50px;
+    padding: 0;
+  }
+  .project-tile a{
+    border-top: #cdd0d6 solid;
+    color: #000;
+    text-decoration: none;
+
+    width: 100%;
+    padding: 15px 0px 15px 0px;
+  }
+  .project-tile img{
+    background: pink;
+  }
+
+  .contact{
+    background: #b3ffcc;
+
+    height: 500px;
+  }
+
+  #footer{
+    background: #f4f8ff;
+
+    display: grid;
+    grid-template-columns: 33% 34% 33%;
+    grid-template-rows: 50px 50px;
+    justify-items: center;
+    align-items: center;
+
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+    width: 100%;
+    height: 100px;
+  }
+  .copyright{
+    grid-column: 2 / 3;
+
+    text-align: center;
+
+    width: 100%;
+  }
+  #line{
+    width: 100%;
+  }
+  #footer a {
+    color: #000;
+    text-decoration: none;
+  }
+
+
+</style>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header class='header'>
+      <nav class='nav shadow'>
+        <button class = 'nav-link'  onclick="window.location.href = '#welcome-section';"> About </button>
+        <button class = 'nav-link'  onclick="window.location.href = '#projects';"> Work </button>
+        <button class = 'nav-link'  onclick="window.location.href = '#contact';"> Contact </button>
+      </nav>
+    </header>
+    <section id='welcome-section' class='welcome-section content'>
+      <section class='intro-section card shadow content'>
+          <h1> Hi, I'm Amin.</h1>
+          <p> {a developer}  </p>
+      </section>
+    </section>
+    <section id='projects' class='projects shadow'>
+      <h1 class ='card shadow project-title'> Look at the things I've made </h1>
+      <div class="project-tile card shadow content">
+        <img src="" alt="">
+        <a href="#tech.html"> LinkedLists --- Technical documentation page </a>
+      </div>
+      <div class="project-tile card shadow content">
+        <img src="" alt="">
+        <a href="#landing.html"> Pop!_Os --- A demo product page</a>
+      </div>
+      <div class="project-tile card shadow content">
+        <img src="" alt="">
+        <a href="#voting.html"> SEDS Election --- A voting form</a>
+      </div>
+    </section>
+    <section id='contact' class='contact shadow content'>
+      <h1 class ='card shadow project-title'> Get in touch with me! </h1>
+    </section>
+    <footer id='footer' class='shadow'>
+      <a href="#">Privacy</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <div class="copyright"> <hr id='line' size='1'> This is a personal website </div>
+    </footer>
+  </body>
+</html>
