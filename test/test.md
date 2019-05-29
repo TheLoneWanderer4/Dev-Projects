@@ -2,6 +2,8 @@
 
 This is a pretty basic file in which things are being written
 
+You really and truly just write when you're writing markdown honestly. You only do fancy things when the task at hand calls for fancy things. 
+
 > This is a block quote
 
 * This is a list
