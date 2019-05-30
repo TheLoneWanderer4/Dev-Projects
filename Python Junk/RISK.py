@@ -21,6 +21,9 @@ def defDice(x):
     else:
         return 0
 def diceRoll(y):
+    random.seed(random.randint(1,999))
+    random.seed(random.randint(1,999))
+    random.seed(random.randint(1,999))
     return random.randint(1,y)
 def combat(x):
     ret = 0
