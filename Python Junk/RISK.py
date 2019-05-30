@@ -3,8 +3,7 @@ from os import system, name
 from time import sleep
 
 def clear():
-    if name == 'nt':
-        _ = system('cls')
+    system('cls')
 def attackDice(x):
     if(x > 3):
         return 3
@@ -84,6 +83,7 @@ while(closeProgram != 'exit'):
     print('Attack forces remaining: ' + str(armiesAttack))
     print('Defense forces remaining: ' + str(armiesDefend))
     print()
+    clear()
     if(armiesAttack == 0):
         print('Defense force wins with ' + str(armiesDefend) +' armies remaining.')
     elif(armiesDefend == 0):
