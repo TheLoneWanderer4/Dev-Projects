@@ -1,10 +1,12 @@
 import random
 from os import system, name
 from time import sleep
+import sys
 
 def clear():
-    system('cls')
+    system('clear')
 def attackDice(x):
+    random.seed(random.random())
     if(x > 3):
         return 3
     elif(x == 3):
@@ -14,6 +16,7 @@ def attackDice(x):
     else:
         return 0
 def defDice(x):
+    random.seed(str(random.random()))
     if(x >= 2):
         return 2
     elif(x > 0):
@@ -21,9 +24,6 @@ def defDice(x):
     else:
         return 0
 def diceRoll(y):
-    random.seed(random.randint(1,999))
-    random.seed(random.randint(1,999))
-    random.seed(random.randint(1,999))
     return random.randint(1,y)
 def combat(x):
     ret = 0
@@ -44,9 +44,20 @@ closeProgram = ''
 
 while(closeProgram != 'exit'):
     clear()
-    armiesAttack = int(input('Attacking force enter your armies: '))
+    armiesAttack = input('Attacking force enter your armies: ')
+    try:
+        armiesAttack = int(armiesAttack)
+    except:
+        print('Oops, please enter a number for the attacking armies next time')
+        sys.exit(1)
     print()
-    armiesDefend = int(input('Defending force enter your armies: '))
+    armiesDefend = input('Defending force enter your armies: ')
+    try:
+        armiesDefend = int(armiesDefend)
+    except:
+        print('Oops, please enter a number for the defending armies next time')
+        sys.exit(1)
+
     print()
     exit = input('Press enter to commense the attack: ')
     clear()
@@ -79,18 +90,18 @@ while(closeProgram != 'exit'):
         if(exit != 'test'):
             exit = input('Type exit to surrender, otherwise press enter: ')
         if(exit == 'exit'):
-            exit(0)
+            sys.exit(1)
         sleep(0.001)
         clear()
 
-    print('Attack forces remaining: ' + str(armiesAttack))
-    print('Defense forces remaining: ' + str(armiesDefend))
-    print()
-    clear()
     if(armiesAttack == 0):
         print('Defense force wins with ' + str(armiesDefend) +' armies remaining.')
+        print()
+        print('Attack force loses with ' + str(armiesAttack) +' armies remaining.')
     elif(armiesDefend == 0):
         print('Attack force wins with ' + str(armiesAttack) +' armies remaining.')
+        print()
+        print('Defense force loses with ' + str(armiesDefend) +' armies remaining.')
     else:
         print('error')
 
