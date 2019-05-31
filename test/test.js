@@ -86,9 +86,8 @@ var testObj = {
   19: "Unitas"
 };
 
-// Only change code below this line;
+function dice(x){
+  return Math.floor(Math.random() * (x + 1));
+}
 
-var playerNumber = testObj[16];       // Change this Line
-var player = testObj[playerNumber];
-
-console.log(playerNumber);
+console.log(dice(6));
