@@ -90,4 +90,20 @@ function dice(x){
   return Math.floor(Math.random() * (x + 1));
 }
 
-console.log(dice(6));
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["id-blacklist", "no-dup-keys"]
+};
+
+function makeList(arr) {
+  "use strict";
+
+  // change code below this line
+  const resultDisplayArray = arr.map((x) => `<li class="text-warning">${x}</li>)`);
+  // change code above this line
+
+  return resultDisplayArray;
+}
+
+console.log(makeList(result.failure));
