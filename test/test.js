@@ -90,12 +90,6 @@ function dice(x){
   return Math.floor(Math.random() * (x + 1));
 }
 
-const result = {
-  success: ["max-length", "no-amd", "prefer-arrow-functions"],
-  failure: ["no-var", "var-on-top", "linebreak"],
-  skipped: ["id-blacklist", "no-dup-keys"]
-};
-
 function makeList(arr) {
   "use strict";
 
@@ -106,4 +100,12 @@ function makeList(arr) {
   return resultDisplayArray;
 }
 
-console.log(makeList(result.failure));
+let quoteSample = "3 blind mice.";
+let myRegex = /[^aeiou^0-9]/gi; // Change this line
+let x = quoteSample.match(myRegex); // Change this line
+
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s*|\s*$/g; // Change this line
+let result = hello.replace(wsRegex, ''); // Change this line
+
+console.log([result]);
