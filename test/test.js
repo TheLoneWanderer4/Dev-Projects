@@ -108,4 +108,50 @@ let hello = "   Hello, World!  ";
 let wsRegex = /^\s*|\s*$/g; // Change this line
 let result = hello.replace(wsRegex, ''); // Change this line
 
-console.log([result]);
+function htmlColorNames(arr) {
+  // change code below this line
+  arr.splice(0,0,'DarkSalmon', "BlanchedAlmond")
+  // change code above this line
+  return arr;
+}
+
+// do not change code below this line
+function spreadOut() {
+  let fragment = ['to', 'code'];
+  let sentence = ['learning', ...fragment, 'is','fun'];
+  return sentence;
+}
+
+// do not change code below this line
+let humans = {
+  Alan: {
+    age: 27,
+    online: true
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: true
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+};
+
+function isEveryoneHere(obj) {
+  // change code below this line
+  let people = [Alan, Jeff,Sarah, Ryan];
+  for(let i = 0; i<people.length;i++){
+    if(!(people[i] in obj)){
+      return false;
+    }
+  }
+  return true;
+  // change code above this line
+}
+
+console.log(isEveryoneHere(humans));
