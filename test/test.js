@@ -363,8 +363,6 @@ Dog.prototype = Object.create(Animal.prototype);
 let callie = new Dog('callie');
 let test = new Animal();
 
-console.log(callie.eat('heck'));
-
 function Player(color){
   this.color = color;
   this.nations = [];
@@ -409,12 +407,7 @@ Window.prototype.tabOpen = function (tab) {
 // When you close a tab
 Window.prototype.tabClose = function (index) {
   var tabsBeforeIndex = this.tabs.splice(0, index); // get the tabs before the tab
-  console.log(tabsBeforeIndex);
-  console.log(this.tabs);
   var tabsAfterIndex = this.tabs.splice(index); // get the tabs after the tab
-  console.log(tabsAfterIndex);
-  console.log(this.tabs);
-
   this.tabs = tabsBeforeIndex.concat(tabsAfterIndex); // join them together
   return this;
  };
@@ -425,4 +418,41 @@ var socialWindow = new Window(['FB', 'Gitter', 'Reddit', 'Twitter', 'Medium']); 
 var videoWindow = new Window(['Netflix', 'YouTube', 'Vimeo', 'Vine']); //  Entertainment sites
 
 workWindow.tabClose(1);
-console.log(workWindow.tabs);
+
+// the global variable
+var bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+
+/* This function should add a book to the list and return the list */
+// New parameters should come before the bookName one
+
+// Add your code below this line
+function add (bookList, bookName) {
+  let books = [...bookList];
+
+  books.push(bookName);
+  return books;
+  // Add your code above this line
+}
+
+/* This function should remove a book from the list and return the list */
+// New parameters should come before the bookName one
+
+// Add your code below this line
+function remove (bookList, bookName) {
+  let books = [...bookList];
+
+  if (books.indexOf(bookName) >= 0) {
+
+    books.splice(books.indexOf(bookName) , 1);
+
+    // Add your code above this line
+    }
+  return books;
+}
+
+var newBookList = add(bookList, 'A Brief History of Time');
+var newerBookList = remove(bookList, 'On The Electrodynamics of Moving Bodies');
+var newestBookList = remove(add(bookList, 'A Brief History of Time'), 'On The Electrodynamics of Moving Bodies');
+
+console.log(newerBookList);
+console.log(bookList);
