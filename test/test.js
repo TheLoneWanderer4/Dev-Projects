@@ -677,3 +677,63 @@ function translatePigLatin(str) {
   }
   return ret;
 }
+
+function pairElement(str) {
+  let ret = [];
+  for(let item in str){
+    switch(str[item]){
+      case 'A':
+        ret.unshift(['A','T']);
+        break;
+      case 'T':
+        ret.unshift(['T','A']);
+        break;
+      case 'G':
+        ret.unshift(['G','C']);
+        break;
+      case 'C':
+        ret.unshift(['C','G']);
+        break;
+    }
+  }
+  return ret;
+}
+
+function fearNotLetter(str) {
+  startCode = str.charCodeAt(0);
+  for(let i = 0; i<str.length; i++){
+    let code = str.charCodeAt(i);
+    if(startCode + i != code){
+      return String.fromCharCode(startCode + i);
+    }
+  }
+  return undefined;
+}
+
+function uniteUnique(arr) {
+  let ret = [];
+  for(item in [...arguments]){
+    item = arguments[item];
+    for(i in item){
+      i = item[i];
+      if(ret.indexOf(i) == -1){
+        ret.push(i);
+      }
+    }
+  }
+  return ret;
+}
+
+function convertHTML(str) {
+  let htmlEnt = {
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    '\'':"&apos;"
+  }
+  return str.split('').map(item => htmlEnt[item] || item).join('')
+
+}
+
+console.log(convertHTML("<>"));
