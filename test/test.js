@@ -602,4 +602,78 @@ function urlSlug(title) {
 // Add your code above this line
 
 var winterComing = urlSlug(globalTitle); // Should be "winter-is-coming"
-console.log(winterComing);
+
+function diffArray(arr1, arr2) {
+  var newArr = [];
+  for(let i=0; i<arr1.length;i++){
+    if(arr2.indexOf(arr1[i]) == -1){
+      newArr.push(arr1[i]);
+    }
+  }
+  for(let i=0; i<arr2.length;i++){
+    if(arr1.indexOf(arr2[i]) == -1){
+      newArr.push(arr2[i]);
+    }
+  }
+
+  // Same, same; but different.
+  return newArr;
+}
+
+function destroyer(arr) {
+  // Remove all the values
+  var args = [...arguments];
+  for(let i=0;i<args.length;i++){
+    arr.splice(arr.indexOf(args[i]),1);
+  }
+  return arr;
+}
+
+function whatIsInAName(collection, source) {
+  // What's in a name?
+  var arr = [];
+  let isGood;
+  // Only change code below this line
+  for (let item in collection){
+    for(let hold in Object.keys(source)){
+      let key = Object.keys(source)[hold];
+      isGood = collection[item].hasOwnProperty(key) && collection[item][key] == source[key];
+      if(!isGood){
+        break;
+      }
+    }
+    if(isGood){
+      arr.push(collection[item]);
+    }
+  }
+
+  // Only change code above this line
+  return arr;
+}
+
+function spinalCase(str) {
+  // Create a variable for the white space and underscores.
+  var regex = /\s+|_+/g;
+
+  // Replace low-upper case to low-space-uppercase
+  str = str.replace(/([a-z])([A-Z])/g, '$1 $2');
+
+  // Replace space and underscore with -
+  return str.replace(regex, '-').toLowerCase();
+}
+
+function translatePigLatin(str) {
+  let vowel = /[aeiou]/i;
+  let ret;
+  if(str == ''){
+    ret = '';
+  }else if(str[0].match(vowel)){
+    ret = str + 'way';
+  }else if(str.search(vowel) === -1){
+    ret = str + 'ay';
+  }else{
+    let index = str.search(vowel);
+    ret = `${str.slice(index)}${str.slice(0,index)}ay`;
+  }
+  return ret;
+}
