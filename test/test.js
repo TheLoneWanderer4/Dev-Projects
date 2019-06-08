@@ -510,7 +510,8 @@ var watchList = [
                    "Director": "Christopher Nolan",
                    "Writer": "Jonathan Nolan (screenplay), Christopher Nolan (screenplay), Christopher Nolan (story), David S. Goyer (story), Bob Kane (characters)",
                    "Actors": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
-                   "Plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
+                   "Plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, \
+                   the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
                    "Language": "English, Mandarin",
                    "Country": "USA, UK",
                    "Awards": "Won 2 Oscars. Another 146 wins & 142 nominations.",
@@ -532,7 +533,8 @@ var watchList = [
                    "Director": "Christopher Nolan",
                    "Writer": "Bob Kane (characters), David S. Goyer (story), Christopher Nolan (screenplay), David S. Goyer (screenplay)",
                    "Actors": "Christian Bale, Michael Caine, Liam Neeson, Katie Holmes",
-                   "Plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from the corruption that Scarecrow and the League of Shadows have cast upon it.",
+                   "Plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City\
+                   from the corruption that Scarecrow and the League of Shadows have cast upon it.",
                    "Language": "English, Urdu, Mandarin",
                    "Country": "USA, UK",
                    "Awards": "Nominated for 1 Oscar. Another 15 wins & 66 nominations.",
@@ -554,7 +556,8 @@ var watchList = [
                    "Director": "James Cameron",
                    "Writer": "James Cameron",
                    "Actors": "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
-                   "Plot": "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+                   "Plot": "A paraplegic marine dispatched to the moon Pandora on a unique \
+                   mission becomes torn between following his orders and protecting the world he feels is his home.",
                    "Language": "English, Spanish",
                    "Country": "USA, UK",
                    "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
@@ -572,7 +575,9 @@ var watchList = [
 
 var filteredList = watchList.filter(item => ((item['imdbRating'] >= 8))).map(item => ({title: item['Title'], rating:item['imdbRating']}));
 
-let averageRating = watchList.filter(item => (item['Director'] == 'Christopher Nolan')).map(item => (item['imdbRating'])).reduce( (acc, cur) => parseFloat(acc) + parseFloat(cur)) / watchList.filter(item => (item['Director'] == 'Christopher Nolan')).length;
+let averageRating = watchList.filter(item => (item['Director'] == 'Christopher Nolan'));
+averageRating = averageRating.map(item => (item['imdbRating']));
+averageRating = averageRating.reduce( (acc, cur) => parseFloat(acc) + parseFloat(cur)) / watchList.filter(item => (item['Director'] == 'Christopher Nolan')).length;
 
 
 // Add your code above this line
@@ -736,4 +741,160 @@ function convertHTML(str) {
 
 }
 
-console.log(convertHTML("<>"));
+function sumFibs(num) {
+  let fib = 1;
+  let fibPast = 0;
+  let ret = 0;
+
+  while(fib <= num){
+    let cur = fib;
+    if(fib % 2 == 1){
+      ret += fib;
+    }
+    fib = fib + fibPast;
+    fibPast = cur;
+  }
+
+
+  return ret;
+}
+
+function sumPrimes(num){
+  let primes = [];
+  let test = [];
+  for(let i = 2; i<=num;i++){
+    if(!test[i]){
+      primes.push(i);
+      for(let x = i; x<=num;x+=i){
+        test[x] = true;
+      }
+    }
+  }
+  return primes.reduce((x,y) => x +y);;
+}
+
+  function smallestCommons(arr) {
+    let range = [];
+
+    for(let x = Math.min(...arr);x<=Math.max(...arr);x++){
+      range.push(x);
+    }
+
+    console.log(range);
+
+    let val = 2;
+    let isGood = true;
+
+    while(val < 1000000){
+      for(let i = 0; i<range.length;i++){
+        if(val % range[i] != 0){
+          isGood = false;
+          break;
+        }
+      }
+      if(isGood){
+        return val;
+      }
+      isGood = true;
+      val++
+    }
+
+    return 'no value';
+
+  }
+
+function steamrollArray(arr) {
+  // I'm a steamroller, baby
+  if(arr.length == 0){
+    return [];
+  }else{
+    if(Array.isArray(arr[0])){
+      return steamrollArray(arr[0]).concat(steamrollArray(arr.slice(1)));
+    }else{
+      return [arr[0]].concat(steamrollArray(arr.slice(1)));
+    }
+  }
+}
+
+function binaryAgent(str) {
+  str = str.split(' ');
+  for(i in str){
+    str[i] = String.fromCharCode(parseInt(str[i], 2));
+  }
+  return str.join('');
+}
+
+function truthCheck(collection, pre) {
+  // Is everyone being true?
+  for(let item in collection){
+    if(!collection[item][pre]){
+      return false
+    }
+  }
+  return true;
+}
+
+function addTogether() {
+  let args = [...arguments];
+
+  let testArgs = (args) => {
+    for(let item in args){
+      if(typeof args[item] !== 'number'){
+        return undefined;
+      }
+    }
+    return 'all good'
+  }
+
+  if(testArgs(args) == undefined){
+    return undefined;
+  }
+
+  if(args.length > 1){
+    return  args.reduce((x,y) => x+y);
+  }else{
+    let x = args[0];
+    return function(y){
+      args = [...arguments];
+      if(testArgs(args) == undefined){
+        return undefined;
+      }
+      return x + y;
+    }
+  }
+}
+
+var Person = function(firstAndLast) {
+  // Complete the method below and implement the others similarly
+  var fullName = firstAndLast;
+  this.setFirstName = (first) => {
+    fullName = first + ' ' + fullName.split(' ')[1];
+  }
+  this.setLastName = (last) => {
+    fullName = fullName.split(' ')[0] + ' ' + last;
+  }
+  this.setFullName = (firstAndLast) => fullName = firstAndLast;
+  this.getFirstName = () => fullName.split(' ')[0];
+  this.getLastName = () => fullName.split(' ')[1];
+  this.getFullName = () => fullName;
+};
+
+var bob = new Person('Bob Ross');
+bob.setFirstName('Tony');
+bob.setLastName('Blair');
+
+function orbitalPeriod(arr) {
+  var GM = 398600.4418;
+  var earthRadius = 6367.4447;
+
+  for(let item in arr){
+    let avgAlt = arr[item]['avgAlt'];
+    delete arr[item]['avgAlt'];
+    let orbitalPeriod = Math.round(2 * Math.PI * Math.sqrt( (Math.pow(avgAlt + earthRadius, 3)) / (GM) ));
+    arr[item].orbitalPeriod = orbitalPeriod;
+  }
+
+  return arr;
+}
+
+console.log(orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]));
