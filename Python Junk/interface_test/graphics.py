@@ -4,7 +4,7 @@ import time
 class graphics:
     def __init__(self, w, h, title):
         ''' Initialize the graphics object.
-        Creates a new tkinter Tk object, 
+        Creates a new tkinter Tk object,
         and a tkinter Canvas object,
         placed insize the Tk object.
         '''
@@ -41,7 +41,7 @@ class graphics:
         '''
         text = self.canvas.create_text(x, y, text=content, fill=fill, font=('Arial', size))
         self.canvas.move(text, 0, 0)
-   
+
     def set_left_click_action(self, callee):
         ''' Call the callee function whenever the left click happens.
         callee should take two parameters, the mouse x and mouse y coordinates.
@@ -50,7 +50,7 @@ class graphics:
             callee(event.x, event.y)
         ''' <Button-1> is the left-most mouse button '''
         self.canvas.bind('<Button-1>', left_click_action)
-    
+
     def set_right_click_action(self, callee):
         ''' Call the callee function whenever the right click happens.
         callee should take two parameters, the mouse x and mouse y coordinates.
@@ -61,7 +61,7 @@ class graphics:
         Both are set just in case '''
         self.canvas.bind('<Button-2>', right_click_action)
         self.canvas.bind('<Button-3>', right_click_action)
-    
+
     def set_keyboard_action(self, callee):
         ''' Call the callee function whenever a keyboard key is pressed.
         callee should take one parameter, a char representing the key.
@@ -84,21 +84,21 @@ class graphics:
         '''
         r = self.canvas.create_polygon(x1, y1, x2, y2, x3, y3, fill=fill)
         self.canvas.move(r, 0, 0)
-    
+
     def line(self, x1, y1, x2, y2, fill='black', width=3):
         ''' Draw a line.
         The two ends of the line are specified with the parameter coordinates.
         '''
         r = self.canvas.create_line(x1, y1, x2, y2, fill=fill, width=width)
         self.canvas.move(r, 0, 0)
-    
+
     def ellipse(self, x, y, w, h, fill='black'):
         ''' Draw an ellipse on the canvas.
         Specify x, y (center of ellipse) and width / height.
         '''
         r = self.canvas.create_oval(x-(w/2), y-(h/2), x+(w/2), y+(h/2), fill=fill)
         self.canvas.move(r, 0, 0)
-    
+
     def rectangle(self, x, y, w, h, fill='black'):
         ''' Draw a rectangle on the canvas.
         Specify x, y (top-left corner) and width / height.
@@ -124,9 +124,8 @@ class graphics:
         '''
         self.update()
         self.frame_space(frame_rate)
-    
+
     def clear(self):
         ''' Clears the canvas.
         '''
         self.canvas.delete('all')
-

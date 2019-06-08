@@ -14,7 +14,7 @@ def write_settings(options):
     for x in options:
         file.write(str(options[x]) + '\n')
 
-class player():
+class player:
     def __init__(self,x):
         self.x = x
         self.height = 100
@@ -26,13 +26,17 @@ class player():
     def move(self):
         self.y += 1
 
-class Ball():
-    def ___init__(self, width, height):
+class Ball:
+    def __init__(self,width,height):
         self.x = width / 2
         self.y = height /2
 
     def draw(self, gui):
         gui.ellipse(self.x,self.y,10,10,'black')
+
+    def move(self, x, y):
+        self.x = x
+        self.y = y
 
 
 def main():
@@ -79,6 +83,7 @@ def main():
         x += speed_x
         y += speed_y / angle
 
+        ball.move(x,y)
         ball.draw(gui)
         player_one.draw(gui)
         player_two.draw(gui)
