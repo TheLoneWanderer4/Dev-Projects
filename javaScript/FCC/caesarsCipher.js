@@ -1,19 +1,20 @@
-function rot13(str) { // LBH QVQ VG!
-  let shiftBack = (char) => {
+function rot13(str) {
+  // LBH QVQ VG!
+  let shiftBack = char => {
     let code = char.charCodeAt(0);
-    if(code > 90 || code < 65){
+    if (code > 90 || code < 65) {
       return char;
-    }else{
-      if(code - 13 >= 65){
+    } else {
+      if (code - 13 >= 65) {
         return String.fromCharCode(code - 13);
-      }else{
+      } else {
         return String.fromCharCode(91 - (13 - (code - 65)));
       }
     }
-  }
+  };
 
-  let ret = '';
-  for(let item in str){
+  let ret = "";
+  for (let item in str) {
     ret += shiftBack(str[item]);
   }
 
