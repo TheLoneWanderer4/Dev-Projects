@@ -17,7 +17,6 @@ function rot13(str) {
   for (let item in str) {
     ret += shiftBack(str[item]);
   }
-
   return ret;
 }
 
