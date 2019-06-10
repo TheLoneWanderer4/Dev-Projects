@@ -19,19 +19,23 @@ class Board extends React.Component {
     super(props);
     this.state = {
       squares: Array(9).fill(null),
-      xIsNext: true
+      xIsNext: true,
+      turns: 0
     };
   }
 
   handleClick(i) {
     const squares = this.state.squares.slice();
+    let turns = this.state.turns;
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
+    turns += 1;
     squares[i] = this.state.xIsNext ? "X" : "O";
     this.setState({
       squares: squares,
-      xIsNext: !this.state.xIsNext
+      xIsNext: !this.state.xIsNext,
+      turns: turns
     });
   }
 
@@ -45,7 +49,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const winner = calculateWinner(this.state.squares);
+    const winner = calculateWinner(this.state.squares, this.state.turns);
     let status;
     if (winner) {
       status = "Winner: " + winner;
@@ -76,7 +80,10 @@ class Board extends React.Component {
   }
 }
 
-function calculateWinner(squares) {
+function calculateWinner(squares, turns) {
+  if (turns >= 9) {
+    return "no one";
+  }
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
