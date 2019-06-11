@@ -2,12 +2,20 @@ body {
   background: #f1ae89;
 
   font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+  margin: 0;
 }
 
 ol,
 ul {
   padding-left: 30px;
+}
+
+.menuBar {
+  float: left;
+  margin: 0;
+  width: 100px;
+  height: 100vh;
+  background: white;
 }
 
 .time-travel-button {
@@ -76,6 +84,7 @@ ul {
 .game {
   display: flex;
   flex-direction: row;
+  margin: 0;
 }
 
 .game-info {

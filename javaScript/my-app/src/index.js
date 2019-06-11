@@ -10,6 +10,20 @@ function Square(props) {
   );
 }
 
+function Title(props) {
+  return <h1 onClick={props.onClick}> {props.title} </h1>;
+}
+
+class Menu extends React.Component {
+  render() {
+    return (
+      <div className="menuBar">
+        <p> This is a test </p>
+      </div>
+    );
+  }
+}
+
 class Board extends React.Component {
   renderSquare(i) {
     return (
@@ -53,7 +67,8 @@ class Game extends React.Component {
         }
       ],
       xIsNext: true,
-      stepNumber: 0
+      stepNumber: 0,
+      menuExtend: false
     };
   }
 
@@ -77,11 +92,21 @@ class Game extends React.Component {
     });
   }
 
+  handleTitleClick() {
+    this.setState({ menuExtend: !this.state.menuExtend });
+  }
+
   jumpTo(step) {
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0
     });
+  }
+
+  renderMenu(i) {
+    if (i) {
+      return <Menu />;
+    }
   }
 
   render() {
@@ -113,7 +138,13 @@ class Game extends React.Component {
 
     return (
       <div className="game">
+        {this.renderMenu(this.state.menuExtend)}
         <div className="game-board">
+          <Title
+            className="title"
+            title="Tic Tac Toe"
+            onClick={() => this.handleTitleClick()}
+          />
           <Board squares={current.squares} onClick={i => this.handleClick(i)} />
         </div>
         <div className="game-info">
