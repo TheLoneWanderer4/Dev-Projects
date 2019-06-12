@@ -11,17 +11,25 @@ function Square(props) {
 }
 
 function Title(props) {
-  return <h1 onClick={props.onClick}> {props.title} </h1>;
+  return (
+    <h1 className="title" onClick={props.onClick}>
+      {" "}
+      {props.title}{" "}
+    </h1>
+  );
 }
 
-class Menu extends React.Component {
-  render() {
-    return (
-      <div className="menuBar">
-        <p> This is a test </p>
+function Menu(props) {
+  let status = props.status;
+  let moves = props.moves;
+  return (
+    <div className="menuBar">
+      <div className="game-info">
+        <div>{status}</div>
+        <ol>{moves}</ol>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 class Board extends React.Component {
@@ -36,22 +44,16 @@ class Board extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+      <div className="board">
+        {this.renderSquare(0)}
+        {this.renderSquare(1)}
+        {this.renderSquare(2)}
+        {this.renderSquare(3)}
+        {this.renderSquare(4)}
+        {this.renderSquare(5)}
+        {this.renderSquare(6)}
+        {this.renderSquare(7)}
+        {this.renderSquare(8)}
       </div>
     );
   }
@@ -103,9 +105,9 @@ class Game extends React.Component {
     });
   }
 
-  renderMenu(i) {
+  renderMenu(i, status, moves) {
     if (i) {
-      return <Menu />;
+      return <Menu status={status} moves={moves} />;
     }
   }
 
@@ -137,19 +139,15 @@ class Game extends React.Component {
     }
 
     return (
-      <div className="game">
-        {this.renderMenu(this.state.menuExtend)}
-        <div className="game-board">
+      <div className="app">
+        {this.renderMenu(this.state.menuExtend, status, moves)}
+        <div className="game">
           <Title
             className="title"
             title="Tic Tac Toe"
             onClick={() => this.handleTitleClick()}
           />
           <Board squares={current.squares} onClick={i => this.handleClick(i)} />
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
         </div>
       </div>
     );
