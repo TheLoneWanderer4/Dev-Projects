@@ -28,7 +28,16 @@ function Menu(props) {
         <div>{status}</div>
         <ol>{moves}</ol>
       </div>
+      <UndoButton onClick={props.undoClick} />
     </div>
+  );
+}
+
+function UndoButton(props) {
+  return (
+    <button className="time-travel-button" onClick={props.onClick}>
+      Undo
+    </button>
   );
 }
 
@@ -105,9 +114,26 @@ class Game extends React.Component {
     });
   }
 
+  undoClick() {
+    if (this.state.stepNumber == 0) {
+      return;
+    }
+    let step = this.state.stepNumber - 1;
+    this.setState({
+      stepNumber: step,
+      xIsNext: step % 2 === 0
+    });
+  }
+
   renderMenu(i, status, moves) {
     if (i) {
-      return <Menu status={status} moves={moves} />;
+      return (
+        <Menu
+          status={status}
+          moves={moves}
+          undoClick={() => this.undoClick()}
+        />
+      );
     }
   }
 
