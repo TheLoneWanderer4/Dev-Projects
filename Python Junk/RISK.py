@@ -74,7 +74,7 @@ while(closeProgram != 'exit'):
         print()
 
         if(defendRoll >= attackRoll):
-            armiesAttack -= 1
+                armiesAttack -= 1
             print('Attack lost, -1 army')
             print()
             print('Attack forces remaining: ' + str(armiesAttack))
