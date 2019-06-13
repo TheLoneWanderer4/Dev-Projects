@@ -26,23 +26,28 @@ class FormComponent extends React.Component {
     if (this.state.canChange) {
       this.setState({ Attack: parseInt(event.target.value) });
     }
+    console.log(event.target.value);
+    console.log(this.state.Attack);
+    console.log("");
   }
 
   handleChangeDefense(event) {
     if (this.state.canChange) {
       this.setState({ Defense: parseInt(event.target.value) });
     }
+    console.log(event.target.value);
+    console.log(this.state.Defense);
+    console.log("");
   }
 
   logic() {
     if (this.state.win) {
       return;
+    } else if (this.state.Attack == 1 || parseInt(this.state.Defense) === 0) {
+      this.setState({ win: true });
+      return;
     }
     this.setState(battle(this.state.Attack, this.state.Defense));
-    console.log(this.state.Defense);
-    if (this.state.Attack == 1 || parseInt(this.state.Defense) === 0) {
-      this.setState({ win: true });
-    }
   }
 
   handleSubmit(event) {
