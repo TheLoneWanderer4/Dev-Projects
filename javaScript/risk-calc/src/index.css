@@ -1,5 +1,51 @@
+body {
+  background: #f1ae89;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .form {
   margin: auto;
+  display: grid;
+  grid-template-columns: 100px;
+  grid-gap: 20px;
+}
+
+.form-element {
+  background: white;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  padding: 15px;
+}
+
+input {
+  max-width: 100%;
+  margin: 5px;
+}
+
+.submit {
+  background: white;
+
+  border: 0px solid;
+  cursor: pointer;
+  font-family: "Kodchasan", cursive;
+  text-align: center;
+  text-decoration: none;
+  color: 0;
+
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.submit:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.win-message {
+  background: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  padding: 15px;
 }

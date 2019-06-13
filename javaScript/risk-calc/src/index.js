@@ -6,7 +6,7 @@ var seedrandom = require("seedrandom");
 
 function Win(props) {
   return (
-    <div>
+    <div className="win-message">
       {props.winner} won with {props.remaining} armies left.
     </div>
   );
@@ -75,8 +75,8 @@ class FormComponent extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
+      <form onSubmit={this.handleSubmit} className="form">
+        <label className="form-element">
           Attack:
           <input
             type="number"
@@ -84,7 +84,7 @@ class FormComponent extends React.Component {
             onChange={this.handleChangeAttack}
           />
         </label>
-        <label>
+        <label className="form-element">
           Defense:
           <input
             type="number"
@@ -92,7 +92,7 @@ class FormComponent extends React.Component {
             onChange={this.handleChangeDefense}
           />
         </label>
-        <input type="submit" value="Submit" />
+        <input className="submit" type="submit" value="Submit" />
         {this.renderWin()}
       </form>
     );
