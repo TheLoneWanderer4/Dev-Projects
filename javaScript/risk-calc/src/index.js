@@ -6,7 +6,7 @@ var seedrandom = require("seedrandom");
 
 function Win(props) {
   return (
-    <div className="win-message">
+    <div className="win-message card">
       {props.winner} won with {props.remaining} armies left.
     </div>
   );
@@ -14,12 +14,21 @@ function Win(props) {
 
 function Info(props) {
   return (
-    <div className="win-message">
+    <div className="card">
       Attack rolled : {props.attack}
       {" | "}
       Defense rolled : {props.defense}
       {"\n"}
       {props.winner} won this round.
+    </div>
+  );
+}
+
+function Reset(props) {
+  return (
+    <div className="reset card" onClick={props.onClick}>
+      {" "}
+      Reset{" "}
     </div>
   );
 }
@@ -43,13 +52,13 @@ class FormComponent extends React.Component {
   }
 
   handleChangeAttack(event) {
-    if (this.state.canChange) {
+    if (this.state.canChange && event.target.value >= 0) {
       this.setState({ Attack: parseInt(event.target.value) });
     }
   }
 
   handleChangeDefense(event) {
-    if (this.state.canChange) {
+    if (this.state.canChange && event.target.value >= 0) {
       this.setState({ Defense: parseInt(event.target.value) });
     }
   }
@@ -57,7 +66,7 @@ class FormComponent extends React.Component {
   logic() {
     if (this.state.win) {
       return;
-    } else if (this.state.Attack == 1 || parseInt(this.state.Defense) === 0) {
+    } else if (this.state.Attack <= 1 || parseInt(this.state.Defense) === 0) {
       this.setState({ win: true });
       return;
     }
@@ -87,39 +96,53 @@ class FormComponent extends React.Component {
     }
   }
 
+  handleReset() {
+    this.setState({
+      Attack: 0,
+      Defense: 0,
+      canChange: true,
+      win: false
+    });
+  }
+
   renderInfo() {
-    return (
-      <Info
-        attack={this.state.AttackRoll}
-        defense={this.state.DefenseRoll}
-        winner={this.state.roundWinner}
-      />
-    );
+    if (!this.state.canChange) {
+      return (
+        <Info
+          attack={this.state.AttackRoll}
+          defense={this.state.DefenseRoll}
+          winner={this.state.roundWinner}
+        />
+      );
+    }
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="form">
-        <h1 className="win-message"> Risk Calc </h1>
-        <label className="form-element">
+        <h1 className="card title"> Risk Calc </h1>
+        <label className="form-element card">
           Attack:
           <input
+            className="form-input"
             type="number"
             value={this.state.Attack}
             onChange={this.handleChangeAttack}
           />
         </label>
-        <label className="form-element">
+        <label className="form-element card">
           Defense:
           <input
+            className="form-input"
             type="number"
             value={this.state.Defense}
             onChange={this.handleChangeDefense}
           />
         </label>
-        <input className="submit" type="submit" value="Submit" />
+        <input className="submit card" type="submit" value="Submit" />
         {this.renderInfo()}
         {this.renderWin()}
+        <Reset onClick={() => this.handleReset()} />
       </form>
     );
   }
