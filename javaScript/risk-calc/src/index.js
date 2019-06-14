@@ -26,18 +26,12 @@ class FormComponent extends React.Component {
     if (this.state.canChange) {
       this.setState({ Attack: parseInt(event.target.value) });
     }
-    console.log(event.target.value);
-    console.log(this.state.Attack);
-    console.log("");
   }
 
   handleChangeDefense(event) {
     if (this.state.canChange) {
       this.setState({ Defense: parseInt(event.target.value) });
     }
-    console.log(event.target.value);
-    console.log(this.state.Defense);
-    console.log("");
   }
 
   logic() {
@@ -76,6 +70,7 @@ class FormComponent extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="form">
+        <h1 className="win-message"> Risk Calc </h1>
         <label className="form-element">
           Attack:
           <input
