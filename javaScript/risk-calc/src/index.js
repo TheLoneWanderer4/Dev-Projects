@@ -12,10 +12,30 @@ function Win(props) {
   );
 }
 
+function Info(props) {
+  return (
+    <div className="win-message">
+      Attack rolled : {props.attack}
+      {" | "}
+      Defense rolled : {props.defense}
+      {"\n"}
+      {props.winner} won this round.
+    </div>
+  );
+}
+
 class FormComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { Attack: 0, Defense: 0, canChange: true, win: false };
+    this.state = {
+      Attack: 0,
+      AttackRoll: 0,
+      Defense: 0,
+      DefenseRoll: 0,
+      roundWinner: "",
+      canChange: true,
+      win: false
+    };
 
     this.handleChangeAttack = this.handleChangeAttack.bind(this);
     this.handleChangeDefense = this.handleChangeDefense.bind(this);
@@ -67,6 +87,16 @@ class FormComponent extends React.Component {
     }
   }
 
+  renderInfo() {
+    return (
+      <Info
+        attack={this.state.AttackRoll}
+        defense={this.state.DefenseRoll}
+        winner={this.state.roundWinner}
+      />
+    );
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="form">
@@ -88,6 +118,7 @@ class FormComponent extends React.Component {
           />
         </label>
         <input className="submit" type="submit" value="Submit" />
+        {this.renderInfo()}
         {this.renderWin()}
       </form>
     );
@@ -141,11 +172,19 @@ function defense(x) {
 function battle(armiesAttack, armiesDefend) {
   let attackRoll = attack(parseInt(armiesAttack));
   let defendRoll = defense(parseInt(armiesDefend));
+  let winner;
   if (defendRoll >= attackRoll) {
     armiesAttack -= 1;
+    winner = "Defense";
   } else {
     armiesDefend -= 1;
+    winner = "Attack";
   }
-  alert(`Attack rolled ${attackRoll} \n Defense rolled ${defendRoll}`);
-  return { Attack: armiesAttack, Defense: armiesDefend };
+  return {
+    Attack: armiesAttack,
+    Defense: armiesDefend,
+    AttackRoll: attackRoll,
+    DefenseRoll: defendRoll,
+    roundWinner: winner
+  };
 }
