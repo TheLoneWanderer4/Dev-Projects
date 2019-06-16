@@ -1,14 +1,22 @@
 import React from "react";
 import logo from "./logo.svg";
-import "./App.css";
 import Counter from "./components/counter";
 
-function App() {
-  return (
-    <div className="App">
-      <Counter />
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: ["Food", "Water", "Money"]
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <Counter value="Food" />
+      </div>
+    );
+  }
 }
 
 export default App;
