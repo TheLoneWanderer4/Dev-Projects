@@ -1,15 +1,13 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { Component } from "react";
 import Counter from "./components/counter";
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: ["Food", "Water", "Money"]
     };
   }
-
   render() {
     return (
       <div>
