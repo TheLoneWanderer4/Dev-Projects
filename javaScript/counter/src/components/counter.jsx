@@ -13,6 +13,12 @@ class Counter extends Component {
     this.setState({ count: this.state.count + 1 });
   };
 
+  handleDecrement = () => {
+    if (this.state.count > 0) {
+      this.setState({ count: this.state.count - 1 });
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -23,6 +29,12 @@ class Counter extends Component {
           className="btn btn-secondary btn-sm m-1"
         >
           +
+        </button>
+        <button
+          onClick={this.handleDecrement}
+          className="btn btn-secondary btn-sm m-1"
+        >
+          -
         </button>
       </React.Fragment>
     );

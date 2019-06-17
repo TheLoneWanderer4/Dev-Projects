@@ -8,10 +8,19 @@ class App extends Component {
       items: ["Food", "Water", "Money"]
     };
   }
+
+  handleCreate = () => {
+    this.setState({ items: this.state.items.concat(["new"]) });
+  };
+
   render() {
     return (
       <div>
-        <Counter value="Food" />
+        <h1> Food list </h1>
+        {this.state.items.map(item => {
+          return <Counter value={item} />;
+        })}
+        <button onClick={this.handleCreate}> Create new Item </button>
       </div>
     );
   }
