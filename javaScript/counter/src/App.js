@@ -19,8 +19,13 @@ class App extends Component {
 
   handleUndo = () => {
     if (this.state.archive.length > 0) {
-      const counters = this.state.counters.concat(this.state.archive[0]);
-      const archive = this.state.archive.slice(1);
+      const counters = this.state.counters.concat(
+        this.state.archive[this.state.archive.length - 1]
+      );
+      const archive = this.state.archive.slice(
+        0,
+        this.state.archive.length - 1
+      );
       console.log(counters);
       console.log(archive);
       this.setState({ counters, archive });
