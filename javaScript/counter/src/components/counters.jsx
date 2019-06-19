@@ -6,13 +6,18 @@ const Counters = ({
   onDelete,
   onIncrement,
   onDecrement,
+  onUndo,
   counters
 }) => {
   return (
     <div className="">
-      <button onClick={onReset} className="btn btn-primary btn-small m-2">
+      <button onClick={onReset} className="btn btn-danger btn-small m-2">
         {" "}
         Reset{" "}
+      </button>
+      <button onClick={onUndo} className="btn btn-primary btn-small m-2">
+        {" "}
+        Undo{" "}
       </button>
       {counters.map(counter => (
         <Counter

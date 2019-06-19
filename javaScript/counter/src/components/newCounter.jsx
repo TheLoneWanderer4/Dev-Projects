@@ -8,6 +8,7 @@ class newCounter extends Component {
         onSubmit={event => {
           event.preventDefault();
           this.props.onNewCounter(this.refs.id.value);
+          this.refs.id.value = "";
         }}
       >
         <input type="text" ref="id" />

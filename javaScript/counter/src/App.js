@@ -12,9 +12,22 @@ class App extends Component {
         { id: 2, value: 0 },
         { id: 3, value: 0 },
         { id: 4, value: 0 }
-      ]
+      ],
+      archive: []
     };
   }
+
+  handleUndo = () => {
+    if (this.state.archive.length > 0) {
+      const counters = this.state.counters.concat(this.state.archive[0]);
+      const archive = this.state.archive.slice(1);
+      console.log(counters);
+      console.log(archive);
+      this.setState({ counters, archive });
+    } else {
+      alert("Archive is empty");
+    }
+  };
 
   handleReset = () => {
     const counters = this.state.counters.map(counter => {
@@ -47,8 +60,16 @@ class App extends Component {
   };
 
   handleDelete = id => {
+    Array.prototype.diff = function(a) {
+      return this.filter(function(i) {
+        return a.indexOf(i) < 0;
+      });
+    };
     const counters = this.state.counters.filter(counter => counter.id !== id);
-    this.setState({ counters });
+    const archive = this.state.archive.concat(
+      this.state.counters.diff(counters)
+    );
+    this.setState({ counters, archive });
   };
 
   handleNewCounter = newId => {
@@ -74,6 +95,7 @@ class App extends Component {
             onDelete={this.handleDelete}
             onIncrement={this.handleIncrement}
             onDecrement={this.handleDecrement}
+            onUndo={this.handleUndo}
           />
         </main>
       </React.Fragment>
