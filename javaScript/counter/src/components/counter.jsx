@@ -3,51 +3,42 @@ import React, { Component } from "react";
 class Counter extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: props.value,
-      count: 0
-    };
   }
-
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
-  };
-
-  handleDecrement = () => {
-    if (this.state.count > 0) {
-      this.setState({ count: this.state.count - 1 });
-    }
-  };
-
   render() {
     return (
       <React.Fragment>
-        <span className="m-1"> {this.state.name} </span>
+        {this.props.children}
         <span className={this.getBadgeClasses()}> {this.formateCount()} </span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm m-1"
         >
           +
         </button>
         <button
-          onClick={this.handleDecrement}
+          onClick={() => this.props.onDecrement(this.props.counter)}
           className="btn btn-secondary btn-sm m-1"
         >
           -
+        </button>
+        <button
+          onClick={() => this.props.onDelete(this.props.counter.id)}
+          className="btn btn-danger btn-sm m-2"
+        >
+          Delete
         </button>
       </React.Fragment>
     );
   }
 
   formateCount() {
-    return this.state.count === 0 ? "Zero" : this.state.count;
+    return this.props.counter.value === 0 ? "Zero" : this.props.counter.value;
   }
 
   getBadgeClasses() {
     return (
       "badge m-2 " +
-      (this.state.count === 0 ? "badge-warning" : "badge-primary")
+      (this.props.counter.value === 0 ? "badge-warning" : "badge-primary")
     );
   }
 }
