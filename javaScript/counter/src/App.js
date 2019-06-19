@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Counters from "./components/counters";
 import NavBar from "./components/navbar";
+import Form from "./components/newCounter";
 
 class App extends Component {
   constructor(props) {
@@ -50,6 +51,13 @@ class App extends Component {
     this.setState({ counters });
   };
 
+  handleNewCounter = newId => {
+    let newCounter = { id: newId, value: 0 };
+    const counters = [...this.state.counters];
+    counters.push(newCounter);
+    this.setState({ counters });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -59,6 +67,7 @@ class App extends Component {
           }
         />
         <main className="container">
+          <Form onNewCounter={this.handleNewCounter} />
           <Counters
             counters={this.state.counters}
             onReset={this.handleReset}

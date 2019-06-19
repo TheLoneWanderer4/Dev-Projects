@@ -1,5 +1,5 @@
 import Counter from "./counter";
-import React, { Component } from "react";
+import React from "react";
 
 const Counters = ({
   onReset,
@@ -22,7 +22,7 @@ const Counters = ({
           onIncrement={onIncrement}
           onDecrement={onDecrement}
         >
-          <h4>Counter #{counter.id}</h4>
+          <h4 className="m-2">{counter.id}</h4>
         </Counter>
       ))}
     </div>
