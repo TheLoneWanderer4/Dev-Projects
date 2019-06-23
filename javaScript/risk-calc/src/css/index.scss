@@ -1,11 +1,19 @@
+$background: #b7eaff;
+$margin-top: 200px;
+$max-width: 95%;
+
+html {
+  background-color: $background;
+}
 #root {
+  background-color: $background;
 }
 h1 {
   margin: 0;
 }
 
 .container {
-  margin-top: 200px;
+  margin-top: $margin-top;
 
   display: flex;
   flex-direction: column;
@@ -15,7 +23,7 @@ h1 {
 .content {
   text-align: center;
   width: 600px;
-  max-width: 95%;
+  max-width: $max-width;
   margin: auto;
 }
 .shadow {

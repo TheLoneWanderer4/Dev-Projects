@@ -38,6 +38,9 @@ class App extends Component {
   }
 
   handleSubmit(event) {
+    if (event) {
+      event.preventDefault();
+    }
     if (this.state.win) {
       return;
     } else if (this.state.Attack <= 1 || this.state.Defense == 0) {
@@ -95,10 +98,11 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+        <img src="background.jpg" alt="" />
         <div className="card content shadow p-2">
           <Title className="card-titleWW" value="Risk Calc" />
 
-          <form className="list-group">
+          <form className="list-group" onSubmit={this.handleSubmit}>
             <Input
               className="list-group-item"
               label="Attack"
@@ -110,6 +114,11 @@ class App extends Component {
               label="Defense"
               value={this.state.Defense}
               onChange={this.handleChangeDefense}
+            />
+            <input
+              className="invisible"
+              style={{ height: "0px" }}
+              type="submit"
             />
           </form>
           <div className="btn-group">
