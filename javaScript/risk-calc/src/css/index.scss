@@ -1,19 +1,23 @@
+#root {
+}
+h1 {
+  margin: 0;
+}
+
 .container {
+  margin-top: 200px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .title {
-    padding: 15px;
-    text-align: center;
-  }
 }
 
-label {
-  margin: 15px;
+.content {
   text-align: center;
-  input {
-    margin: 15px;
-    text-align: center;
-  }
+  width: 600px;
+  max-width: 95%;
+  margin: auto;
+}
+.shadow {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }

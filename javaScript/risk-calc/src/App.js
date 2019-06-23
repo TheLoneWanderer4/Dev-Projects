@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import WinCard from "./components/win-card.jsx";
-import ResetButton from "./components/reset-button.jsx";
+import Button from "./components/button.jsx";
 import InfoCard from "./components/info-card.jsx";
 import Input from "./components/input.jsx";
 import Title from "./components/title.jsx";
@@ -47,7 +47,6 @@ class App extends Component {
     let holdState = battle(this.state.Attack, this.state.Defense);
     holdState["canChange"] = false;
     this.setState(holdState);
-    event.preventDefault();
   }
 
   handleReset() {
@@ -71,18 +70,24 @@ class App extends Component {
       winner = "Attack";
       remaining = this.state.Attack;
     }
-    return <WinCard className="" winner={winner} remaining={remaining} />;
+    return (
+      <div className="card content shadow p-2 m-2">
+        <WinCard className="" winner={winner} remaining={remaining} />
+      </div>
+    );
   }
 
   renderInfo() {
     if (!this.state.canChange) {
       return (
-        <InfoCard
-          className=""
-          attack={this.state.AttackRoll}
-          defense={this.state.DefenseRoll}
-          winner={this.state.roundWinner}
-        />
+        <div className="card content shadow p-2 m-2">
+          <InfoCard
+            className=""
+            attack={this.state.AttackRoll}
+            defense={this.state.DefenseRoll}
+            winner={this.state.roundWinner}
+          />
+        </div>
       );
     }
   }
@@ -90,33 +95,38 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Title className="title" value="Risk Calc" />
-        <form onSubmit={this.handleSubmit} className="">
-          <Input
-            className=""
-            label="Attack"
-            value={this.state.Attack}
-            onChange={this.handleChangeAttack}
-          />
-          <Input
-            className=""
-            label="Defense"
-            value={this.state.Defense}
-            onChange={this.handleChangeDefense}
-          />
-          <div className="">
-            <input className="btn btn-primary" type="submit" value="Submit" />
+        <div className="card content shadow p-2">
+          <Title className="card-titleWW" value="Risk Calc" />
+
+          <form className="list-group">
+            <Input
+              className="list-group-item"
+              label="Attack"
+              value={this.state.Attack}
+              onChange={this.handleChangeAttack}
+            />
+            <Input
+              className="list-group-item"
+              label="Defense"
+              value={this.state.Defense}
+              onChange={this.handleChangeDefense}
+            />
+          </form>
+          <div className="btn-group">
+            <Button
+              value={"Battle!"}
+              className="btn btn-primary"
+              onClick={() => this.handleSubmit()}
+            />
+            <Button
+              value={"Reset"}
+              className="btn btn-danger"
+              onClick={() => this.handleReset()}
+            />
           </div>
-        </form>
-        <div className="">
-          {" "}
-          <ResetButton
-            className="btn btn-danger"
-            onClick={() => this.handleReset()}
-          />
         </div>
-        <div className="">{this.renderInfo()}</div>
-        <div className="">{this.renderWin()}</div>
+        {this.renderInfo()}
+        {this.renderWin()}
       </div>
     );
   }
