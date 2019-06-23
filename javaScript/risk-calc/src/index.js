@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "css/index.css";
 import { HashRouter, Route, Link } from "react-router-dom";
 
 var seedrandom = require("seedrandom");
