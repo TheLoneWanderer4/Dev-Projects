@@ -47,7 +47,7 @@ class App extends Component {
     if (this.state.win) {
       return;
     } else if (this.state.Attack <= 1 || this.state.Defense == 0) {
-      this.setState({ win: true });
+      this.setState({ win: true, canChange: false });
       return;
     }
     const holdState = this.state;
@@ -93,7 +93,7 @@ class App extends Component {
       remaining = this.state.Defense;
     }
     return (
-      <div className="card content shadow p-2 m-2">
+      <div className="content card p-2 mt-2">
         <WinCard className="" winner={winner} remaining={remaining} />
       </div>
     );
@@ -102,7 +102,7 @@ class App extends Component {
   renderInfo() {
     if (!this.state.canChange) {
       return (
-        <div className="card content shadow p-2 m-2">
+        <div className="card content p-2 mt-2">
           <InfoCard
             className=""
             attack={this.state.AttackRoll}
@@ -115,62 +115,61 @@ class App extends Component {
   }
 
   renderHistory() {
-    if (this.state.history.length > 0) {
-      return (
-        <div className="card content shadow p-2 m-2">
-          <History history={this.state.history} />
-        </div>
-      );
-    }
+    return (
+      <div className="card content p-2 mt-2">
+        <History history={this.state.history} />
+      </div>
+    );
   }
 
   render() {
     return (
-      <div className="container">
-        <img src="background.jpg" alt="" />
-        <div className="card content shadow p-2">
-          <Title className="card-titleWW" value="Risk Calc" />
+      <div className="wrapper">
+        <div className="container">
+          <div className="card content p-2 mt-2">
+            <Title className="card-title" value="Risk Calc" />
 
-          <form className="list-group" onSubmit={this.handleSubmit}>
-            <Input
-              className="list-group-item"
-              label="Attack"
-              value={this.state.Attack}
-              onChange={this.handleChangeAttack}
-            />
-            <Input
-              className="list-group-item"
-              label="Defense"
-              value={this.state.Defense}
-              onChange={this.handleChangeDefense}
-            />
-            <input
-              className="invisible"
-              style={{ height: "0px" }}
-              type="submit"
-            />
-          </form>
-          <div className="btn-group">
-            <Button
-              value={"Battle!"}
-              className="btn btn-primary"
-              onClick={() => this.handleSubmit()}
-            />
-            <Button
-              value={"Reset"}
-              className="btn btn-danger"
-              onClick={() => this.handleReset()}
-            />
-            <Button
-              value={"Undo"}
-              className="btn btn-warning"
-              onClick={() => this.handleUndo()}
-            />
+            <form className="list-group" onSubmit={this.handleSubmit}>
+              <Input
+                className="list-group-item"
+                label="Attack"
+                value={this.state.Attack}
+                onChange={this.handleChangeAttack}
+              />
+              <Input
+                className="list-group-item"
+                label="Defense"
+                value={this.state.Defense}
+                onChange={this.handleChangeDefense}
+              />
+              <input
+                className="invisible"
+                style={{ height: "0px" }}
+                type="submit"
+              />
+            </form>
+            <div className="btn-group">
+              <Button
+                value={"Battle!"}
+                className="btn btn-primary"
+                onClick={() => this.handleSubmit()}
+              />
+              <Button
+                value={"Reset"}
+                className="btn btn-danger"
+                onClick={() => this.handleReset()}
+              />
+              <Button
+                value={"Undo"}
+                className="btn btn-warning"
+                onClick={() => this.handleUndo()}
+              />
+            </div>
           </div>
+          {this.renderInfo()}
+          {this.renderWin()}
         </div>
-        {this.renderInfo()}
-        {this.renderWin()}
-        {this.renderHistory()}
+        <div className="container">{this.renderHistory()}</div>
       </div>
     );
   }

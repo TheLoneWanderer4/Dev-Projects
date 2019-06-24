@@ -1,31 +1,36 @@
-$background: #b7eaff;
+$background: #f9fbff;
 $margin-top: 200px;
 $max-width: 95%;
+$break-point: 1700px;
 
-html {
-  background-color: $background;
-}
-#root {
-  background-color: $background;
-}
-h1 {
-  margin: 0;
+@mixin break {
+  @media (max-width: #{$break-point}) {
+    @content;
+  }
 }
 
-.container {
-  margin-top: $margin-top;
+@each $key in html, #root {
+  #{$key} {
+    background-color: $background;
+  }
+}
 
+@each $key in h1, h2, h3, h4, h5, h6 {
+  #{$key} {
+    margin: 0;
+  }
+}
+
+.wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include break {
+    flex-direction: column;
+  }
 }
 
 .content {
   text-align: center;
-  width: 600px;
+  width: 800px;
   max-width: $max-width;
   margin: auto;
-}
-.shadow {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
