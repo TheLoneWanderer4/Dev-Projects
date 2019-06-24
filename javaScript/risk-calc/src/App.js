@@ -4,6 +4,7 @@ import Button from "./components/button.jsx";
 import InfoCard from "./components/info-card.jsx";
 import Input from "./components/input.jsx";
 import Title from "./components/title.jsx";
+import History from "./components/history.jsx";
 
 var seedrandom = require("seedrandom");
 
@@ -17,7 +18,8 @@ class App extends Component {
       DefenseRoll: 0,
       roundWinner: "",
       canChange: true,
-      win: false
+      win: false,
+      history: []
     };
 
     this.handleChangeAttack = this.handleChangeAttack.bind(this);
@@ -41,15 +43,20 @@ class App extends Component {
     if (event) {
       event.preventDefault();
     }
+
     if (this.state.win) {
       return;
     } else if (this.state.Attack <= 1 || this.state.Defense == 0) {
-      this.setState({ win: true, canChange: false });
+      this.setState({ win: true });
       return;
     }
-    let holdState = battle(this.state.Attack, this.state.Defense);
-    holdState["canChange"] = false;
-    this.setState(holdState);
+    const holdState = this.state;
+    const history = this.state.history;
+    const state = battle(this.state.Attack, this.state.Defense);
+    history.push(holdState);
+    state["canChange"] = false;
+    state["history"] = history;
+    this.setState(state);
   }
 
   handleReset() {
@@ -57,8 +64,20 @@ class App extends Component {
       Attack: 0,
       Defense: 0,
       canChange: true,
-      win: false
+      win: false,
+      history: []
     });
+  }
+
+  handleUndo() {
+    if (this.state.history.length > 0) {
+      const history = this.state.history;
+      const state = history.pop();
+      state["history"] = history;
+      this.setState(state);
+    } else {
+      alert("Nothing in the History");
+    }
   }
 
   renderWin() {
@@ -66,12 +85,12 @@ class App extends Component {
     let remaining = 0;
     if (!this.state.win) {
       return;
-    } else if (this.state.Attack == 0) {
-      winner = "Defense";
-      remaining = this.state.Defense;
-    } else {
+    } else if (this.state.Defense == 0 && this.state.Attack > 0) {
       winner = "Attack";
       remaining = this.state.Attack;
+    } else {
+      winner = "Defense";
+      remaining = this.state.Defense;
     }
     return (
       <div className="card content shadow p-2 m-2">
@@ -90,6 +109,16 @@ class App extends Component {
             defense={this.state.DefenseRoll}
             winner={this.state.roundWinner}
           />
+        </div>
+      );
+    }
+  }
+
+  renderHistory() {
+    if (this.state.history.length > 0) {
+      return (
+        <div className="card content shadow p-2 m-2">
+          <History history={this.state.history} />
         </div>
       );
     }
@@ -132,10 +161,16 @@ class App extends Component {
               className="btn btn-danger"
               onClick={() => this.handleReset()}
             />
+            <Button
+              value={"Undo"}
+              className="btn btn-warning"
+              onClick={() => this.handleUndo()}
+            />
           </div>
         </div>
         {this.renderInfo()}
         {this.renderWin()}
+        {this.renderHistory()}
       </div>
     );
   }
@@ -181,7 +216,6 @@ function attack(x) {
 }
 function defense(x) {
   let dice = defDice(x);
-  console.log(dice);
   return combat(dice);
 }
 
