@@ -12,12 +12,27 @@ import { createStore } from "redux";
  * follows a different convention (such as function maps) if it makes sense for your
  * project.
  */
-function counter(state = 0, action) {
+
+const SETATTACK = "SETATTACK";
+const SETDEFENSE = "SETDEFENSE";
+
+const defaultState = {
+  Attack: 0,
+  AttackRoll: 0,
+  Defense: 0,
+  DefenseRoll: 0,
+  roundWinner: "",
+  canChange: true,
+  win: false,
+  history: []
+};
+
+function risk(state = defaultState, action) {
   switch (action.type) {
-    case "INCREMENT":
-      return state + 1;
-    case "DECREMENT":
-      return state - 1;
+    case SETATTACK:
+      return { ...state, Attack: action.value };
+    case SETDEFENSE:
+      return { ...state, Defense: action.value };
     default:
       return state;
   }
@@ -25,7 +40,7 @@ function counter(state = 0, action) {
 
 // Create a Redux store holding the state of your app.
 // Its API is { subscribe, dispatch, getState }.
-let store = createStore(counter);
+let store = createStore(risk);
 
 // You can use subscribe() to update the UI in response to state changes.
 // Normally you'd use a view binding library (e.g. React Redux) rather than subscribe() directly.
@@ -35,11 +50,12 @@ store.subscribe(() => console.log(store.getState()));
 
 // The only way to mutate the internal state is to dispatch an action.
 // The actions can be serialized, logged or stored and later replayed.
-store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: SETATTACK, value: 100 });
 // 1
-store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: SETDEFENSE, value: 10 });
 // 2
-store.dispatch({ type: "DECREMENT" });
 // 1
+
+console.log(store.getState());
 
 export default store;
