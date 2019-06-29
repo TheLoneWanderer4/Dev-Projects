@@ -1,5 +1,7 @@
-import { todoApp } from "./reducer.js";
+import { createStore } from "redux";
+import risk from "./reducers";
+import * as Actions from "./actions.js";
 
-console.log(todoApp);
+const store = createStore(risk);
 
-export default todoApp;
+export default store;
