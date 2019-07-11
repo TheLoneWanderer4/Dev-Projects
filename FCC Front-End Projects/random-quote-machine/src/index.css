@@ -2,6 +2,16 @@ body {
   margin: 0;
 }
 
+#root {
+  background-color: #ebf5f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Indie Flower";
+}
+
 .content {
   text-align: center;
   width: 575px;
@@ -9,13 +19,18 @@ body {
   margin: auto;
 }
 
-#container {
+#quote-box {
+  background: #f8faf1;
+}
+
+.buttons {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
 }
 
 #text {
   font-size: 2em;
+}
+
+#author {
 }
