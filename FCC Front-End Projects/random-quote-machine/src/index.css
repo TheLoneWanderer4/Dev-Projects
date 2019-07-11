@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+}
+
+.content {
+  text-align: center;
+  width: 575px;
+  max-width: 95%;
+  margin: auto;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#text {
+  font-size: 2em;
+}
