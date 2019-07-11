@@ -25,18 +25,16 @@ const NewQuoteButton = ({ onClick }) => (
 );
 
 const TwitterButton = ({ quote, author }) => (
-  <button className="btn btn-secondary">
-    <a
-      id="tweet-quote"
-      className=""
-      href={
-        "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=" +
-        encodeURIComponent('"' + quote + '" ' + author)
-      }
-    >
-      Tweet
-    </a>
-  </button>
+  <a
+    id="tweet-quote"
+    className="btn btn-secondary"
+    href={
+      "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=" +
+      encodeURIComponent('"' + quote + '" ' + author)
+    }
+  >
+    <div className="btn btn-secondary w-100 h-100">Tweet</div>
+  </a>
 );
 
 class App extends Component {

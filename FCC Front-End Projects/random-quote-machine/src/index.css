@@ -34,3 +34,12 @@ body {
 
 #author {
 }
+
+.link-fix,
+.link-fix:hover,
+.link-fix:link,
+.link-fix:visited,
+.link-fix:active {
+  color: white;
+  text-decoration: none;
+}
