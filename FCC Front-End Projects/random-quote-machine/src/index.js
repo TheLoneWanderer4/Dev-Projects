@@ -33,7 +33,7 @@ const TwitterButton = ({ quote, author }) => (
       encodeURIComponent('"' + quote + '" ' + author)
     }
   >
-    <div className="btn btn-secondary w-100 h-100">Tweet</div>
+    <div style={{ marginTop: "15%" }}>Tweet</div>
   </a>
 );
 
