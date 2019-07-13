@@ -1,0 +1,36 @@
+$padWidth: 100px
+$padHeight: 80px
+$pressDistance: 5px
+
+body
+  margin: 0
+
+#root
+  background: #ebf5f8
+  min-height: 100vh
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+
+.pad-bank
+  text-align: center
+  display: grid
+  grid-template-columns: $padWidth $padWidth $padWidth
+  grid-gap: 15px
+  .drum-pad
+    width: $padWidth
+    height : $padHeight
+    padding-top: $padHeight / 2
+    border-radius: 5px
+    cursor: pointer
+
+.pad-active
+  transform: scale(0.9)
+
+.display
+  margin: auto
+
+.info-screen
+  width: 150px
+  height: 75px
