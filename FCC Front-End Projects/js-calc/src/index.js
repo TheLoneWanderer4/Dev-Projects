@@ -21,15 +21,15 @@ const buttons = [
   { value: ".", id: "decimal", className: "" }
 ];
 
-const isOperator = /[*/+-]/,
-  endsWithOperator = /[*+-/]$/,
+const isOperator = /[*/+-.]/,
+  endsWithOperator = /[*+-./]$/,
   leadingZero = /\b0+/g,
   constainsDecimal = /./g;
 
 const reset = { input: "0", formula: "0" };
 
-const Button = ({ onClick, value, className }) => (
-  <button className={className} onClick={() => onClick(value)}>
+const Button = ({ onClick, value, className, id }) => (
+  <button id={id} className={className} onClick={() => onClick(value)}>
     {" "}
     {value}{" "}
   </button>
@@ -81,7 +81,7 @@ class App extends React.Component {
         </div>
         <div className="formulaScreen">{this.state.input}</div>
         <div>
-          <button className="jumbo" onClick={this.handleClear}>
+          <button id="clear" className="jumbo" onClick={this.handleClear}>
             AC
           </button>
           {buttons.map(button => (
@@ -93,11 +93,13 @@ class App extends React.Component {
               className={button.className}
             />
           ))}
-          <button onClick={this.handleEqual}>=</button>
+          <button id="equals" onClick={this.handleEqual}>
+            =
+          </button>
         </div>
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("app"));
