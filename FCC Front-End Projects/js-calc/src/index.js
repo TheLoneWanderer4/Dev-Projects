@@ -21,12 +21,12 @@ const buttons = [
   { value: ".", id: "decimal", className: "" }
 ];
 
-const isOperator = /[*/+-.]/,
-  endsWithOperator = /[*+-./]$/,
+const isOperator = /[*/+-]/,
+  endsWithOperator = /[*+-/]$/,
   leadingZero = /\b0+/g,
-  constainsDecimal = /./g;
+  constainsDecimal = /\./g;
 
-const reset = { input: "0", formula: "0" };
+const reset = { input: "0", formula: "0", curNum: "0" };
 
 const Button = ({ onClick, value, className, id }) => (
   <button id={id} className={className} onClick={() => onClick(value)}>
@@ -65,11 +65,24 @@ class App extends React.Component {
   handleButton = value => {
     let formula = this.state.formula.replace(leadingZero, "");
 
+    let curNum = this.state.curNum.replace(leadingZero, "");
+
+    if (value.match(isOperator)) {
+      curNum = "";
+    } else if (
+      value.match(constainsDecimal) &&
+      curNum.match(constainsDecimal)
+    ) {
+      value = "";
+    } else {
+      curNum += value;
+    }
+
     if (value.match(isOperator) && formula.match(endsWithOperator)) {
       formula = formula.substring(0, formula.length - 1);
     }
 
-    this.setState({ input: value, formula: formula + value });
+    this.setState({ input: value, formula: formula + value, curNum: curNum });
   };
 
   render() {
