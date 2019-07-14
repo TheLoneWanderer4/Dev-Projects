@@ -26,6 +26,7 @@ const buttons = [
 
 const isOperator = /[*/+-]/,
   endsWithOperator = /[*+-/]$/,
+  startsWithOperator = /^[*+-/]/,
   leadingZero = /\b0+/g,
   constainsDecimal = /\./g;
 
@@ -92,8 +93,8 @@ class App extends React.Component {
   handleEqual = () => {
     let formula = this.state.formula;
 
-    if (formula.match(endsWithOperator)) {
-      formula = "Error: Cannont end in Operator";
+    if (formula.match(endsWithOperator) || formula.match(startsWithOperator)) {
+      formula = "Error: Cannont Start or End in Operator";
     } else {
       formula = eval(this.state.formula).toString();
     }
