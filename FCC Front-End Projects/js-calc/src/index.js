@@ -3,21 +3,24 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-const buttons = [
+const operators = [
   { value: "*", id: "multiply", className: "" },
-  { value: "/", id: "divide", className: "" },
-  { value: "1", id: "one", className: "" },
-  { value: "2", id: "two", className: "" },
-  { value: "3", id: "three", className: "" },
-  { value: "4", id: "four", className: "" },
-  { value: "5", id: "five", className: "" },
-  { value: "6", id: "six", className: "" },
+  { value: "+", id: "add", className: "" },
+  { value: "-", id: "subtract", className: "" },
+  { value: "/", id: "divide", className: "" }
+];
+
+const buttons = [
   { value: "7", id: "seven", className: "" },
   { value: "8", id: "eight", className: "" },
   { value: "9", id: "nine", className: "" },
-  { value: "0", id: "zero", className: "jumbo" },
-  { value: "+", id: "add", className: "" },
-  { value: "-", id: "subtract", className: "" },
+  { value: "4", id: "four", className: "" },
+  { value: "5", id: "five", className: "" },
+  { value: "6", id: "six", className: "" },
+  { value: "1", id: "one", className: "" },
+  { value: "2", id: "two", className: "" },
+  { value: "3", id: "three", className: "" },
+  { value: "0", id: "zero", className: "" },
   { value: ".", id: "decimal", className: "" }
 ];
 
@@ -28,12 +31,57 @@ const isOperator = /[*/+-]/,
 
 const reset = { input: "0", formula: "0", curNum: "0" };
 
-const Button = ({ onClick, value, className, id }) => (
-  <button id={id} className={className} onClick={() => onClick(value)}>
-    {" "}
-    {value}{" "}
-  </button>
-);
+const Buttons = props => {
+  return (
+    <div className="buttons">
+      {operators.map(button => (
+        <button
+          className="btn btn-default bttn bg-light shadow-sm"
+          id={button.id}
+          key={button.id}
+          onClick={() => props.handleButton(button.value)}
+        >
+          {button.value}
+        </button>
+      ))}
+      {buttons.map(button => (
+        <button
+          className="btn btn-default bttn bg-light shadow-sm"
+          id={button.id}
+          key={button.id}
+          onClick={() => props.handleButton(button.value)}
+        >
+          {button.value}
+        </button>
+      ))}
+      <button
+        id="clear"
+        className="btn bttn btn-warning"
+        onClick={props.handleClear}
+      >
+        AC
+      </button>
+      <button
+        className="btn bttn btn-warning equals"
+        id="equals"
+        onClick={props.handleEqual}
+      >
+        =
+      </button>
+    </div>
+  );
+};
+
+const Display = props => {
+  return (
+    <div className="navbar navbar-dark bg-dark text-light flex-column align-items-end">
+      <div id="display" className="formula">
+        {props.formula}
+      </div>
+      <div className="input">{props.input}</div>
+    </div>
+  );
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -43,8 +91,6 @@ class App extends React.Component {
 
   handleEqual = () => {
     let formula = this.state.formula;
-
-    console.log(formula);
 
     if (formula.match(endsWithOperator)) {
       formula = "Error: Cannont end in Operator";
@@ -64,7 +110,6 @@ class App extends React.Component {
 
   handleButton = value => {
     let formula = this.state.formula.replace(leadingZero, "");
-
     let curNum = this.state.curNum.replace(leadingZero, "");
 
     if (value.match(isOperator)) {
@@ -87,28 +132,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="calculator">
-        <div id="display" className="outputScreen">
-          {" "}
-          {this.state.formula}{" "}
-        </div>
-        <div className="formulaScreen">{this.state.input}</div>
-        <div>
-          <button id="clear" className="jumbo" onClick={this.handleClear}>
-            AC
-          </button>
-          {buttons.map(button => (
-            <Button
-              id={button.id}
-              key={button.id}
-              onClick={this.handleButton}
-              value={button.value}
-              className={button.className}
-            />
-          ))}
-          <button id="equals" onClick={this.handleEqual}>
-            =
-          </button>
+      <div className="container">
+        <div className="calculator bg-primary shadow-lg">
+          <Display input={this.state.input} formula={this.state.formula} />
+          <Buttons
+            handleButton={this.handleButton}
+            handleEqual={this.handleEqual}
+            handleClear={this.handleClear}
+          />
         </div>
       </div>
     );

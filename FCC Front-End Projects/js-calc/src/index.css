@@ -1,72 +1,34 @@
-@import 'https://fonts.googleapis.com/css?family=Share+Tech+Mono';
-@font-face {
-  font-family: "Digital";
-  src: url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot");
-  src: url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff") format("woff"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.svg#Digital-7") format("svg"); }
 #app {
   height: 100vh;
+  width: 100vw;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #c2c2d6;
-  -webkit-touch-callout: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: default; }
+  flex-direction: column;
+  justify-content: center; }
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  padding: 20px; }
+
+.equals {
+  grid-column: 4/5;
+  grid-row: 2/6; }
 
 .calculator {
-  border: 2px solid #47476b;
-  padding: 5px;
-  background: black;
-  width: 320px;
-  position: relative; }
+  width: 400px;
+  max-width: 95%;
+  margin: auto; }
 
-.formulaScreen {
-  min-height: 20px;
-  font-family: digital;
-  font-size: 20px;
-  color: orange;
-  text-align: right;
-  vertical-align: text-top;
-  line-height: 20px;
-  overflow-wrap: break-word;
-  word-wrap: break-word; }
+.bttn {
+  width: 100%;
+  height: 100%;
+  font-size: 22px; }
 
-.outputScreen {
-  font-size: 29px;
-  font-family: digital;
-  color: white;
-  text-align: right;
-  line-height: 35px; }
+.input {
+  font-size: 33px; }
 
-button {
-  position: relative;
-  height: 65px;
-  width: 80px;
-  color: white;
-  outline: 1px solid black;
-  border: none;
-  background: #4d4d4d;
-  font-family: Share Tech Mono, monospace;
-  font-size: 20px;
-  cursor: default; }
-  button:hover {
-    color: black;
-    outline: 0.05em solid grey;
-    z-index: 3; }
-
-.jumbo {
-  width: 160px; }
-
-.author {
-  text-align: center;
-  font-family: Share Tech Mono, sans;
-  margin-top: 15px; }
-  .author a {
-    text-decoration: none;
-    color: #00264d;
-    line-height: 26px; }
+.formula {
+  font-size: 24px; }
 
 /*# sourceMappingURL=index.css.map */
