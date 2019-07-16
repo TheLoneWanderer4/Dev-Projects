@@ -5,6 +5,16 @@ import "bootstrap/dist/css/bootstrap.css";
 
 const accurateInterval = require("accurate-interval");
 
+const startState = {
+  break: 5,
+  session: 25,
+  timerType: "Session",
+  isRunning: false,
+  timer: 1500,
+  intervalFunction: "",
+  sound: ""
+};
+
 const Counter = ({ id, onIncrement, onDecrement, label, value }) => (
   <div className="card m-2 align-items-center  ">
     <div id={id + "-label"} className="m-2 p-2">
@@ -32,28 +42,70 @@ const Counter = ({ id, onIncrement, onDecrement, label, value }) => (
   </div>
 );
 
-class Timer extends React.Component {
+class TimerApp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      time: props.session * 60,
-      timerType: "Session",
-      isRunning: false,
-      intervalID: ""
-    };
+    this.state = startState;
   }
 
-  componentWillReceiveProps(props) {
+  handleIncrementBreak = () => {
     if (!this.state.isRunning) {
-      this.setState({ time: props.session * 60 });
+      if (this.state.break < 60) {
+        this.setState({ break: this.state.break + 1 });
+      }
     }
+  };
+
+  handleIncrementSession = () => {
+    if (!this.state.isRunning) {
+      if (this.state.session < 60) {
+        this.setState({
+          session: this.state.session + 1,
+          timer: this.state.timer + 60
+        });
+      }
+    }
+  };
+
+  handleDecrementBreak = () => {
+    if (!this.state.isRunning) {
+      if (this.state.break > 1) {
+        this.setState({ break: this.state.break - 1 });
+      }
+    }
+  };
+
+  handleDecrementSession = () => {
+    if (!this.state.isRunning) {
+      if (this.state.session > 1) {
+        this.setState({
+          session: this.state.session - 1,
+          timer: this.state.timer - 60
+        });
+      }
+    }
+  };
+
+  startTimer() {
+    this.setState({
+      intervalFunction: accurateInterval(() => {
+        this.decrementTimer();
+        this.pomodoro();
+      }, 1000)
+    });
+  }
+
+  endTimer() {
+    this.state.intervalFunction.clear();
   }
 
   playSound(e) {
-    const sound = document.getElementById("beep");
-    sound.currentTime = 0;
-    sound.play();
-    setTimeout(() => this.clockify(), 100);
+    this.audioBeep.play();
+  }
+
+  stopSound() {
+    this.audioBeep.pause();
+    this.audioBeep.currentTime = 0;
   }
 
   clockify(time) {
@@ -66,131 +118,43 @@ class Timer extends React.Component {
 
   decrementTimer() {
     if (this.state.isRunning) {
-      this.setState({ time: this.state.time - 1 });
+      this.setState({ timer: this.state.timer - 1 });
     }
   }
 
   pomodoro() {
-    if (this.state.time <= 0) {
+    if (this.state.timer < 0) {
       this.playSound();
       if (this.state.timerType === "Session") {
-        this.setState({ time: this.props.break * 60, timerType: "Break" });
+        this.setState({ timer: this.state.break * 60, timerType: "Break" });
       } else {
-        this.setState({ time: this.props.session * 60, timerType: "Session" });
+        this.setState({ timer: this.state.session * 60, timerType: "Session" });
       }
     }
   }
 
   handleStartStop = () => {
     if (this.state.isRunning) {
-      this.props.handleStartStop(false);
       this.setState({ isRunning: false });
-      this.state.intervalID && this.state.intervalID.clear();
+      this.endTimer();
     } else {
-      this.props.handleStartStop(true);
-      this.setState({
-        intervalID: accurateInterval(() => {
-          this.decrementTimer();
-          this.pomodoro();
-        }, 1000),
-        isRunning: true
-      });
+      this.startTimer();
+      this.setState({ isRunning: true });
     }
   };
 
   handleReset = () => {
-    this.props.handleStartStop(false);
-    this.state.intervalID && this.state.intervalID.clear();
-    this.props.handleReset();
-    this.setState({
-      time: this.props.session * 60,
-      timerType: "Session",
-      isRunning: false,
-      intervalID: ""
-    });
+    if (this.state.isRunning) {
+      this.endTimer();
+    }
+    this.stopSound();
+    this.setState(startState);
   };
 
   render() {
     return (
-      <div className="card m-2 p-2 align-items-center  ">
-        <audio className="clip" id="beep" src="https://goo.gl/65cBl1"></audio>
-        <div id="timer-label" className="">
-          {this.state.timerType}
-        </div>
-        <div id="time-left" className="">
-          {this.clockify(this.state.time)}
-        </div>
-        <div className="btn-group">
-          <button
-            id="start_stop"
-            className="btn btn-primary"
-            onClick={this.handleStartStop}
-          >
-            Start
-          </button>
-          <button
-            id="reset"
-            className="btn btn-danger"
-            onClick={this.handleReset}
-          >
-            Reset
-          </button>
-        </div>
-      </div>
-    );
-  }
-}
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { break: 5, session: 25, running: false };
-  }
-
-  handleIncrementBreak = () => {
-    if (!this.state.running) {
-      if (this.state.break < 60) {
-        this.setState({ break: this.state.break + 1 });
-      }
-    }
-  };
-
-  handleIncrementSession = () => {
-    if (!this.state.running) {
-      if (this.state.session < 60) {
-        this.setState({ session: this.state.session + 1 });
-      }
-    }
-  };
-
-  handleDecrementBreak = () => {
-    if (!this.state.running) {
-      if (this.state.break > 1) {
-        this.setState({ break: this.state.break - 1 });
-      }
-    }
-  };
-
-  handleDecrementSession = () => {
-    if (!this.state.running) {
-      if (this.state.session > 1) {
-        this.setState({ session: this.state.session - 1 });
-      }
-    }
-  };
-
-  handleReset = () => {
-    this.setState({ break: 5, session: 25 });
-  };
-
-  handleStartStop = bool => {
-    this.setState({ running: bool });
-  };
-
-  render() {
-    return (
-      <div>
-        <div className="card   p-2 m-2 align-items-center">Clock</div>
+      <div className="bg-light shadow p-4 card">
+        <div className="card p-2 m-2 align-items-center">Clock</div>
         <div className="counters">
           <Counter
             id="break"
@@ -207,15 +171,41 @@ class App extends React.Component {
             value={this.state.session}
           />
         </div>
-        <Timer
-          break={this.state.break}
-          session={this.state.session}
-          handleReset={this.handleReset}
-          handleStartStop={this.handleStartStop}
-        />
+        <div className="card m-2 p-2 align-items-center  ">
+          <audio
+            id="beep"
+            preload="auto"
+            src="https://goo.gl/65cBl1"
+            ref={audio => {
+              this.audioBeep = audio;
+            }}
+          />
+          <div id="timer-label" className="">
+            {this.state.timerType}
+          </div>
+          <div id="time-left" className="">
+            {this.clockify(this.state.timer)}
+          </div>
+          <div className="btn-group">
+            <button
+              id="start_stop"
+              className="btn btn-primary"
+              onClick={this.handleStartStop}
+            >
+              Start
+            </button>
+            <button
+              id="reset"
+              className="btn btn-danger"
+              onClick={this.handleReset}
+            >
+              Reset
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<TimerApp />, document.getElementById("root"));

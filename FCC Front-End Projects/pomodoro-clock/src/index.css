@@ -16,6 +16,10 @@ body {
   display: flex;
 }
 
+#time-left {
+  font-size: 2em;
+}
+
 .counters {
   display: flex;
 }
