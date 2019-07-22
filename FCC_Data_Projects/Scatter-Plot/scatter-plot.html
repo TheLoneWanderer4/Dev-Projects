@@ -1,0 +1,168 @@
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+    req = new XMLHttpRequest();
+    req.open(
+      "GET",
+      "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json",
+      true
+    );
+    req.send();
+    req.onload = () => {
+      const json = JSON.parse(req.responseText);
+
+      const padding = 50;
+      const width = 1100; // make sure to sync this with the content width
+      const height = 500;
+
+      const timeFormat = d3.timeFormat("%M:%S");
+      const parseTime = d3.timeParse("%M:%S");
+
+      const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+      const years = json.map(item => item.Year);
+      const times = json.map(item => parseTime(item.Time));
+
+      const yScale = d3
+        .scaleLinear()
+        .domain([d3.max(times), d3.min(times)])
+        .range([height - padding, padding]);
+
+      const yAxis = d3.axisLeft(yScale).tickFormat(timeFormat);
+
+      const xScale = d3
+        .scaleLinear()
+        .domain([d3.min(years), d3.max(years)])
+        .range([padding, width - padding]);
+
+      const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
+
+      const div = d3
+        .select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .attr("id", "tooltip")
+        .style("opacity", 0);
+
+      const svg = d3
+        .select(".graph")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+      svg
+        .selectAll(".dot")
+        .data(json)
+        .enter()
+        .append("circle")
+        .attr("class", "dot")
+        .attr("cx", (d, i) => xScale(years[i]))
+        .attr("cy", (d, i) => yScale(times[i]))
+        .attr("r", (d, i) => 5)
+        .attr("data-xvalue", (d, i) => years[i])
+        .attr("data-yvalue", (d, i) => times[i])
+        .style("fill", d => color(d.Doping != ""))
+        .on("mouseover", function(d) {
+          div.style("opacity", 0.9);
+          div.attr("data-year", d.Year);
+          div
+            .html(
+              d.Name +
+                ": " +
+                d.Nationality +
+                "<br/>" +
+                "Year: " +
+                d.Year +
+                ", Time: " +
+                timeFormat(d.Time) +
+                (d.Doping ? "<br/><br/>" + d.Doping : "")
+            )
+            .style("left", d3.event.pageX + "px")
+            .style("top", d3.event.pageY - 28 + "px");
+        })
+        .on("mouseout", function(d) {
+          div.style("opacity", 0);
+        });
+
+      svg
+        .append("g")
+        .attr("id", "y-axis")
+        .attr("transform", "translate(" + padding + ",0)")
+        .call(yAxis);
+
+      svg
+        .append("g")
+        .attr("id", "x-axis")
+        .attr("transform", "translate(0, " + (height - padding) + ")")
+        .call(xAxis);
+
+      const legend = svg
+        .selectAll(".legend")
+        .data(color.domain())
+        .enter()
+        .append("g")
+        .attr("class", "legend")
+        .attr("id", "legend")
+        .attr("transform", function(d, i) {
+          return "translate(0," + (height / 2 - i * 20) + ")";
+        });
+
+      legend
+        .append("rect")
+        .attr("x", width - 18)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", color);
+
+      legend
+        .append("text")
+        .attr("x", width - 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .text(function(d) {
+          if (d) return "Riders with doping allegations";
+          else {
+            return "No doping allegations";
+          }
+        });
+    };
+  });
+</script>
+
+<style media="screen">
+  body {
+    margin: 0;
+  }
+  .dot {
+    stroke: #000;
+    opacity: 0.8;
+  }
+  div.tooltip {
+    position: absolute;
+
+    padding: 10px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+</style>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="container">
+        <h1 id="title">United States GDP</h1>
+        <div class="graph"></div>
+      </div>
+    </div>
+  </body>
+</html>

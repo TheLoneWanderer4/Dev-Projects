@@ -1,0 +1,219 @@
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<style media="screen">
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto";
+    background-color: #708090;
+    background-size: 64px 128px;
+  }
+  .main .container {
+    height: 560px;
+    width: 900px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 20px 20px;
+    align-self: center;
+    position: relative;
+  }
+  @media (min-width: 1000px) {
+    .main .container {
+      box-shadow: 2px 2px 20px;
+    }
+  }
+  .main .container #title {
+    text-align: center;
+    font-size: 2.5em;
+  }
+  .main .container .graph {
+    position: absolute;
+    top: 6em;
+  }
+
+  #tooltip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    padding: 2px;
+    font: 12px;
+    background: lightsteelblue;
+    box-shadow: 1px 1px 10px;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .overlay {
+    position: absolute;
+    background: #fff;
+    pointer-events: none;
+  }
+
+  #y-axis path {
+    stroke: black;
+    stroke-width: 1;
+    fill: none;
+  }
+
+  #x-axis path {
+    stroke: black;
+    stroke-width: 1;
+    fill: none;
+  }
+
+  .info {
+    font-size: 0.8em;
+  }
+</style>
+<!DOCTYPE html>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+    req = new XMLHttpRequest();
+    req.open(
+      "GET",
+      "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/GDP-data.json",
+      true
+    );
+    req.send();
+    req.onload = function() {
+      json = JSON.parse(req.responseText);
+
+      // numerical representations of the years
+      const years = json.data.map(item => item[0]);
+      // the gdp
+      const GDP = json.data.map(item => item[1]);
+
+      // formating constants
+      const padding = 50;
+      const xMargin = 0.5; // must be greater than bar-width
+      const width = 900; // make sure to sync this with the content width
+      const height = 500;
+      const barWidth = width / GDP.length - xMargin;
+
+      var tooltip = d3
+        .select(".graph")
+        .append("div")
+        .attr("id", "tooltip")
+        .style("opacity", 0);
+
+      var overlay = d3
+        .select(".graph")
+        .append("div")
+        .attr("class", "overlay")
+        .style("opacity", 0);
+
+      const yScale = d3
+        .scaleLinear()
+        .domain([0, d3.max(GDP)])
+        .range([height - padding, padding]);
+
+      const xScale = d3
+        .scaleLinear()
+        .domain([0, GDP.length])
+        .range([padding, width - padding]);
+
+      const yearsDate = years.map(year => new Date(year));
+
+      const xDateScale = d3
+        .scaleTime()
+        .domain([d3.min(yearsDate), d3.max(yearsDate)])
+        .range([padding, width - padding]);
+
+      const xAxis = d3.axisBottom(xDateScale);
+
+      const yAxis = d3.axisLeft(yScale);
+
+      const svg = d3
+        .select(".graph")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+      svg
+        .selectAll("rect")
+        .data(GDP)
+        .enter()
+        .append("rect")
+        .attr("x", (d, i) => xScale(i))
+        .attr("y", (d, i) => yScale(d))
+        .attr("width", (d, i) => barWidth)
+        .attr("height", (d, i) => height - padding - yScale(d))
+        .attr("fill", "#03adfc")
+        .attr("class", "bar")
+        .attr("data-date", (d, i) => years[i])
+        .attr("data-gdp", (d, i) => GDP[i])
+        .on("mouseover", function(d, i) {
+          overlay
+            .transition()
+            .duration(0)
+            .style("height", height - padding - yScale(d) + "px")
+            .style("width", barWidth + "px")
+            .style("opacity", 0.9)
+            .style("left", xScale(i) - padding - 11 + "px")
+            .style("top", yScale(d) + "px")
+            .style("transform", "translateX(60px)");
+          tooltip
+            .transition()
+            .duration(200)
+            .style("opacity", 0.9);
+          tooltip
+            .html(years[i] + "<br>" + "$" + GDP[i])
+            .style("left", i * barWidth + padding + "px")
+            .style("top", yScale(d) - padding + "px")
+            .style("transform", "translateX(60px)")
+            .attr("data-date", years[i]);
+        })
+        .on("mouseout", function(d) {
+          tooltip
+            .transition()
+            .duration(200)
+            .style("opacity", 0);
+          overlay
+            .transition()
+            .duration(200)
+            .style("opacity", 0);
+        });
+
+      svg
+        .append("g")
+        .attr("id", "y-axis")
+        .attr("transform", "translate(" + padding + ",0)")
+        .call(yAxis);
+
+      svg
+        .append("g")
+        .attr("id", "x-axis")
+        .attr("transform", "translate(0, " + (height - padding) + ")")
+        .call(xAxis);
+    };
+  });
+</script>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="container">
+        <h1 id="title">United States GDP</h1>
+        <div class="graph"></div>
+      </div>
+    </div>
+  </body>
+</html>
