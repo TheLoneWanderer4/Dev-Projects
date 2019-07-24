@@ -4,18 +4,6 @@
   const url =
     "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/global-temperature.json";
 
-  const width = 1700;
-  const height = 600;
-  const padding = 50;
-
-  const parseMonth = d3.timeParse("%m");
-  const parseYear = d3.timeParse("%Y");
-
-  const formatMonth = d3.timeFormat("%b");
-  const formatYear = d3.timeFormat("%Y");
-
-  const cellHeight = (height - padding - padding) / 12;
-
   const colors = [
     "#a50026",
     "#d73027",
@@ -28,7 +16,21 @@
     "#74add1",
     "#4575b4",
     "#313695"
-  ];
+  ].reverse();
+
+  const width = 1700;
+  const height = 600;
+  const padding = 60;
+  const legendHeight = 50 + padding;
+  const legendWidth = 400 + 2 * padding;
+
+  const parseMonth = d3.timeParse("%m");
+  const parseYear = d3.timeParse("%Y");
+
+  const formatMonth = d3.timeFormat("%B");
+  const formatYear = d3.timeFormat("%Y");
+
+  const cellHeight = (height - padding - padding) / 12;
 
   const yScale = d3
     .scaleLinear()
@@ -42,6 +44,10 @@
   const xScale = d3.scaleLinear().range([padding, width - padding]);
 
   const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
+
+  const legendScale = d3.scaleLinear().range([padding, legendWidth]);
+
+  const legendAxis = d3.axisBottom(legendScale);
 
   document.addEventListener("DOMContentLoaded", function() {
     req = new XMLHttpRequest();
@@ -60,23 +66,14 @@
           baseTemp + d3.min(dataVariance),
           baseTemp + d3.max(dataVariance)
         ])
-        .range(
-          [
-            "#a50026",
-            "#d73027",
-            "#f46d43",
-            "#fdae61",
-            "#fee090",
-            "#ffffbf",
-            "#e0f3f8",
-            "#abd9e9",
-            "#74add1",
-            "#4575b4",
-            "#313695"
-          ].reverse()
-        );
+        .range(colors);
 
       xScale.domain([d3.min(dataYears), d3.max(dataYears) + 1]);
+
+      const tooltip = d3
+        .select(".graph")
+        .append("div")
+        .attr("id", "tooltip");
 
       const svg = d3
         .select(".graph")
@@ -95,7 +92,7 @@
         .attr("height", cellHeight)
         .attr("fill", d => colorScale(baseTemp + d.variance))
         .attr("data-month", function(d) {
-          return d.month;
+          return d.month - 1;
         })
         .attr("data-year", function(d) {
           return d.year;
@@ -104,8 +101,25 @@
           return data.baseTemperature + d.variance;
         })
         .attr("class", "cell")
-        .on("mouseover", () => {
-          this.style.stroke = "yellow";
+        .on("mouseover", function(d, i) {
+          tooltip
+            .transition()
+            .duration(200)
+            .style("opacity", 0.9);
+          tooltip
+            .html(d.year)
+            .style(
+              "left",
+              (i * width) / (data.monthlyVariance.length / 12) + padding + "px"
+            )
+            .style("top", yScale(d.month) - padding + "px")
+            .attr("data-year", d.year);
+        })
+        .on("mouseout", function(d) {
+          tooltip
+            .transition()
+            .duration(200)
+            .style("opacity", 0);
         });
 
       svg
@@ -120,22 +134,15 @@
         .attr("transform", "translate(0, " + (height - padding) + ")")
         .call(xAxis);
 
-      const legendHeight = 50 + padding;
-      const legendWidth = 400 + 2 * padding;
-
-      const legendScale = d3
-        .scaleLinear()
-        .domain([
-          baseTemp + d3.min(dataVariance),
-          baseTemp + d3.max(dataVariance)
-        ])
-        .range([padding, legendWidth]);
-
-      const legendAxis = d3.axisBottom(legendScale);
+      legendScale.domain([
+        baseTemp + d3.min(dataVariance),
+        baseTemp + d3.max(dataVariance)
+      ]);
 
       const legend = d3
         .select(".graph")
         .append("svg")
+        .attr("id", "legend")
         .attr("width", legendWidth)
         .attr("height", legendHeight);
 
@@ -144,6 +151,7 @@
         .data(colors)
         .enter()
         .append("rect")
+
         .attr(
           "x",
           (d, i) => i * Math.floor(legendWidth / colors.length) + padding
@@ -155,17 +163,12 @@
 
       legend
         .append("g")
-        .attr("id", "x-axis")
         .attr("transform", "translate(0, " + (legendHeight - padding) + ")")
         .call(legendAxis);
     };
   });
 </script>
-<style media="screen">
-  .cell {
-    stroke-width: 1;
-  }
-</style>
+<style media="screen"></style>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -175,7 +178,8 @@
   <body>
     <div class="main">
       <div class="container">
-        <h1 id="title">United States GDP</h1>
+        <h1 id="title">Average global surface temp</h1>
+        <h3 id="description">Base temp of 8.66</h3>
         <div class="graph"></div>
         <div class="tooltip"></div>
       </div>
