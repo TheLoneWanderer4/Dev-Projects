@@ -1,0 +1,184 @@
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<script type="text/javascript">
+  const url =
+    "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/global-temperature.json";
+
+  const width = 1700;
+  const height = 600;
+  const padding = 50;
+
+  const parseMonth = d3.timeParse("%m");
+  const parseYear = d3.timeParse("%Y");
+
+  const formatMonth = d3.timeFormat("%b");
+  const formatYear = d3.timeFormat("%Y");
+
+  const cellHeight = (height - padding - padding) / 12;
+
+  const colors = [
+    "#a50026",
+    "#d73027",
+    "#f46d43",
+    "#fdae61",
+    "#fee090",
+    "#ffffbf",
+    "#e0f3f8",
+    "#abd9e9",
+    "#74add1",
+    "#4575b4",
+    "#313695"
+  ];
+
+  const yScale = d3
+    .scaleLinear()
+    .domain([12.5, 0.5])
+    .range([height - padding, padding]);
+
+  const yAxis = d3
+    .axisLeft(yScale)
+    .tickFormat(tick => formatMonth(parseMonth(tick)));
+
+  const xScale = d3.scaleLinear().range([padding, width - padding]);
+
+  const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
+
+  document.addEventListener("DOMContentLoaded", function() {
+    req = new XMLHttpRequest();
+    req.open("GET", url, true);
+    req.send();
+    req.onload = function() {
+      const data = JSON.parse(req.responseText);
+
+      const baseTemp = data.baseTemperature;
+      const dataYears = data.monthlyVariance.map(item => item.year);
+      const dataVariance = data.monthlyVariance.map(item => item.variance);
+
+      const colorScale = d3
+        .scaleQuantize()
+        .domain([
+          baseTemp + d3.min(dataVariance),
+          baseTemp + d3.max(dataVariance)
+        ])
+        .range(
+          [
+            "#a50026",
+            "#d73027",
+            "#f46d43",
+            "#fdae61",
+            "#fee090",
+            "#ffffbf",
+            "#e0f3f8",
+            "#abd9e9",
+            "#74add1",
+            "#4575b4",
+            "#313695"
+          ].reverse()
+        );
+
+      xScale.domain([d3.min(dataYears), d3.max(dataYears) + 1]);
+
+      const svg = d3
+        .select(".graph")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+      svg
+        .selectAll(".cell")
+        .data(data.monthlyVariance)
+        .enter()
+        .append("rect")
+        .attr("x", d => xScale(d.year))
+        .attr("y", d => yScale(d.month - 0.5))
+        .attr("width", width / (data.monthlyVariance.length / 12))
+        .attr("height", cellHeight)
+        .attr("fill", d => colorScale(baseTemp + d.variance))
+        .attr("data-month", function(d) {
+          return d.month;
+        })
+        .attr("data-year", function(d) {
+          return d.year;
+        })
+        .attr("data-temp", function(d) {
+          return data.baseTemperature + d.variance;
+        })
+        .attr("class", "cell")
+        .on("mouseover", () => {
+          this.style.stroke = "yellow";
+        });
+
+      svg
+        .append("g")
+        .attr("id", "y-axis")
+        .attr("transform", "translate(" + padding + ",0)")
+        .call(yAxis);
+
+      svg
+        .append("g")
+        .attr("id", "x-axis")
+        .attr("transform", "translate(0, " + (height - padding) + ")")
+        .call(xAxis);
+
+      const legendHeight = 50 + padding;
+      const legendWidth = 400 + 2 * padding;
+
+      const legendScale = d3
+        .scaleLinear()
+        .domain([
+          baseTemp + d3.min(dataVariance),
+          baseTemp + d3.max(dataVariance)
+        ])
+        .range([padding, legendWidth]);
+
+      const legendAxis = d3.axisBottom(legendScale);
+
+      const legend = d3
+        .select(".graph")
+        .append("svg")
+        .attr("width", legendWidth)
+        .attr("height", legendHeight);
+
+      legend
+        .selectAll("rect")
+        .data(colors)
+        .enter()
+        .append("rect")
+        .attr(
+          "x",
+          (d, i) => i * Math.floor(legendWidth / colors.length) + padding
+        )
+        .attr("y", 0)
+        .attr("width", Math.floor(legendWidth / colors.length))
+        .attr("height", legendHeight - padding)
+        .attr("fill", d => d);
+
+      legend
+        .append("g")
+        .attr("id", "x-axis")
+        .attr("transform", "translate(0, " + (legendHeight - padding) + ")")
+        .call(legendAxis);
+    };
+  });
+</script>
+<style media="screen">
+  .cell {
+    stroke-width: 1;
+  }
+</style>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="container">
+        <h1 id="title">United States GDP</h1>
+        <div class="graph"></div>
+        <div class="tooltip"></div>
+      </div>
+    </div>
+  </body>
+</html>
