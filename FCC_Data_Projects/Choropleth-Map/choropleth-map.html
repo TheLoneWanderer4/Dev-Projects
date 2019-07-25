@@ -1,0 +1,194 @@
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+  const width = 1000;
+  const height = 1000;
+
+  const EDUCATION_FILE =
+    "https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/for_user_education.json";
+  const COUNTY_FILE =
+    "https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json";
+
+  const WORLD_FILE = "https://unpkg.com/world-atlas@1/world/110m.json";
+
+  const colors = [
+    "#a50026",
+    "#d73027",
+    "#f46d43",
+    "#fdae61",
+    "#fee090",
+    "#ffffbf",
+    "#e0f3f8",
+    "#abd9e9",
+    "#74add1",
+    "#4575b4",
+    "#313695"
+  ].reverse();
+
+  d3.queue()
+    .defer(d3.json, COUNTY_FILE)
+    .defer(d3.json, EDUCATION_FILE)
+    .await(ready);
+
+  function ready(error, us, education) {
+    if (error) throw error;
+
+    const bachelorsOrHigher = education.map(obj => obj.bachelorsOrHigher);
+
+    const colorScale = d3
+      .scaleQuantize()
+      .domain([d3.min(bachelorsOrHigher), d3.max(bachelorsOrHigher)])
+      .range(colors);
+
+    let getEducationFromCounty = county => {
+      return education.filter(function(obj) {
+        return obj.fips == county.id;
+      })[0];
+    };
+
+    var path = d3.geoPath();
+
+    var tooltip = d3
+      .select(".map")
+      .append("div")
+      .attr("class", "tooltip")
+      .attr("id", "tooltip")
+      .style("opacity", 0);
+
+    const svg = d3
+      .select(".map")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    svg
+      .append("g")
+      .attr("class", "counties")
+      .selectAll("path")
+      .data(topojson.feature(us, us.objects.counties).features)
+      .enter()
+      .append("path")
+      .attr("class", "county")
+      .attr("d", path)
+      .attr("data-fips", d => d.id)
+      .attr("data-education", d => getEducationFromCounty(d).bachelorsOrHigher)
+      .attr("fill", d =>
+        colorScale(getEducationFromCounty(d).bachelorsOrHigher)
+      )
+      .on("mouseover", d => {
+        const result = getEducationFromCounty(d);
+        if (result) {
+          tooltip.style("opacity", 0.9);
+          tooltip
+            .html(function() {
+              if (result) {
+                return (
+                  result["area_name"] +
+                  ", " +
+                  result["state"] +
+                  ": " +
+                  result.bachelorsOrHigher +
+                  "%"
+                );
+              }
+              //could not find a matching fips id in the data
+              return 0;
+            })
+            .attr("data-education", () => {
+              return getEducationFromCounty(d).bachelorsOrHigher
+                ? getEducationFromCounty(d).bachelorsOrHigher
+                : 0;
+            })
+            .style("left", d3.event.pageX + 10 + "px")
+            .style("top", d3.event.pageY - 28 + "px");
+        }
+      })
+      .on("mouseout", d => tooltip.style("opacity", 0));
+
+    svg
+      .append("path")
+      .datum(
+        topojson.mesh(us, us.objects.states, function(a, b) {
+          return a !== b;
+        })
+      )
+      .attr("class", "states")
+      .attr("d", path);
+
+    // code for the legend
+    const legendWidth = 500;
+    const legendHeight = 25;
+
+    const legendScale = d3.scaleLinear().range([0, legendWidth]);
+
+    legendScale.domain([d3.min(bachelorsOrHigher), d3.max(bachelorsOrHigher)]);
+
+    const legendAxis = d3.axisBottom(legendScale);
+
+    const legend = d3
+      .select(".map")
+      .append("svg")
+      .attr("id", "legend")
+      .attr("width", legendWidth)
+      .attr("height", legendHeight);
+
+    legend
+      .selectAll("rect")
+      .data(colors)
+      .enter()
+      .append("rect")
+
+      .attr("x", (d, i) => i * Math.floor(legendWidth / colors.length))
+      .attr("y", 0)
+      .attr("width", Math.floor(legendWidth / colors.length))
+      .attr("height", legendHeight)
+      .attr("fill", d => d);
+
+    legend
+      .append("g")
+      .attr("transform", "translate(0, " + 0 + ")")
+      .call(legendAxis);
+  }
+</script>
+
+<style media="screen">
+  .states {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+  }
+  .counties {
+    fill: none;
+  }
+  #tooltip {
+    position: absolute;
+    padding: 10px;
+    font: 12px Arial;
+    background: rgba(255, 255, 204, 0.9);
+    box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.6);
+    border: 0px;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+</style>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="container">
+        <h1 id="title">United States Educational Attainment</h1>
+        <h4 id="description">
+          Percentage of adults age 25 and older with a bachelor's degree or
+          higher (2010-2014)
+        </h4>
+        <div class="map"></div>
+      </div>
+    </div>
+  </body>
+</html>
