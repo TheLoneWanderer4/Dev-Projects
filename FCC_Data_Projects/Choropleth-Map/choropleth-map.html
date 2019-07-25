@@ -12,19 +12,7 @@
 
   const WORLD_FILE = "https://unpkg.com/world-atlas@1/world/110m.json";
 
-  const colors = [
-    "#a50026",
-    "#d73027",
-    "#f46d43",
-    "#fdae61",
-    "#fee090",
-    "#ffffbf",
-    "#e0f3f8",
-    "#abd9e9",
-    "#74add1",
-    "#4575b4",
-    "#313695"
-  ].reverse();
+  const colors = ["#fff", "#007d99"];
 
   d3.queue()
     .defer(d3.json, COUNTY_FILE)
@@ -37,7 +25,7 @@
     const bachelorsOrHigher = education.map(obj => obj.bachelorsOrHigher);
 
     const colorScale = d3
-      .scaleQuantize()
+      .scaleLinear()
       .domain([d3.min(bachelorsOrHigher), d3.max(bachelorsOrHigher)])
       .range(colors);
 
@@ -108,11 +96,7 @@
 
     svg
       .append("path")
-      .datum(
-        topojson.mesh(us, us.objects.states, function(a, b) {
-          return a !== b;
-        })
-      )
+      .datum(topojson.mesh(us, us.objects.states))
       .attr("class", "states")
       .attr("d", path);
 
@@ -120,9 +104,10 @@
     const legendWidth = 500;
     const legendHeight = 25;
 
-    const legendScale = d3.scaleLinear().range([0, legendWidth]);
-
-    legendScale.domain([d3.min(bachelorsOrHigher), d3.max(bachelorsOrHigher)]);
+    const legendScale = d3
+      .scaleLinear()
+      .domain([d3.min(bachelorsOrHigher), d3.max(bachelorsOrHigher)])
+      .range([0, legendWidth]);
 
     const legendAxis = d3.axisBottom(legendScale);
 
@@ -133,17 +118,30 @@
       .attr("width", legendWidth)
       .attr("height", legendHeight);
 
+    const colorsData = [];
+
+    for (
+      i = d3.min(bachelorsOrHigher);
+      i + 1 < d3.max(bachelorsOrHigher);
+      i++
+    ) {
+      colorsData.push(i);
+    }
+
+    colorsData.push(d3.max(bachelorsOrHigher));
+
+    console.log(colorsData);
+
     legend
       .selectAll("rect")
-      .data(colors)
+      .data(colorsData)
       .enter()
       .append("rect")
-
-      .attr("x", (d, i) => i * Math.floor(legendWidth / colors.length))
+      .attr("x", (d, i) => i * (legendWidth / colorsData.length))
       .attr("y", 0)
-      .attr("width", Math.floor(legendWidth / colors.length))
+      .attr("width", legendWidth / colorsData.length)
       .attr("height", legendHeight)
-      .attr("fill", d => d);
+      .attr("fill", d => colorScale(d));
 
     legend
       .append("g")
@@ -153,9 +151,15 @@
 </script>
 
 <style media="screen">
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .states {
     fill: none;
-    stroke: #fff;
+    stroke: #000;
     stroke-linejoin: round;
   }
   .counties {
