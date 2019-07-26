@@ -1,0 +1,37 @@
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script type="text/javascript">
+  const width = 1000;
+  const height = 1000;
+
+  const URL = "";
+
+  d3.queue()
+    .defer(d3.json, URL)
+    .await(ready);
+
+  function ready(error, us, education) {
+    if (error) throw error;
+  }
+</script>
+
+<style media="screen"></style>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="container">
+        <h1 id="title">United States Educational Attainment</h1>
+        <h4 id="description">
+          Percentage of adults age 25 and older with a bachelor's degree or
+          higher (2010-2014)
+        </h4>
+        <div class="graph"></div>
+      </div>
+    </div>
+  </body>
+</html>
