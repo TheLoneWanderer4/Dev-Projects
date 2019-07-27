@@ -1,8 +1,75 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<script type="text/javascript">
-  const width = 1000;
-  const height = 1000;
 
+<style media="screen">
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  body {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .tile-text {
+    cursor: default;
+  }
+
+  #title {
+    font-size: 45px;
+    margin-bottom: 10px;
+  }
+
+  #description {
+    padding-bottom: 1.5rem;
+  }
+  rect {
+    stroke: black;
+  }
+  text {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    fill: black;
+    font-size: 10px;
+  }
+  #tooltip {
+    z-index: 10;
+    position: absolute;
+    padding: 10px;
+    font: 12px Arial;
+    background: rgba(255, 255, 204, 0.9);
+    box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.6);
+    border: 0px;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  #legend {
+    margin-top: 25px;
+    text-align: center;
+  }
+</style>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <a href="?data=videogames">Video Game Data Set</a> |
+    <a href="?data=movies">Movies Data Set</a> |
+    <a href="?data=kickstarter">Kickstarter Data Set</a>
+    <h1 id="title"></h1>
+    <div id="description"></div>
+    <svg></svg>
+    <div id="legend"></div>
+  </body>
+</html>
+
+<script type="text/javascript">
   const DATASETS = {
     videogames: {
       TITLE: "Video Game Sales",
@@ -25,44 +92,121 @@
     }
   };
 
-  const treemap = d3
-    .treemap()
-    .size([width, height])
-    .paddingInner(1);
+  const urlParams = new URLSearchParams(window.location.search);
+  const DEFAULT_DATASET = "videogames";
+  const DATASET = DATASETS[urlParams.get("data") || DEFAULT_DATASET];
 
-  d3.queue()
-    .defer(d3.json, DATASETS.videogames.FILE_PATH)
-    .defer(d3.json, DATASETS.movies.FILE_PATH)
-    .defer(d3.json, DATASETS.kickstarter.FILE_PATH)
-    .await(ready);
+  document.getElementById("title").innerHTML = DATASET.TITLE;
+  document.getElementById("description").innerHTML = DATASET.DESCRIPTION;
 
-  function ready(error, games, movies, kickstarter) {
-    if (error) throw error;
+  d3.json(DATASET.FILE_PATH, function(error, data) {
+    const width = 1200;
+    const height = 570;
 
-    console.log(games);
-    console.log(movies);
-    console.log(kickstarter);
-  }
+    const legendValues = data.children.map(d => d.name);
+    const legendHeight = 50;
+
+    const color = d3.scaleOrdinal(d3.schemeCategory20);
+
+    const format = d3.format(",d");
+
+    const svg = d3
+      .select("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    const tooltip = d3
+      .select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .attr("id", "tooltip")
+      .style("opacity", 0);
+
+    const treemapLayout = d3
+      .treemap()
+      .size([width, height])
+      .paddingOuter(0);
+
+    const rootNode = d3
+      .hierarchy(data)
+      .sum(d => d.value)
+      .sort(function(a, b) {
+        return b.height - a.height || b.value - a.value;
+      });
+
+    treemapLayout(rootNode);
+
+    const nodes = svg
+      .selectAll("g")
+      .data(rootNode.leaves())
+      .enter()
+      .append("g")
+      .attr("transform", d => "translate(" + [d.x0, d.y0] + ")");
+
+    nodes
+      .append("rect")
+      .attr("class", "tile")
+      .attr("data-name", d => d.data.name)
+      .attr("data-category", d => d.data.category)
+      .attr("data-value", d => d.data.value)
+      .attr("width", d => d.x1 - d.x0)
+      .attr("height", d => d.y1 - d.y0)
+      .attr("fill", d => color(d.data.category))
+      .on("mousemove", function(d) {
+        tooltip.style("opacity", 0.9);
+        tooltip
+          .html(
+            "Name: " +
+              d.data.name +
+              "<br>Category: " +
+              d.data.category +
+              "<br>Value: " +
+              d.data.value
+          )
+          .attr("data-value", d.data.value)
+          .style("left", d3.event.pageX + 10 + "px")
+          .style("top", d3.event.pageY - 28 + "px");
+      })
+      .on("mouseout", function(d) {
+        tooltip.style("opacity", 0);
+      });
+
+    nodes
+      .append("text")
+      .attr("class", "tile-text")
+      .selectAll("tspan")
+      .data(d => d.data.name.split(/(?=[A-Z][^A-Z])/))
+      .enter()
+      .append("tspan")
+      .attr("x", 4)
+      .attr("y", (d, i) => 13 + i * 10)
+      .text(d => d);
+
+    const legend = d3
+      .select("#legend")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", legendHeight);
+
+    legend
+      .selectAll("rect")
+      .data(legendValues)
+      .enter()
+      .append("rect")
+      .attr("class", "legend-item")
+      .attr("x", (d, i) => i * (width / legendValues.length))
+      .attr("y", 0)
+      .attr("width", width / legendValues.length)
+      .attr("height", legendHeight)
+      .attr("fill", d => color(d));
+
+    legend
+      .selectAll("text")
+      .data(legendValues)
+      .enter()
+      .append("text")
+      .attr("x", (d, i) => i * (width / legendValues.length) + 5)
+      .attr("y", legendHeight / 2)
+      .text(d => d);
+  });
 </script>
-
-<style media="screen"></style>
-
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <title></title>
-  </head>
-  <body>
-    <div class="main">
-      <div class="container">
-        <h1 id="title">United States Educational Attainment</h1>
-        <h4 id="description">
-          Percentage of adults age 25 and older with a bachelor's degree or
-          higher (2010-2014)
-        </h4>
-        <div class="graph"></div>
-      </div>
-    </div>
-  </body>
-</html>
