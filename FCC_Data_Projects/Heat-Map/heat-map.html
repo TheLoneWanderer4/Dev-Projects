@@ -71,9 +71,11 @@
       xScale.domain([d3.min(dataYears), d3.max(dataYears) + 1]);
 
       const tooltip = d3
-        .select(".graph")
+        .select("body")
         .append("div")
-        .attr("id", "tooltip");
+        .attr("class", "tooltip")
+        .attr("id", "tooltip")
+        .style("opacity", 0);
 
       const svg = d3
         .select(".graph")
@@ -101,25 +103,15 @@
           return data.baseTemperature + d.variance;
         })
         .attr("class", "cell")
-        .on("mouseover", function(d, i) {
+        .on("mousemove", function(d) {
+          tooltip.style("opacity", 0.9);
           tooltip
-            .transition()
-            .duration(200)
-            .style("opacity", 0.9);
-          tooltip
-            .html(d.year)
-            .style(
-              "left",
-              (i * width) / (data.monthlyVariance.length / 12) + padding + "px"
-            )
-            .style("top", yScale(d.month) - padding + "px")
-            .attr("data-year", d.year);
+            .html("Year: " + d.year + "<br>Variance: " + d.variance)
+            .style("left", d3.event.pageX + 10 + "px")
+            .style("top", d3.event.pageY - 28 + "px");
         })
         .on("mouseout", function(d) {
-          tooltip
-            .transition()
-            .duration(200)
-            .style("opacity", 0);
+          tooltip.style("opacity", 0);
         });
 
       svg
@@ -168,7 +160,19 @@
     };
   });
 </script>
-<style media="screen"></style>
+<style media="screen">
+  #tooltip {
+    z-index: 10;
+    position: absolute;
+    padding: 10px;
+    font: 12px Arial;
+    background: rgba(255, 255, 204, 0.9);
+    box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.6);
+    border: 0px;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+</style>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
