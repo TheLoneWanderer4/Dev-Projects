@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import ProjectPage from "./components/ProjectPage/ProjectPage.jsx";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 let projects = {
   label: "D3 Projects",
@@ -15,8 +16,7 @@ let projects = {
         "Built using d3 to iterate over the data",
         "Used the d3 scale methods to draw the axis and scale the GDP values to usable rect heights"
       ],
-      projectURL:
-        "/home/nafal/Documents/Dev/Dev-Projects/website-beta/website-react-beta/FCC_Data_Projects/Bar-Chart/bar-chart.html"
+      projectURL: "./bar-chart.html"
     },
     {
       title: "Scatter Plot",
@@ -24,12 +24,14 @@ let projects = {
       body:
         "This projct is a plot of Doping VS performance in profesional cycling",
       listItems: [],
-      projectURL: "./FCC_Data_Projects/Bar-Chart/bar-chart.html"
+      projectURL: ""
     }
   ]
 };
 
 ReactDOM.render(
-  <ProjectPage projectsJSON={projects} />,
+  <Router>
+    <ProjectPage projectsJSON={projects} />{" "}
+  </Router>,
   document.getElementById("root")
 );
