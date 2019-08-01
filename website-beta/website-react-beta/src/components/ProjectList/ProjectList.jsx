@@ -6,7 +6,7 @@ function ProjectList(props) {
   return (
     <div className="">
       {props.projects.map(project => (
-        <ProjectCard project={project} />
+        <ProjectCard key={project.title} project={project} />
       ))}
     </div>
   );

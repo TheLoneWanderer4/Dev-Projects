@@ -1,6 +1,5 @@
 import React from "react";
 import "./ProjectCard.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function ProjectCard(props) {
   return (

@@ -5,9 +5,7 @@ import "./ProjectPage.css";
 const ProjectPage = props => (
   <div className="">
     <nav className="navbar sticky-top navbar-dark bg-dark shadow">
-      <a className="navbar-brand" href="#">
-        {props.projectsJSON.label}
-      </a>
+      <div className="navbar-brand">{props.projectsJSON.label}</div>
     </nav>
     <div className="mt-2 mb-4">
       <div>
