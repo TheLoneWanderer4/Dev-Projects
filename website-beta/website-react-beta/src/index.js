@@ -16,22 +16,34 @@ let projects = {
         "Built using d3 to iterate over the data",
         "Used the d3 scale methods to draw the axis and scale the GDP values to usable rect heights"
       ],
-      projectURL: "./bar-chart.html"
+      projectURL: "/FCC_Data_Projects/Bar-Chart/bar-chart.html"
     },
     {
       title: "Scatter Plot",
-      imageURL: "https://plot.ly/~RPlotBot/3512/count-vs-animals.png",
+      imageURL:
+        "http://www.sthda.com/sthda/RDoc/figure/graphs/scatter-plots-base-scatter-plot-1.png",
+      listItems: [
+        "This projct is a plot of Doping VS performance in profesional cycling"
+      ],
+      projectURL: "/FCC_Data_Projects/Scatter-Plot/scatter-plot.html"
+    },
+    {
+      title: "Heat Map",
+      imageURL: "https://www.iia.nl/SiteFiles/Nieuws/Sample-Heat-Map.jpg",
       body:
         "This projct is a plot of Doping VS performance in profesional cycling",
-      listItems: [],
-      projectURL: ""
+      listItems: [
+        "Here is a heatmap of average global tempratures from the 1700s to today.",
+        "It's organized both by month and year, with color representing temprature variance"
+      ],
+      projectURL: "/FCC_Data_Projects/Heat-Map/heat-map.html"
     }
   ]
 };
 
 ReactDOM.render(
   <Router>
-    <ProjectPage projectsJSON={projects} />{" "}
+    <ProjectPage projectsJSON={projects} />
   </Router>,
   document.getElementById("root")
 );
