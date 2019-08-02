@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Route, withRouter } from "react-router-dom";
 import ProjectPage from "./components/ProjectPage/ProjectPage.jsx";
 import Home from "./components/Home/Home.jsx";
-
 import Nav from "./components/Nav/Nav.jsx";
 
 import projectsList from "./projects/index.js";
 
 class App extends Component {
+  // this is a paper fix, it's bad, but it works.
   RenderNav = withRouter(props => {
     if (props.location.pathname.match(/react-/)) {
       return <div />;
