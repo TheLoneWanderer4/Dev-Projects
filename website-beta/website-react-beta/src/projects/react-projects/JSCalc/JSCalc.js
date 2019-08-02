@@ -132,7 +132,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container calcWrap">
         <div className="calculator bg-primary shadow-lg">
           <Display input={this.state.input} formula={this.state.formula} />
           <Buttons

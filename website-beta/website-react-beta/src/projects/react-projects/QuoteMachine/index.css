@@ -1,8 +1,4 @@
-body {
-  margin: 0;
-}
-
-#root {
+.quote {
   background-color: #ebf5f8;
   min-height: 100vh;
   display: flex;

@@ -1,0 +1,158 @@
+<style media="screen">
+  #main{
+    text-align: center;
+    background: #a9d7d1;
+  }
+  #title{
+    background: #cccfd1;
+    font-size: 60px;
+  }
+  #description{
+
+  }
+  #survey-form{
+    background: white;
+    display: grid;
+    grid-template-columns: 48% 48%;
+    grid-gap: 20px;
+    justify-items: start;
+    align-items: center;
+  }
+  #submit{
+    justify-self: center;
+    grid-column: 1 / 3;
+    background-color: #59ace0;
+    border: 0px solid;
+    border-radius: 4px;
+    color: white;
+    font-size: 1em;
+    height: 40px;
+    width: 80px;
+  }
+  #text{
+    width: 60%;
+  }
+  .shadow {
+    background: white;
+    position: relative;
+    width: 90%;
+    left: 5%;
+    margin: 15px 0px 15px 0px;
+    padding: 5px 5px 5px 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+  }
+  .label{
+    justify-self: end;
+  }
+  .radio{
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+  }
+  .radio:hover{
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+  }
+  .checkbox{
+    float: left;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+  }
+  .checkbox:hover{
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+  }
+  .checkbox-label{
+    float: right;
+  }
+  .title{
+    justify-self: center;
+    grid-column: 1 / 3;
+  }
+  input{
+    border: 0px solid;
+    border-radius: 4px;
+    background: white;
+    padding: 15px;
+    color: black;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    width: 70%;
+  }
+  input:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  select{
+    border: 0px solid;
+    border-radius: 4px;
+    background: #dcdfe5;
+    padding: 15px;
+    color: black;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    width: 50%;
+  }
+  select:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+</style>
+<!DOCTYPE html>
+<html id = 'main' lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title> SEDS Voting, free-code-camp form page </title>
+  </head>
+  <body>
+    <h1 id ='title' class = 'shadow'> 2019 Spring Election Form </h1>
+    <div class="shadow">
+      <p id='description'> Vote for next year's officers! </p>
+      <p> Who are you? </p>
+      <form id = 'survey-form' class="" action="index.html" method="post">
+        <label id = 'name-label' class = 'label'> Name: </label>  <input id="name" type="name" name="name" value="" placeholder="Enter your name" required>
+        <label id = 'email-label' class = 'label'> Email: </label> <input id="email" type="email" name="email" value="" placeholder="Enter your Email" required>
+        <label id = 'number-label' class = 'label'> How many years have you been in the club? </label> <input id = "number" type="number" name="" value="" min = '0' max ='10' placeholder="Years" required>
+        <label for="checkbox" class='label'> What Sub-team were you a part of? </label>
+        <ul style="list-style: none;">
+          <li class="checkbox"><label class='checkbox-label'>ACCEND</label> <input class = 'checkbox' name="checkbox-buttons" value="1"  type="checkbox"></li>
+          <li class="checkbox"><label class='checkbox-label'>SAT2</label> <input class = 'checkbox' name="checkbox-buttons" value="2"  type="checkbox"> </li>
+          <li class="checkbox"><label class='checkbox-label'>ROCSAT</label> <input class = 'checkbox'name="checkbox-buttons" value="3"  type="checkbox"> </li>
+        </ul>
+        <h4 class = "title"> Now, for the Votes! </h4>
+        <p class = 'label'> President: </p>
+        <select id = 'dropdown' name="cars">
+          <option value="one">Person One</option>
+          <option value="two">Person Two</option>
+          <option value="three">Person Three</option>
+        </select>
+        <p class = 'label'> Trip Cordinator: </p>
+        <select id = 'dropdown' name="cars">
+          <option value="one">Person One</option>
+          <option value="two">Person Two</option>
+          <option value="three">Person Three</option>
+        </select>
+        <p class = 'label'> RND: </p>
+        <select id = 'dropdown' name="cars">
+          <option value="one">Person One</option>
+          <option value="two">Person Two</option>
+          <option value="three">Person Three</option>
+        </select>
+        <p class = 'label'> Outreach: </p>
+        <select id = 'dropdown' name="cars">
+          <option value="one">Person One</option>
+          <option value="two">Person Two</option>
+          <option value="three">Person Three</option>
+        </select>
+        <p class = 'label'> Tech officer: </p>
+        <select id = 'dropdown' name="cars">
+          <option value="one">Person One</option>
+          <option value="two">Person Two</option>
+          <option value="three">Person Three</option>
+        </select>
+        <p class = 'label'> Tell us what you think of this new voting system</p>
+        <ul style="list-style: none;">
+          <li class="radio"><label>Good<input class = 'radio' name="radio-buttons" value="1"  type="radio"></label></li>
+          <li class="radio"><label>No opinon<input class = 'radio' name="radio-buttons" value="2"  type="radio"></label></li>
+          <li class="radio"><label>Not Good<input class = 'radio'name="radio-buttons" value="3"  type="radio"></label></li>
+        </ul>
+        <p class = 'label'> Why? </p>
+        <textarea id='text' name="name" rows="8" cols="80"></textarea>
+        <button id = 'submit' type="submit" name="button"> Submit </button>
+      </form>
+    </div>
+  </body>
+</html>

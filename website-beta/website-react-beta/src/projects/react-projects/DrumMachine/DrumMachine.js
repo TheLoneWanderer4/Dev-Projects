@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -217,16 +216,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="drum-machine" className="container card flex-row shadow p-2">
-        <DrumBank
-          bank={this.state.bank}
-          power={this.state.power}
-          updateScreenText={this.updateScreenText}
-        />
-        <Display screenText={this.state.screenText} />
+      <div className="drum">
+        <div id="drum-machine" className="container card flex-row shadow p-2">
+          <DrumBank
+            bank={this.state.bank}
+            power={this.state.power}
+            updateScreenText={this.updateScreenText}
+          />
+          <Display screenText={this.state.screenText} />
+        </div>
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;

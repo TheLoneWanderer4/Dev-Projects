@@ -28,10 +28,12 @@ function ProjectCard(props) {
           <div className="card-body">
             <a
               className="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
               href={
                 props.project.projectURL
                   ? props.project.projectURL
-                  : props.project.title
+                  : "react-" + props.project.title
               }
             >
               Found here

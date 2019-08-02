@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -68,19 +67,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="card shadow content p-4" id="quote-box">
-          <Quote id="text" quote={this.state.currentQuote.quote} />
-          <div className="buttons mt-2">
-            <div className="btn-group">
-              <TwitterButton
-                quote={this.state.currentQuote.quote}
-                author={this.state.currentQuote.author}
-              />
-            </div>
-            <Author id="author" author={this.state.currentQuote.author} />
-            <div className="btn-group">
-              <NewQuoteButton onClick={this.handleNewQuote} />
+      <div className="quote">
+        <div className="container">
+          <div className="card shadow content p-4" id="quote-box">
+            <Quote id="text" quote={this.state.currentQuote.quote} />
+            <div className="buttons mt-2">
+              <div className="btn-group">
+                <TwitterButton
+                  quote={this.state.currentQuote.quote}
+                  author={this.state.currentQuote.author}
+                />
+              </div>
+              <Author id="author" author={this.state.currentQuote.author} />
+              <div className="btn-group">
+                <NewQuoteButton onClick={this.handleNewQuote} />
+              </div>
             </div>
           </div>
         </div>
@@ -89,4 +90,4 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;

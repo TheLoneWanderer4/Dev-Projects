@@ -1,0 +1,225 @@
+<link href="https://fonts.googleapis.com/css?family=Stylish" rel="stylesheet">
+
+<style media="screen">
+  #body{
+    margin: 0;
+    background: #9999cc;
+    font-family: stylish;
+  }
+  .card{
+    background: white;
+
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+    width: 900px;
+    max-width: calc(100vw - 60px);
+
+    margin: 15px;
+    padding: 15px;
+  }
+
+
+  .header{
+    background: #f9cd7f;
+
+    position: fixed;
+
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: 1fr 1fr;
+
+    z-index: 1;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+    width: 100%;
+    height: 60px;
+  }
+
+  #header-img{
+    height: calc(100% - 30px);
+    margin: 15px;
+  }
+  .nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100%;
+  }
+
+  .nav-link{
+    background: #f9cd7f;
+
+    border: 0px solid;
+    cursor: pointer;
+
+    text-align: center;
+    text-decoration: none;
+    color: 0;
+
+    overflow-y:auto;
+    overflow-x:auto;
+  }
+  .nav-link:hover{
+    color: grey;
+  }
+
+
+  #content{
+    position: relative;
+    top: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #description{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .download{
+    background: #b3d9ff;
+
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+    align: center;
+    border: 0px solid;
+    border-radius: 4px;
+    font-size: 1em;
+
+    max-height: calc(100% - 60px);
+    max-width: calc(100% - 60px);
+    margin: 15px;
+    padding: 15px;
+  }
+  .download:hover{
+    color: grey;
+  }
+
+  .video-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #video{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+    width: 900px;
+    height: 506px;
+    max-width: calc(95vw - 30px);
+    max-height: calc(50vw - 30px);
+    margin: 15px;
+  }
+  #form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #email{
+    align: center;
+    border: 0px solid;
+    border-radius: 4px;
+    background: #dce2ed;
+    padding: 15px;
+    width: 400px;
+    max-width: calc(60% - 30px);
+    color: black;
+  }
+  #email:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+  #submit{
+    margin: 15px;
+    align-self: center;
+    background-color: #59ace0;
+    border: 0px solid;
+    border-radius: 4px;
+    color: white;
+    font-size: 1em;
+    height: 40px;
+    width: 80px;
+  }
+  #submit:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #footer{
+    background: #f4f8ff;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+    width: calc(100% - 20px);
+    margin-top: 15px;
+    padding: 10px;
+  }
+  .copyright{
+    grid-column: 1 / 4;
+
+    text-align: center;
+
+    width: 100%;
+    height: 100%;
+  }
+  #line{
+    width: 100%;
+  }
+  #footer a {
+    color: #000;
+    text-decoration: none;
+  }
+</style>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>
+  </head>
+  <body id='body'>
+    <header class='header'>
+      <img id='header-img' src="https://d1vhcvzji58n1j.cloudfront.net/assets/pop/os-logo-b44ed4fc34_2560.png" alt="">
+      <nav class='nav'>
+        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#description';" href='#description'> Features </button>
+        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#video';" href='#video'> Level1Linux </button>
+        <button class = 'nav-link' type="button" name="button" onclick="window.location.href = 'landing.html#form';" href='#form'> Sign up to hear more </button>
+      </nav>
+    </header>
+    <div id='content'>
+      <div class='card' id = 'description'>
+        <h1> Welcome to Pop!_Os</h1>
+        <ul>
+          <li> Optimized for Machine Learning </li>
+          <li> Fluid desktop management </li>
+          <li> Material Design </li>
+        </ul>
+        <button class = 'download' type="button" name="button" onclick="window.location.href =
+        'https://pop-iso.sfo2.digitaloceanspaces.com/19.04/amd64/intel/4/pop-os_19.04_amd64_intel_4.iso';"
+        href='https://pop-iso.sfo2.digitaloceanspaces.com/19.04/amd64/intel/4/pop-os_19.04_amd64_intel_4.iso'> Download </button>
+      </div>
+      <div class="card video-div">
+        <h1> Video </h1>
+        <iframe id='video' src="https://www.youtube.com/embed/IGEoXH-zUyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+      </div>
+      <form class='card' id='form' action="https://www.freecodecamp.com/email-submit" method="post">
+        <h2> Sign up to hear more! </h2>
+        <input id='email' type="email" placeholder="Enter your email">
+        <input id = 'submit' type="submit" name="button">
+      </form>
+      <footer id='footer'>
+        <a href="#">Privacy</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <div class="copyright"> <hr id='line' size='1'> This is a demonstration website made as part of the FCC curriculum, I did not make and am not involved in anyway with Pop!_os. </div>
+      </footer>
+    </div>
+  </body>
+</html>

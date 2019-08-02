@@ -1,0 +1,115 @@
+<style media="screen">
+  #main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    background: #cccfd1;
+  }
+  #title_bar {
+    display: grid;
+    grid-template-columns: 20% 1fr 20%;
+    grid-gap: 10px;
+  }
+  #title{
+    grid-column: 2/3;
+    grid-row: 1/2;
+
+    margin: auto
+  }
+  #subtitle{
+
+  }
+  .title_img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    width: 100%;
+    margin: auto;
+  }
+  #img-div{
+
+  }
+  #image{
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #img-caption{
+
+  }
+  #tribute-info{
+
+  }
+  #info_list{
+    text-align: left;
+
+    width: 400px;
+    max-width: 100%;
+    margin: auto;
+  }
+  #info_list li{
+    margin: 10px;
+  }
+  .shadow {
+    background: white;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    width: 900px;
+    max-width: calc(95vw - 60px);
+    margin: 15px;
+    padding: 15px;
+  }
+
+  @media (max-width: 1100px) {
+    #title_bar {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+    #title{
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+    .shadow{
+
+    }
+    .title_img{
+      width: 0px;
+    }
+  }
+
+</style>
+
+<html id = 'main' lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title> Almaty, free-code-camp tribute page </title>
+  </head>
+  <body>
+    <div id = 'title_bar' class="shadow">
+      <img class = 'title_img' src="https://upload.wikimedia.org/wikipedia/commons/0/04/Flag_of_Almaty.svg" alt="flag">
+      <div id = 'title'>
+        <h1> Almaty </h1>
+        <h2 id = 'subtitle'> The cultural capital of Kazakhstan </h2>
+      </div>
+      <img class = 'title_img' src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kazakhstan.svg" alt="flag">
+    </div>
+    <div id="img-div" class = 'shadow'>
+      <img id="image" src="http://neweratravels.in/new-imgs/almaty-back.jpg" alt="Almaty">
+      <p id="img-caption"> A view of Almaty and the Zailiyskiy Alata mountain range behind the city </p>
+    </div>
+    <div id='tribute-info' class = 'shadow'>
+      <h3> The cultural capital of Kazakhstan </h3>
+      <h4> A short history of the city </h4>
+      <ul id="info_list">
+        <li> Founded by nomadic indo-europeans thousands of years ago. </li>
+        <li> Used as a base for nomadic herders until the region was annexed by the Soviets </li>
+        <li> Built into the modern metropolis by the Soviet Union in the mid 20th century. </li>
+      </ul>
+      <p id = 'tribute-link'> To read more about this beautiful city <a id = 'tribute-link' target="_blank" href="https://en.wikipedia.org/wiki/Almaty"> Click here </a></p>
+    </div>
+  </body>
+</html>

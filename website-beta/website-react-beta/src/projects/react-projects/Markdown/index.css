@@ -1,8 +1,7 @@
-body {
-  margin: 0; }
-
-#root {
-  min-height: 100vh; }
+.Markdown {
+  min-height: 100vh;
+  padding: 50px;
+  background: pink; }
 
 .editorFullScreen {
   width: 100%;

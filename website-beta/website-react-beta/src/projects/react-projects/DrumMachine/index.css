@@ -1,7 +1,4 @@
-body {
-  margin: 0; }
-
-#root {
+.drum {
   background: #ebf5f8;
   min-height: 100vh;
   display: flex;

@@ -1,0 +1,322 @@
+<link href="https://fonts.googleapis.com/css?family=Stylish" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<style media="screen">
+  body{
+    margin: 0;
+    background: #f4f8ff;
+    font-family: stylish;
+    display: grid;
+    grid-template-columns: 14vw 1fr
+  }
+  #navbar{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    background: #e6e9ef;
+    position: fixed;
+    width: 14vw;
+    overflow-y:auto;
+    overflow-x:auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  #navbar header{
+    padding: 15px;
+    text-align: center;
+    border-bottom: #cdd0d6 solid;
+    font-size: 2em;
+  }
+  #navbar ul{
+    margin: 0;
+    padding: 15px;
+    width: calc(100% - 30px)
+  }
+  #navbar li{
+    font-size: 1.5em;
+    padding: 15px;
+    text-align: left;
+    list-style: none;
+    width: calc(100% - 30px);
+  }
+  #navbar li:hover{
+    background: white;
+  }
+  .nav-link{
+    color: #4d4e53;
+    color: black;
+    text-decoration:none;
+    cursor:pointer;
+  }
+
+  #main-doc{
+    font-family: 'Open Sans',Arial,sans-serif;
+    overflow-y:auto;
+    overflow-x:auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .main-section{
+    width: calc(100% - 1.4%);
+    font-size: 1em;
+    padding: 0.7%;
+    padding-left: calc(15px + 0.7%);
+    width: calc(100% - 15px - 1.4%);
+    max-width: 1000px
+  }
+  .shadow{
+    width: 100%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    border-bottom: #cdd0d6 solid;
+  }
+  #main-doc header{
+    margin-left: -15px;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  #main-doc ul{
+    font-size: 0.9em;
+  }
+  #main-doc pre{
+
+  }
+  .code{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+  .short{
+    margin: 5px 5px 10px 5px;
+    padding: 5px;
+    display: inline;
+    max-width: 200px;
+    width: 95%;
+  }
+  .long{
+    display: block;
+    overflow-x: auto;
+    max-width: 1000px;
+    width: 95%;
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2){
+    body{
+      display: flex;
+      flex-direction: column;
+    }
+    #navbar{
+      width: 100%;
+      position: relative;
+      border-bottom: #cdd0d6 solid;
+      border-left: #cdd0d6 solid;
+      font-size: 1em;
+    }
+    #navbar header{
+      text-align: left;
+      padding: 10px;
+      margin: 0;
+    }
+    #navbar ul{
+      overflow-y:auto;
+      overflow-x:auto;
+      width: calc(100% - 30px);
+      height: 15vh;
+    }
+    #navbar li{
+      width: calc(100% - 20px);
+      padding: 10px;
+      text-align: left;
+    }
+    #navbar li:hover{
+      background: white;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title> Linked Lists </title>
+  </head>
+  <body>
+    <nav id='navbar'>
+      <header> Intro to Linked Lists </header>
+      <ul>
+        <li><a class='nav-link' href="#Intro"> Intro</a></li>
+        <li><a class='nav-link' href="#Python_Lists"> Python Lists </a></li>
+        <li><a class='nav-link' href="#What_are_Linked_Lists?"> What are Linked Lists? </a></li>
+        <li><a class='nav-link' href="#Why_Linked_Lists?"> Why Linked Lists? </a></li>
+        <li><a class='nav-link' href="#Code"> Code </a></li>
+      </ul>
+    </nav>
+    <div>
+
+    </div>
+    <main id = 'main-doc'>
+
+      <div class="shadow">
+      <section id='Intro' class='main-section'>
+        <header> Intro </header>
+        <p>
+          Hello! This is a basic guide to Linked Lists, a custom implementation of traditonal lists/arrays.
+          Linked lists have a variety of benefits, and a few downsides, when compared to those data structures, which we'll be discussing later.
+          Overall however this guide will attempt to introduce the concept of advanced / custom data types and detail how to implement / when to use them.
+        </p>
+        <h4> To get the most out of this tutorial you'll need -</h4>
+        <ul>
+          <li><p>To know what a list / array is and how it's normally used.</p></li>
+          <li><p>To be familiar with python, because this guide will be entirely in it.</p></li>
+          <li><p>Be familiar with classes / structures and how they're used in python</p></li>
+          <li><p>To be familiar with big O complexity</p></li>
+          <li><p>A basic understanding of what computer memory is</p></li>
+        </ul>
+      </section>
+      </div>
+
+      <div class='shadow'>
+      <section id='Python_Lists' class='main-section'>
+        <header> Python Lists </header>
+        <p> Before we actually start talking about linked lists it's important to understand how traditonal python lists are implemented in memory. </p>
+        <p>
+          In python, when you create a list <code class='short code'>  alist = [10] </code> a python list object is added to memory.
+          Since this list is created with a single element, 10, it's represented in memory as a single memory slot with "10" followed by a number of empty memory slots.
+          When you grow the list <code class='short code'> alist.append(11) </code> the added value, in this case 11, is added to one of those reserved
+          memory slots.
+        </p>
+        <p>
+          This allows for two benefits.
+          <ul>
+            <li> The size of a python list can be changed after it's creation. This isn't true in many other languages. </li>
+            <li> Indexing the list is extremely simple, you just add the index to the memory location of the start of the list. </li>
+          </ul>
+          However, it also comes with trade-offs.
+          <ul>
+            <li> Python lists are cumbersome and taxing on memory, because they require extra space. </li>
+            <li> Adding an element to a position that's not the end of a list <code class='short code'> alist.insert(0, 9) </code> is O(n) because it requires
+            every single element to be relocated </li>
+          </ul>
+        </p>
+        <p>
+          For the vast majority of situations in python this is the optimal balance, but, in your own programming career, you may come up against a problem where this is not the
+          case. Have no fear, for LinkedLists are here! and they solve many of these problems.
+        </p>
+      </section>
+      </div>
+
+      <div class='shadow'>
+      <section id='What_are_Linked_Lists?' class='main-section'>
+        <header> What are Linked Lists? </header>
+        <p>
+          Linked lists are an implementation of lists which consists only of a lists most basic elements, a value at a memory location, and the memory location of the next value
+        </p>
+        <p>
+          This is normally represented by two classes
+          <ul>
+            <li> a Node class, which only consists of a value, and a pointer to the next value</li>
+            <li> a Linkedlist class, which consists of the first node, as well as helper function to add functionality</li>
+          </ul>
+        </p>
+        <p>
+
+        </p>
+
+      </section>
+      </div>
+
+      <div class='shadow'>
+      <section id='Why_Linked_Lists?' class='main-section'>
+        <header> Why Linked Lists? </header>
+        <p>
+          This implementation removes two of python lists primary faults.
+          <ul>
+            <li> The use of pointers to guide the tract of the list allow for the elements to be placed totally randomly in memory, resulting in very low usage.</li>
+            <li> The nature of each element pointing only to it's direct heir allows for elements to be inserted at any spot easily just by changing where the element before
+            that spot points to. </li>
+          </ul>
+        </p>
+      </section>
+      </div>
+
+      <div class='shadow'>
+      <section id='Code' class='main-section'>
+        <header> Code </header>
+        <p> Finally, while it's advised that you first try to construct your own class from the information you've already been given, if you're struggling with that here's and example.</p>
+        <h4>The node class - </h4>
+        <pre><code class='long code'>
+          class Node:
+              def __init__(self, name):
+                  ''' init '''
+                  self._name = name
+                  self._freinds = LinkedList()
+                  self._next = None
+
+              def add_freind(self, freind):
+                  '''
+                  simple method to add a freind to the self._freinds linked list
+                  Paramiters: freind, a node
+                  Return: none
+                  Pre_condition: self._freinds is a linked list
+                  Post_condition: freind has been added to the front of self._freinds
+                  '''
+                  self._freinds.add(freind)
+
+              def __eq__(self, other):
+                  ''' eq '''
+                  if(other == None):
+                      return False
+                  else:
+                      return self._name == other._name
+
+              def __str__(self):
+                  ''' str '''
+                  return str(self._name)
+        </code></pre>
+        <h4> The linkedlist class - </h4>
+        <pre><code class='long code'>
+          class LinkedList:
+              def __init__(self):
+                  ''' init '''
+                  self._head = None
+
+              def add(self,new):
+                  new = Node(new)
+                  '''
+                  simple method to add a new node, new, to the front of self
+                  Paramiters: new, a node
+                  Return: none
+                  Pre_condition: new is of the Node class
+                  Post_condition: new is now the first node in self
+                  '''
+                  new._next = self._head
+                  self._head = new
+
+              def append(self, new):
+                  new = Node(new)
+                  '''
+                  method to add a new node, new, to the end of a linked list
+                  Paramiters: New, a node
+                  Return: None
+                  Pre-condition: New is a node
+                  Post-condition: New is at the end of self
+                  '''
+                  curr = self._head
+                  if curr == None:
+                      self._head = new
+                      return
+                  while curr._next != None:
+                      curr = curr._next
+                  curr._next = new
+
+              def __str__(self):
+                  ''' str '''
+                  n = self._head
+                  ret = ''
+                  while n!= None:
+                      ret += str(n) + '\n'
+                      n = n._next
+                  return ret.strip()
+            </code></pre>
+      </section>
+      </div>
+    </main>
+  </body>
+</html>

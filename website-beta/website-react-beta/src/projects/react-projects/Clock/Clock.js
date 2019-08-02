@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -16,28 +15,32 @@ const startState = {
 };
 
 const Counter = ({ id, onIncrement, onDecrement, label, value }) => (
-  <div className="card m-2 align-items-center  ">
-    <div id={id + "-label"} className="m-2 p-2">
-      {label}
-    </div>
-    <div className="d-flex flex-row">
-      <button
-        id={id + "-increment"}
-        className="btn btn-success m-2 p-2"
-        onClick={onIncrement}
-      >
-        INC
-      </button>
-      <div id={id + "-length"} className="m-2 p-2">
-        {value}
+  <div className="clock">
+    <div>
+      <div className="card m-2 align-items-center  ">
+        <div id={id + "-label"} className="m-2 p-2">
+          {label}
+        </div>
+        <div className="d-flex flex-row">
+          <button
+            id={id + "-increment"}
+            className="btn btn-success m-2 p-2"
+            onClick={onIncrement}
+          >
+            INC
+          </button>
+          <div id={id + "-length"} className="m-2 p-2">
+            {value}
+          </div>
+          <button
+            id={id + "-decrement"}
+            className="btn btn-info m-2 p-2"
+            onClick={onDecrement}
+          >
+            DEC
+          </button>
+        </div>
       </div>
-      <button
-        id={id + "-decrement"}
-        className="btn btn-info m-2 p-2"
-        onClick={onDecrement}
-      >
-        DEC
-      </button>
     </div>
   </div>
 );
@@ -153,54 +156,56 @@ class TimerApp extends React.Component {
 
   render() {
     return (
-      <div className="bg-light shadow p-4 card">
-        <div className="card p-2 m-2 align-items-center">Clock</div>
-        <div className="counters">
-          <Counter
-            id="break"
-            onIncrement={this.handleIncrementBreak}
-            onDecrement={this.handleDecrementBreak}
-            label={"Break Length"}
-            value={this.state.break}
-          />
-          <Counter
-            id="session"
-            onIncrement={this.handleIncrementSession}
-            onDecrement={this.handleDecrementSession}
-            label={"Session Length"}
-            value={this.state.session}
-          />
-        </div>
-        <div className="card m-2 p-2 align-items-center  ">
-          <audio
-            id="beep"
-            preload="auto"
-            src="https://goo.gl/65cBl1"
-            ref={audio => {
-              this.audioBeep = audio;
-            }}
-          />
-          <div id="timer-label" className="">
-            {this.state.timerType}
+      <div className="clockWrapper">
+        <div className="bg-light shadow p-4 card">
+          <div className="card p-2 m-2 align-items-center">Clock</div>
+          <div className="counters">
+            <Counter
+              id="break"
+              onIncrement={this.handleIncrementBreak}
+              onDecrement={this.handleDecrementBreak}
+              label={"Break Length"}
+              value={this.state.break}
+            />
+            <Counter
+              id="session"
+              onIncrement={this.handleIncrementSession}
+              onDecrement={this.handleDecrementSession}
+              label={"Session Length"}
+              value={this.state.session}
+            />
           </div>
-          <div id="time-left" className="">
-            {this.clockify(this.state.timer)}
-          </div>
-          <div className="btn-group">
-            <button
-              id="start_stop"
-              className="btn btn-primary"
-              onClick={this.handleStartStop}
-            >
-              Start
-            </button>
-            <button
-              id="reset"
-              className="btn btn-danger"
-              onClick={this.handleReset}
-            >
-              Reset
-            </button>
+          <div className="card m-2 p-2 align-items-center">
+            <audio
+              id="beep"
+              preload="auto"
+              src="https://goo.gl/65cBl1"
+              ref={audio => {
+                this.audioBeep = audio;
+              }}
+            />
+            <div id="timer-label" className="">
+              {this.state.timerType}
+            </div>
+            <div id="time-left" className="">
+              {this.clockify(this.state.timer)}
+            </div>
+            <div className="btn-group w-100">
+              <button
+                id="start_stop"
+                className="btn btn-primary"
+                onClick={this.handleStartStop}
+              >
+                Start
+              </button>
+              <button
+                id="reset"
+                className="btn btn-danger"
+                onClick={this.handleReset}
+              >
+                Reset
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -208,4 +213,4 @@ class TimerApp extends React.Component {
   }
 }
 
-ReactDOM.render(<TimerApp />, document.getElementById("root"));
+export default TimerApp;
