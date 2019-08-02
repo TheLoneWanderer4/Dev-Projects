@@ -1,0 +1,21 @@
+{
+  "label": "React Projects",
+  "projects": [
+    {
+      "title": "Markdown",
+      "imageURL": "https://plot.ly/~RPlotBot/3512/count-vs-animals.png",
+      "listItems": [
+        "This projct is a simple graph of the United States GDP over time",
+        "Built using d3 to iterate over the data",
+        "Used the d3 scale methods to draw the axis and scale the GDP values to usable rect heights"
+      ]
+    },
+    {
+      "title": "JSCalc",
+      "imageURL": "http://www.sthda.com/sthda/RDoc/figure/graphs/scatter-plots-base-scatter-plot-1.png",
+      "listItems": [
+        "This projct is a plot of Doping VS performance in profesional cycling"
+      ]
+    }
+  ]
+}

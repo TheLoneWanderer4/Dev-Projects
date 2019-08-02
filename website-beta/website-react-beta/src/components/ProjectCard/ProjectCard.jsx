@@ -26,7 +26,14 @@ function ProjectCard(props) {
             ))}
           </ul>
           <div className="card-body">
-            <a className="btn btn-primary" href={props.project.projectURL}>
+            <a
+              className="btn btn-primary"
+              href={
+                props.project.projectURL
+                  ? props.project.projectURL
+                  : props.project.title
+              }
+            >
               Found here
             </a>
           </div>
