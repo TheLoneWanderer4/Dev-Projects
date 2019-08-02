@@ -1,5 +1,6 @@
 {
   "label": "D3 Projects",
+  "id": "d3",
   "projects": [
     {
       "title": "Bar Chart",
@@ -22,12 +23,29 @@
     {
       "title": "Heat Map",
       "imageURL": "https://www.iia.nl/SiteFiles/Nieuws/Sample-Heat-Map.jpg",
-      "body": "This projct is a plot of Doping VS performance in profesional cycling",
       "listItems": [
         "Here is a heatmap of average global tempratures from the 1700s to today.",
         "It's organized both by month and year, with color representing temprature variance"
       ],
       "projectURL": "/FCC_Data_Projects/Heat-Map/heat-map.html"
+    },
+    {
+      "title": "Choropleth Map",
+      "imageURL": "http://my.ilstu.edu/~jrcarter/Geo204/Choro/map-AmFact-5nat-breaks-green-80pct.jpg",
+      "listItems": [
+        "Here is a heatmap of average global tempratures from the 1700s to today.",
+        "It's organized both by month and year, with color representing temprature variance"
+      ],
+      "projectURL": "/FCC_Data_Projects/Choropleth-Map/choropleth-map.html"
+    },
+    {
+      "title": "Treemap",
+      "imageURL": "http://arcadenw.org/images/uploads/content-media/UNAIDS_Treemap_full.jpg",
+      "listItems": [
+        "Here is a heatmap of average global tempratures from the 1700s to today.",
+        "It's organized both by month and year, with color representing temprature variance"
+      ],
+      "projectURL": "/FCC_Data_Projects/Treemap/treemap.html"
     }
   ]
 }

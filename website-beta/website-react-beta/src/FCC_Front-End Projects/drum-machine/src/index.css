@@ -1,0 +1,34 @@
+body {
+  margin: 0; }
+
+#root {
+  background: #ebf5f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.pad-bank {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-gap: 15px; }
+  .pad-bank .drum-pad {
+    width: 100px;
+    height: 80px;
+    padding-top: 40px;
+    border-radius: 5px;
+    cursor: pointer; }
+
+.pad-active {
+  transform: scale(0.9); }
+
+.display {
+  margin: auto; }
+
+.info-screen {
+  width: 150px;
+  height: 75px; }
+
+/*# sourceMappingURL=index.css.map */

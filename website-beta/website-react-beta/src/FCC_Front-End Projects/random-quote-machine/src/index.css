@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+}
+
+#root {
+  background-color: #ebf5f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Indie Flower";
+}
+
+.content {
+  text-align: center;
+  width: 575px;
+  max-width: 95%;
+  margin: auto;
+}
+
+#quote-box {
+  background: #f8faf1;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#text {
+  font-size: 2em;
+}
+
+#author {
+}
+
+.link-fix,
+.link-fix:hover,
+.link-fix:link,
+.link-fix:visited,
+.link-fix:active {
+  color: white;
+  text-decoration: none;
+}

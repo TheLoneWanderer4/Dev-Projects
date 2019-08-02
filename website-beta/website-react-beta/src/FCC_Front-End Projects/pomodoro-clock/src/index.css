@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #ebf5f8;
+}
+
+.counter {
+  display: flex;
+}
+
+#time-left {
+  font-size: 2em;
+}
+
+.counters {
+  display: flex;
+}
