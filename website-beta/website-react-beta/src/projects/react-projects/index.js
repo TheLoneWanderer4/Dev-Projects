@@ -3,6 +3,7 @@ import Markdown from "./Markdown/Markdown.js";
 import JSCalc from "./JSCalc/JSCalc.js";
 import DrumMachine from "./DrumMachine/DrumMachine.js";
 import Clock from "./Clock/Clock.js";
+import Risk from "./Risk/Risk.js";
 
 export default {
   isReact: true,
@@ -49,6 +50,16 @@ export default {
     {
       title: "QuoteMachine",
       component: QuoteMachine,
+      imageURL: "https://plot.ly/~RPlotBot/3512/count-vs-animals.png",
+      listItems: [
+        "This projct is a simple graph of the United States GDP over time",
+        "Built using d3 to iterate over the data",
+        "Used the d3 scale methods to draw the axis and scale the GDP values to usable rect heights"
+      ]
+    },
+    {
+      title: "RiskCalc",
+      component: Risk,
       imageURL: "https://plot.ly/~RPlotBot/3512/count-vs-animals.png",
       listItems: [
         "This projct is a simple graph of the United States GDP over time",

@@ -1,0 +1,39 @@
+.welcome-section {
+  height: calc(100vh - 60px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-section {
+  font-size: 3em;
+  width: 800px;
+  padding: 50px;
+  max-width: calc(70% - 30px);
+  padding-bottom: 40px;
+}
+.intro-section p {
+  color: #33cccc;
+  font-size: 0.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.intro-section h1 {
+  margin: 0;
+}
+
+.education-content {
+  text-align: center;
+
+  list-style: none;
+
+  max-width: calc(100%- 30px);
+  margin-bottom: 100px;
+  padding: 15px;
+}

@@ -1,17 +1,22 @@
 {
+  "homepage": "https://thelonewanderer4.github.io/risk-calc/.",
   "name": "website-react-beta",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "accurate-interval": "^1.0.9",
     "bootstrap": "^4.3.1",
+    "gh-pages": "^2.1.0",
     "marked": "^0.7.0",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.10",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

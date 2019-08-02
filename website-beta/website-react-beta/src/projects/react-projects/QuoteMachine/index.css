@@ -1,6 +1,6 @@
 .quote {
   background-color: #ebf5f8;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,16 +19,14 @@
   background: #f8faf1;
 }
 
-.buttons {
-  display: flex;
-  justify-content: space-between;
+.buttons-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
 }
 
 #text {
   font-size: 2em;
-}
-
-#author {
 }
 
 .link-fix,

@@ -3,24 +3,22 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 const Quote = ({ quote }) => (
-  <div className="card-title m-2" id="text">
+  <div className="card-body" id="text">
     {quote}
   </div>
 );
 
 const Author = ({ author }) => (
-  <div id="author" className="mt-4">
-    <div>
-      {"- "}
-      {author}
-    </div>
+  <div id="author" className="">
+    {"- "}
+    {author}
   </div>
 );
 
 const NewQuoteButton = ({ onClick }) => (
-  <button id="new-quote" className="btn btn-secondary" onClick={onClick}>
+  <div id="new-quote" className="btn btn-secondary" onClick={onClick}>
     New Quote
-  </button>
+  </div>
 );
 
 const TwitterButton = ({ quote, author }) => (
@@ -32,7 +30,7 @@ const TwitterButton = ({ quote, author }) => (
       encodeURIComponent('"' + quote + '" ' + author)
     }
   >
-    <div style={{ marginTop: "15%" }}>Tweet</div>
+    Tweet
   </a>
 );
 
@@ -68,21 +66,15 @@ class App extends Component {
   render() {
     return (
       <div className="quote">
-        <div className="container">
-          <div className="card shadow content p-4" id="quote-box">
-            <Quote id="text" quote={this.state.currentQuote.quote} />
-            <div className="buttons mt-2">
-              <div className="btn-group">
-                <TwitterButton
-                  quote={this.state.currentQuote.quote}
-                  author={this.state.currentQuote.author}
-                />
-              </div>
-              <Author id="author" author={this.state.currentQuote.author} />
-              <div className="btn-group">
-                <NewQuoteButton onClick={this.handleNewQuote} />
-              </div>
-            </div>
+        <div className="card shadow content" id="quote-box">
+          <Quote id="text" quote={this.state.currentQuote.quote} />
+          <div className="buttons-group m-2">
+            <TwitterButton
+              quote={this.state.currentQuote.quote}
+              author={this.state.currentQuote.author}
+            />
+            <Author id="author" author={this.state.currentQuote.author} />
+            <NewQuoteButton onClick={this.handleNewQuote} />
           </div>
         </div>
       </div>

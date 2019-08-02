@@ -1,5 +1,10 @@
 body {
   margin: 0;
+  padding-top: 60px;
+}
+
+.navbar {
+  height: 60px;
 }
 
 #root {
