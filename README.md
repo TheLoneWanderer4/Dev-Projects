@@ -1,3 +1,3 @@
 # Dev-Projects
 
-gonna try out all sorts of stuff here, might even try and learn markdown lol
+This is the mega repository where all of the projects to small to warrant thier own reposetory live
