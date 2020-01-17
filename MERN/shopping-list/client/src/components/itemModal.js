@@ -24,7 +24,7 @@ class ItemModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.addItem(this.state.name);
+    this.props.addItem({ name: this.state.name });
     this.toggle();
   };
 

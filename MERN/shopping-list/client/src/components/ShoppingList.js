@@ -20,18 +20,18 @@ class ShoppingList extends Component {
         <ItemModal />
         <ListGroup>
           <TransitionGroup className="shopping-list">
-            {items.map(({ id, name }) => (
-              <CSSTransition key={id} timeout={250} classNames="fade">
+            {items.map(item => (
+              <CSSTransition key={item._id} timeout={250} classNames="fade">
                 <ListGroupItem>
                   <Button
                     className="remove-btn"
                     color="danger"
                     size="sm"
-                    onClick={() => this.props.deleteItem(id)}
+                    onClick={() => this.props.deleteItem(item._id)}
                   >
                     X
                   </Button>
-                  {name}
+                  {item.name}
                 </ListGroupItem>
               </CSSTransition>
             ))}
